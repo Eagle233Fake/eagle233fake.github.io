@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns#" class="mdui-theme-dark" data-theme="dark">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="Eagle233">
+  <meta name="generator" content="Hexo 7.3.0">
+    <meta name="description" content="Data Typesint%i  Take up 32 bits. unsigned int%u  Take up 32 bits, only for positive integer. long &#x2F; long int%li  Take up 64 bits. const int%i  Declarea a variable whose value cannot be changed a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week 1 C">
+<meta property="og:url" content="https://blog.eagle233.top/2024/09/21/week_1_c/index.html">
+<meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="Data Typesint%i  Take up 32 bits. unsigned int%u  Take up 32 bits, only for positive integer. long &#x2F; long int%li  Take up 64 bits. const int%i  Declarea a variable whose value cannot be changed a">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-09-21T01:50:02.422Z">
+<meta property="article:modified_time" content="2024-09-21T03:22:38.578Z">
+<meta property="article:author" content="Eagle233">
+<meta name="twitter:card" content="summary">
+      <link rel="icon" href="">
+      <title>
+        
+          Week 1 C - Eagle233-Blog
+              
+      </title>
+      
+<link rel="stylesheet" href="/css/site.css">
+
+      
+<link rel="stylesheet" href="/css/mdui_2.0.3/mdui.css">
+
+      <style>
+        /*禁用mdui对code的样式，因为它干扰了prism.js*/
+        .mdui-prose pre code {
+          background-color: transparent;
+          padding: 0px 0px;
+        }
+      </style>
+      
+<script src="/css/mdui_2.0.3/mdui.global.js"></script>
+
+      
+<script src="/fancybox/fancybox.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/fancybox/fancybox.css">
+
+      
+<script src="/carousel/carousel.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/carousel/carousel.css">
+
+      
+<link rel="stylesheet" href="/css/prism.css">
+
+          
+<link rel="stylesheet" href="/css/katex.min.css">
+
+            
+<link rel="stylesheet" href="/css/font-material-icon-filled/MaterialIconFilled.css">
+
+              <!-- Filled -->
+              <script>window.$=mdui.$</script>
+</head>
+
+  <body class="line-numbers">
+    <mdui-layout>
+      <mdui-top-app-bar>
+        <mdui-button-icon icon="menu" id="menu-btn">
+        </mdui-button-icon>
+        <mdui-top-app-bar-title>
+          Eagle233-Blog
+        </mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        
+      </mdui-top-app-bar>
+      <mdui-navigation-drawer close-on-overlay-click close-on-esc id="drawer">
+    <mdui-list>
+        
+            
+            <mdui-list-item rounded icon="home"
+                href="/"
+                
+                
+                rel="next">
+                Home
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="folder"
+                href="/categories"
+                
+                
+                rel="next">
+                Categories
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="bookmark"
+                href="/tags"
+                
+                
+                rel="next">
+                Tags
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="archive"
+                href="/archives"
+                
+                
+                rel="next">
+                Archives
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="info"
+                href="/about"
+                
+                
+                rel="next">
+                About
+            </mdui-list-item>
+            
+            
+    </mdui-list>
+</mdui-navigation-drawer>
+        <mdui-layout-main style="min-height: 800px;" id="main">
+          <div style="padding-left: 16px;padding-right: 16px;" id="content">
+            <mdui-card variant="filled" style="padding: 16px;width: 100%;">
+  <div class="mdui-prose post" id="post-all">
+    <h1 style="margin-bottom: 8px;">
+      Week 1 C
+    </h1>
+    <span class="post-date">
+      <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+      2024-09-21 09:50:02 &nbsp; <mdui-icon name="update"
+          style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+        2024-09-21 11:22:38
+    </span>
+    <br>
+    <span>
+        Categories
+          
+            <!-- <mdui-chip href="/categories/CS50X/" variant="filter" style="vertical-align: middle;">
+                          CS50X
+                      </mdui-chip> -->
+            <a href="/categories/CS50X/">
+              CS50X
+            </a>
+            
+              <br>
+      </span>
+      
+        
+          Tags
+            
+                
+                  <!-- photos gallery -->
+                  
+                      <!-- content -->
+                      <h2 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h2><h3 id="int"><a href="#int" class="headerlink" title="int"></a><code>int</code></h3><pre><code>%i
+</code></pre>
+<p>Take up <strong>32 bits</strong>.</p>
+<h3 id="unsigned-int"><a href="#unsigned-int" class="headerlink" title="unsigned int"></a><code>unsigned int</code></h3><pre><code>%u
+</code></pre>
+<p>Take up <strong>32 bits</strong>, only for positive integer.</p>
+<h3 id="long-long-int"><a href="#long-long-int" class="headerlink" title="long &#x2F; long int"></a><code>long</code> &#x2F; <code>long int</code></h3><pre><code>%li
+</code></pre>
+<p>Take up <strong>64 bits</strong>.</p>
+<h2 id="const-int"><a href="#const-int" class="headerlink" title="const int"></a><code>const int</code></h2><pre><code>%i
+</code></pre>
+<p>Declarea a variable whose value cannot be changed after it is initialized.</p>
+<p>Take up <strong>32 bits</strong>.</p>
+<h3 id="char"><a href="#char" class="headerlink" title="char"></a><code>char</code></h3><pre><code>%c
+</code></pre>
+<p>Take up <strong>1 bytes &#x3D; 8 bits</strong>.</p>
+<h2 id="float"><a href="#float" class="headerlink" title="float"></a><code>float</code></h2><pre><code>%f
+</code></pre>
+<p>Take up <strong>32 bits</strong>.</p>
+<h2 id="double"><a href="#double" class="headerlink" title="double"></a><code>double</code></h2><pre><code>%f
+</code></pre>
+<p>Take up <strong>64 bits</strong>.</p>
+<h2 id="bool"><a href="#bool" class="headerlink" title="bool"></a><code>bool</code></h2><pre><code>%i
+</code></pre>
+<p>Printed as a integer.<br>Not included in C99.</p>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a><code>string</code></h2><pre><code>%s
+</code></pre>
+<h2 id="Conditionals"><a href="#Conditionals" class="headerlink" title="Conditionals"></a>Conditionals</h2><h3 id="Question-Mark-Syntax-Ternary-Operator"><a href="#Question-Mark-Syntax-Ternary-Operator" class="headerlink" title="?: (Question Mark Syntax &#x2F; Ternary  Operator)"></a><code>?:</code> (Question Mark Syntax &#x2F; Ternary  Operator)</h3><pre><code>int x;
+if (expr)
+&#123;
+    x = 5;
+&#125;
+else
+&#123;
+    x = 6;
+&#125;
+</code></pre>
+<p>to</p>
+<pre><code>int x = (expr) ? 5 : 6;
+</code></pre>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a><code>switch</code></h3><pre><code>switch (x)
+&#123;
+case 1:
+    // Code to execute if variable == value1
+    break;
+case 2:
+    // Code to execute if variable == value2
+    break;
+// Add more cases as needed
+default:
+    // Code to execute if variable doesn&#39;t match any case
+    break;
+&#125;
+</code></pre>
+<h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><h3 id="do-while"><a href="#do-while" class="headerlink" title="do-while"></a><code>do-while</code></h3><pre><code>do
+&#123;
+    
+&#125;
+while (boolean-expr);
+</code></pre>
+<p>Run <strong>at least one time</strong> (Compared to <code>while</code>).</p>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h3><pre><code>for (start; expr; increment)
+&#123;
+
+&#125;
+</code></pre>
+<h2 id="Command-Line"><a href="#Command-Line" class="headerlink" title="Command Line"></a>Command Line</h2><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><p><code>Ctrl + L</code> 清屏<br><code>Ctrl + U</code> 清除当前行<br><code>Ctrl + A</code> 跳转到开头<br><code>Ctrl + E</code> 跳转到结尾</p>
+<h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a><code>pwd</code></h3><p>Give a <strong>prompt</strong> that remind you where you are.</p>
+<h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a><code>cp</code></h3><p><code>cp &lt;source&gt; &lt;destination&gt;</code></p>
+<blockquote>
+<p>recursion &#x2F; recursive &#x2F; recursively</p>
+</blockquote>
+<p>To copy an entire directory, use <code>cp -r &lt;directory&gt; &lt;directory&gt;</code>.</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a><code>rm</code></h3><p>To force rm, use <code>rm -f &lt;source&gt;</code>.<br>To remove an entire directory, use <code>rm -r(f) &lt;directory&gt;</code>.</p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a><code>mv</code></h3><p>Example:<br><code>cp greddy.c greedy.c</code><br><code>rm greddy.c</code><br>to<br><code>mv greddy.c greedy.c</code><br>The same effect.</p>
+<h3 id="man"><a href="#man" class="headerlink" title="man"></a><code>man</code></h3><p>manual</p>
+<h3 id="Other-commands"><a href="#Other-commands" class="headerlink" title="Other commands"></a>Other commands</h3><p><code>chmod</code> <code>ln</code> <code>touch</code> <code>rmdir</code> <code>diff</code> <code>sudo</code> <code>clear</code> <code>telnet</code></p>
+<h2 id="Magic-Numbers"><a href="#Magic-Numbers" class="headerlink" title="Magic Numbers"></a>Magic Numbers</h2><h3 id="Preprocessor-Directive-macro"><a href="#Preprocessor-Directive-macro" class="headerlink" title="Preprocessor Directive (macro)"></a>Preprocessor Directive (macro)</h3><p>To creat symbolic constants.<br><code>#define NAME REPLACEMENT</code><br>Always use all capitals.</p>
+<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p><code>Ctrl + Shift + P</code> Command<br><code>Ctrl + B</code> Explorer<br>&#96;Ctrl + `&#96; Terminal</p>
+
+  </div>
+</mdui-card>
+<script>
+  const $ = mdui.$;
+  $("#post-all").find("img").each((index, ele) => {
+    $(ele).replaceWith(`<a data-src="${$(ele).prop("src")}" class="fancybox-enabled" data-fancybox="picture" data-caption="${$(ele).prop("alt")}">${ele.outerHTML}</a>`)
+  });
+  Fancybox.bind(".fancybox-enabled", {
+    on: {
+      ready: () => {
+        $("mdui-top-app-bar").addClass("invisible")
+      }, close: () => {
+        $("mdui-top-app-bar").removeClass("invisible")
+      }
+    }
+  });
+  
+</script>
+
+    
+                    
+              <br>
+              <span></span>
+          </div>
+        </mdui-layout-main>
+    </mdui-layout>
+    
+          <script>
+            mdui.setColorScheme('#4fd8eb');
+            const navigationDrawer = document.querySelector("#drawer");
+            const mainlayout = document.querySelector("#main");
+            const breakpointCondition = mdui.breakpoint();
+            if (breakpointCondition.up('sm')) {
+              if (localStorage.getItem('navigationDrawer') == null) {
+                if("true"=="true")localStorage.setItem('navigationDrawer', "true");
+              }
+              if("true"=="true")navigationDrawer.setAttribute("open", (localStorage.getItem('navigationDrawer') == "true" ? true : false))
+            }
+            const menuBtn = document.querySelector("#menu-btn");
+            menuBtn.addEventListener("click", () => {
+              navigationDrawer.open = !navigationDrawer.open;
+              if("true"=="true")localStorage.setItem('navigationDrawer', navigationDrawer.open.toString());
+            });
+            const searchBtn = document.querySelector("#search-dlg-btn");
+            searchBtn.addEventListener("click", () => {
+              document.querySelector("#search-dlg").open = true;
+            });
+          </script>
+          
+<script src="/js/prism.js"></script>
+
+  </body>
+
+</html>
