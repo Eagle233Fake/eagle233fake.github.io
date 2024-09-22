@@ -7,21 +7,21 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta name="description" content="Data Typesint%i  Take up 32 bits. unsigned int%u  Take up 32 bits, only for positive integer. long &#x2F; long int%li  Take up 64 bits. const int%i  Declarea a variable whose value cannot be changed a">
+    <meta name="description" content="Data Typesint%i  Take up 32 bits. unsigned int%u  Take up 32 bits, only for positive integer. long &#x2F; long int%li  Take up 64 bits.  truncation  const int%i  Declarea a variable whose value cannot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Week 1 C">
-<meta property="og:url" content="https://blog.eagle233.top/2024/09/21/week_1_c/index.html">
+<meta property="og:title" content="CS50x - Week 1 C">
+<meta property="og:url" content="https://blog.eagle233.top/2024/09/21/CS50x%20-%20Week%201%20C/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
-<meta property="og:description" content="Data Typesint%i  Take up 32 bits. unsigned int%u  Take up 32 bits, only for positive integer. long &#x2F; long int%li  Take up 64 bits. const int%i  Declarea a variable whose value cannot be changed a">
+<meta property="og:description" content="Data Typesint%i  Take up 32 bits. unsigned int%u  Take up 32 bits, only for positive integer. long &#x2F; long int%li  Take up 64 bits.  truncation  const int%i  Declarea a variable whose value cannot">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-21T01:50:02.422Z">
-<meta property="article:modified_time" content="2024-09-21T03:22:38.578Z">
+<meta property="article:modified_time" content="2024-09-22T02:42:53.650Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
       <title>
         
-          Week 1 C - Eagle233-Blog
+          CS50x - Week 1 C - Eagle233-Blog
               
       </title>
       
@@ -136,23 +136,23 @@
             <mdui-card variant="filled" style="padding: 16px;width: 100%;">
   <div class="mdui-prose post" id="post-all">
     <h1 style="margin-bottom: 8px;">
-      Week 1 C
+      CS50x - Week 1 C
     </h1>
     <span class="post-date">
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-09-21 09:50:02 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-09-21 11:22:38
+        2024-09-22 10:42:53
     </span>
     <br>
     <span>
         Categories
           
-            <!-- <mdui-chip href="/categories/CS50X/" variant="filter" style="vertical-align: middle;">
-                          CS50X
+            <!-- <mdui-chip href="/categories/CS50x/" variant="filter" style="vertical-align: middle;">
+                          CS50x
                       </mdui-chip> -->
-            <a href="/categories/CS50X/">
-              CS50X
+            <a href="/categories/CS50x/">
+              CS50x
             </a>
             
               <br>
@@ -174,6 +174,9 @@
 <h3 id="long-long-int"><a href="#long-long-int" class="headerlink" title="long &#x2F; long int"></a><code>long</code> &#x2F; <code>long int</code></h3><pre><code>%li
 </code></pre>
 <p>Take up <strong>64 bits</strong>.</p>
+<blockquote>
+<p>truncation</p>
+</blockquote>
 <h2 id="const-int"><a href="#const-int" class="headerlink" title="const int"></a><code>const int</code></h2><pre><code>%i
 </code></pre>
 <p>Declarea a variable whose value cannot be changed after it is initialized.</p>
@@ -182,6 +185,8 @@
 </code></pre>
 <p>Take up <strong>1 bytes &#x3D; 8 bits</strong>.</p>
 <h2 id="float"><a href="#float" class="headerlink" title="float"></a><code>float</code></h2><pre><code>%f
+
+%.5f // 显示五位小数
 </code></pre>
 <p>Take up <strong>32 bits</strong>.</p>
 <h2 id="double"><a href="#double" class="headerlink" title="double"></a><code>double</code></h2><pre><code>%f
@@ -191,6 +196,9 @@
 </code></pre>
 <p>Printed as a integer.<br>Not included in C99.</p>
 <h2 id="string"><a href="#string" class="headerlink" title="string"></a><code>string</code></h2><pre><code>%s
+</code></pre>
+<h2 id="void"><a href="#void" class="headerlink" title="void"></a><code>void</code></h2><h2 id="Translate-into-other-types"><a href="#Translate-into-other-types" class="headerlink" title="Translate into other types"></a>Translate into other types</h2><pre><code>int x
+(float) x
 </code></pre>
 <h2 id="Conditionals"><a href="#Conditionals" class="headerlink" title="Conditionals"></a>Conditionals</h2><h3 id="Question-Mark-Syntax-Ternary-Operator"><a href="#Question-Mark-Syntax-Ternary-Operator" class="headerlink" title="?: (Question Mark Syntax &#x2F; Ternary  Operator)"></a><code>?:</code> (Question Mark Syntax &#x2F; Ternary  Operator)</h3><pre><code>int x;
 if (expr)
@@ -243,7 +251,7 @@ while (boolean-expr);
 <h3 id="man"><a href="#man" class="headerlink" title="man"></a><code>man</code></h3><p>manual</p>
 <h3 id="Other-commands"><a href="#Other-commands" class="headerlink" title="Other commands"></a>Other commands</h3><p><code>chmod</code> <code>ln</code> <code>touch</code> <code>rmdir</code> <code>diff</code> <code>sudo</code> <code>clear</code> <code>telnet</code></p>
 <h2 id="Magic-Numbers"><a href="#Magic-Numbers" class="headerlink" title="Magic Numbers"></a>Magic Numbers</h2><h3 id="Preprocessor-Directive-macro"><a href="#Preprocessor-Directive-macro" class="headerlink" title="Preprocessor Directive (macro)"></a>Preprocessor Directive (macro)</h3><p>To creat symbolic constants.<br><code>#define NAME REPLACEMENT</code><br>Always use all capitals.</p>
-<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p><code>Ctrl + Shift + P</code> Command<br><code>Ctrl + B</code> Explorer<br>&#96;Ctrl + `&#96; Terminal</p>
+<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p><code>Ctrl + Shift + P</code> Command<br><code>Ctrl + B</code> Explorer<br><code>Ctrl + 反引号</code> Terminal<br>&#x2F;&#x2F; 在&#96;&#96;里面怎么就打不出反引号来？？？</p>
 
   </div>
 </mdui-card>
