@@ -7,19 +7,21 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta property="og:type" content="article">
-<meta property="og:title" content="111">
+    <meta name="description" content="这一周我没有完成 Tideman ，原因是 Runoff 的代码量就已经把我打出措手不及了，计划于之后补上。 这节课的语法内容并不多，作业其实也只涉及到了 Struct 的内容（甚至没有 Recursion ？也许在Tideman中？），重点是对算法概念的理解。  Searching and Sorting &#x2F; O, Θ, Ω NotationLinear Search &#x2F; B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50x - Week 3 Algorithms">
 <meta property="og:url" content="https://blog.eagle233.top/2024/09/28/CS50x%20-%20Week%203%20Algorithms/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="这一周我没有完成 Tideman ，原因是 Runoff 的代码量就已经把我打出措手不及了，计划于之后补上。 这节课的语法内容并不多，作业其实也只涉及到了 Struct 的内容（甚至没有 Recursion ？也许在Tideman中？），重点是对算法概念的理解。  Searching and Sorting &#x2F; O, Θ, Ω NotationLinear Search &#x2F; B">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-28T13:46:57.000Z">
-<meta property="article:modified_time" content="2024-09-28T13:46:57.683Z">
+<meta property="article:modified_time" content="2024-09-29T08:11:03.338Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
       <title>
         
-          111 - Eagle233-Blog
+          CS50x - Week 3 Algorithms - Eagle233-Blog
               
       </title>
       
@@ -135,13 +137,13 @@
             <mdui-card variant="filled" style="padding: 16px;width: 100%;">
   <div class="mdui-prose post" id="post-all">
     <h1 style="margin-bottom: 8px;">
-      111
+      CS50x - Week 3 Algorithms
     </h1>
     <span class="post-date">
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-09-28 21:46:57 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-09-28 21:46:57
+        2024-09-29 16:11:03
     </span>
     <br>
     <span>
@@ -157,7 +159,94 @@
                   <!-- photos gallery -->
                   
                       <!-- content -->
-                      
+                      <p>这一周我没有完成 <strong><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/3/tideman/">Tideman</a></strong> ，原因是 <strong><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/3/runoff/">Runoff</a></strong> 的代码量就已经把我打出措手不及了，计划于之后补上。</p>
+<p>这节课的语法内容并不多，作业其实也只涉及到了 <code>Struct</code> 的内容（甚至没有 <code>Recursion</code> ？也许在Tideman中？），重点是对算法概念的理解。</p>
+<hr>
+<h2 id="Searching-and-Sorting-O-Θ-Ω-Notation"><a href="#Searching-and-Sorting-O-Θ-Ω-Notation" class="headerlink" title="Searching and Sorting &#x2F; O, Θ, Ω Notation"></a>Searching and Sorting &#x2F; O, Θ, Ω Notation</h2><h3 id="Linear-Search-Binary-Search"><a href="#Linear-Search-Binary-Search" class="headerlink" title="Linear Search &#x2F; Binary Search"></a>Linear Search &#x2F; Binary Search</h3><h3 id="Common-Notations"><a href="#Common-Notations" class="headerlink" title="Common Notations"></a>Common Notations</h3><table>
+<thead>
+<tr>
+<th>O</th>
+<th>Ω</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O(1)</td>
+<td>Ω(1)</td>
+</tr>
+<tr>
+<td>O(log(N))</td>
+<td>Ω(log(N))</td>
+</tr>
+<tr>
+<td>O(N log(N))</td>
+<td>O(N log(N))</td>
+</tr>
+<tr>
+<td>O(N)</td>
+<td>Ω(N)</td>
+</tr>
+<tr>
+<td>O(N^2)</td>
+<td>Ω(N^2)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>1: Fixed number of steps. (Whatever 2, 3, 10, 114514 or …)</li>
+</ul>
+<hr>
+<h2 id="Sort"><a href="#Sort" class="headerlink" title="Sort"></a>Sort</h2><table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>O</th>
+<th>Ω</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Merge Sort</td>
+<td>O(N log(N))</td>
+<td>Ω(N log(N))</td>
+</tr>
+<tr>
+<td>Selection Sort</td>
+<td>O(N^2)</td>
+<td>Ω(N^2)</td>
+</tr>
+<tr>
+<td>Bubble Sort</td>
+<td>O(N^2)</td>
+<td>Ω(N)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h2><pre><code>typedef struct 
+&#123;
+    string name;
+    int votes; 
+&#125;
+candidate;
+
+candidate president;
+president.name = &quot;Samia&quot;;
+president.votes = 10;
+
+candidate candidates[4];
+</code></pre>
+<blockquote>
+<p>那这边要注意一下，经常会混淆数据类型和变量名称。例如创造了一个叫做 <code>candidate</code> 的数据类型，然后定义变量 <code>candidates</code> 是 <code>candidate</code> 类型的数据。</p>
+</blockquote>
+<hr>
+<h2 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h2><ul>
+<li><p><strong>Example: Factorial</strong></p>
+</li>
+<li><p><strong>Base Case</strong></p>
+</li>
+<li><p><strong>Call Stack</strong></p>
+</li>
+<li><p><strong>Recursive Call</strong></p>
+</li>
+</ul>
+
   </div>
 </mdui-card>
 <script>
