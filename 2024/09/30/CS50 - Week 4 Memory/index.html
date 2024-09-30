@@ -7,21 +7,21 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta name="description" content="这一周我没有完成 Tideman ，原因是 Runoff 的代码量就已经把我打出措手不及了，计划于之后补上。 这节课的语法内容并不多，作业其实也只涉及到了 Struct 的内容（甚至没有 Recursion ？也许在 Tideman 中？），重点是对算法概念的理解。  Searching and Sorting &#x2F; O, Θ, Ω NotationLinear Search &#x2F;">
+    <meta name="description" content="Pointers type * *x &amp;x  Reasons to Use Pointers-You can pass variables to functions by reference, not just by copy. The code you write is cleaner asa result.  You can use dynamic memory (e.g., wit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS50x - Week 3 Algorithms">
-<meta property="og:url" content="https://blog.eagle233.top/2024/09/28/CS50x%20-%20Week%203%20Algorithms/index.html">
+<meta property="og:title" content="CS50 - Week 4 Memory">
+<meta property="og:url" content="https://blog.eagle233.top/2024/09/30/CS50%20-%20Week%204%20Memory/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
-<meta property="og:description" content="这一周我没有完成 Tideman ，原因是 Runoff 的代码量就已经把我打出措手不及了，计划于之后补上。 这节课的语法内容并不多，作业其实也只涉及到了 Struct 的内容（甚至没有 Recursion ？也许在 Tideman 中？），重点是对算法概念的理解。  Searching and Sorting &#x2F; O, Θ, Ω NotationLinear Search &#x2F;">
+<meta property="og:description" content="Pointers type * *x &amp;x  Reasons to Use Pointers-You can pass variables to functions by reference, not just by copy. The code you write is cleaner asa result.  You can use dynamic memory (e.g., wit">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-09-28T13:46:57.000Z">
-<meta property="article:modified_time" content="2024-09-30T13:54:19.910Z">
+<meta property="article:published_time" content="2024-09-30T04:31:47.000Z">
+<meta property="article:modified_time" content="2024-09-30T13:54:20.944Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
       <title>
         
-          CS50x - Week 3 Algorithms - Eagle233-Blog
+          CS50 - Week 4 Memory - Eagle233-Blog
               
       </title>
       
@@ -137,13 +137,13 @@
             <mdui-card variant="filled" style="padding: 16px;width: 100%;">
   <div class="mdui-prose post" id="post-all">
     <h1 style="margin-bottom: 8px;">
-      CS50x - Week 3 Algorithms
+      CS50 - Week 4 Memory
     </h1>
     <span class="post-date">
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-      2024-09-28 21:46:57 &nbsp; <mdui-icon name="update"
+      2024-09-30 12:31:47 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-09-30 21:54:19
+        2024-09-30 21:54:20
     </span>
     <br>
     <span>
@@ -159,133 +159,80 @@
                   <!-- photos gallery -->
                   
                       <!-- content -->
-                      <p>这一周我没有完成 <strong><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/3/tideman/">Tideman</a></strong> ，原因是 <strong><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/3/runoff/">Runoff</a></strong> 的代码量就已经把我打出措手不及了，计划于之后补上。</p>
-<p>这节课的语法内容并不多，作业其实也只涉及到了 <code>Struct</code> 的内容（甚至没有 <code>Recursion</code> ？也许在 <strong><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2024/psets/3/tideman/">Tideman</a></strong> 中？），重点是对算法概念的理解。</p>
-<hr>
-<h2 id="Searching-and-Sorting-O-Θ-Ω-Notation"><a href="#Searching-and-Sorting-O-Θ-Ω-Notation" class="headerlink" title="Searching and Sorting &#x2F; O, Θ, Ω Notation"></a>Searching and Sorting &#x2F; O, Θ, Ω Notation</h2><h3 id="Linear-Search-Binary-Search"><a href="#Linear-Search-Binary-Search" class="headerlink" title="Linear Search &#x2F; Binary Search"></a>Linear Search &#x2F; Binary Search</h3><table>
-<thead>
-<tr>
-<th>Algorithm</th>
-<th>O</th>
-<th>Ω</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Linear Search</td>
-<td>O(N)</td>
-<td>Ω(1)</td>
-</tr>
-<tr>
-<td>Binary Search</td>
-<td>Ω(log(N))</td>
-<td>Ω(1)</td>
-</tr>
-</tbody></table>
-<ul>
-<li><strong>Binary Search</strong> requires a special condition be met beforehand – have a <strong>SORTED</strong> array.</li>
+                      <hr>
+<h2 id="Pointers"><a href="#Pointers" class="headerlink" title="Pointers"></a>Pointers</h2><ul>
+<li><strong>type *</strong></li>
+<li><strong>*x</strong></li>
+<li><strong>&amp;x</strong></li>
 </ul>
-<h3 id="Common-Notations"><a href="#Common-Notations" class="headerlink" title="Common Notations"></a>Common Notations</h3><table>
-<thead>
-<tr>
-<th>O</th>
-<th>Ω</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>O(1)</td>
-<td>Ω(1)</td>
-</tr>
-<tr>
-<td>O(log(N))</td>
-<td>Ω(log(N))</td>
-</tr>
-<tr>
-<td>O(N log(N))</td>
-<td>O(N log(N))</td>
-</tr>
-<tr>
-<td>O(N)</td>
-<td>Ω(N)</td>
-</tr>
-<tr>
-<td>O(N^2)</td>
-<td>Ω(N^2)</td>
-</tr>
-</tbody></table>
+<h3 id="Reasons-to-Use-Pointers"><a href="#Reasons-to-Use-Pointers" class="headerlink" title="Reasons to Use Pointers"></a>Reasons to Use Pointers</h3><p>-You can pass variables to functions <strong>by reference</strong>, not just <strong>by copy</strong>. The code you write is cleaner as<br>a result.</p>
 <ul>
-<li>1: Fixed number of steps. (Whatever 2, 3, 10, 114514 or …)</li>
-</ul>
-<hr>
-<h2 id="Sort"><a href="#Sort" class="headerlink" title="Sort"></a>Sort</h2><table>
-<thead>
-<tr>
-<th>Algorithm</th>
-<th>O</th>
-<th>Ω</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Merge Sort</td>
-<td>O(N log(N))</td>
-<td>Ω(N log(N))</td>
-</tr>
-<tr>
-<td>Selection Sort</td>
-<td>O(N^2)</td>
-<td>Ω(N^2)</td>
-</tr>
-<tr>
-<td>Bubble Sort</td>
-<td>O(N^2)</td>
-<td>Ω(N)</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h2><pre><code>typedef struct 
-&#123;
-    string name;
-    int votes; 
-&#125;
-candidate;
+<li><p>You can use <strong>dynamic memory</strong> (e.g., with malloc). Your programs can now scale their usage of memory according to user behavior.</p>
+<pre><code>  #include &lt;cs50.h&gt;
+  #include &lt;stdio.h&gt;
 
-candidate president;
-president.name = &quot;Samia&quot;;
-president.votes = 10;
+  void swap(int *a, int *b);
 
-candidate candidates[4];
-</code></pre>
-<blockquote>
-<p>那这边要注意一下，经常会混淆数据类型和变量名称。例如创造了一个叫做 <code>candidate</code> 的数据类型，然后定义变量 <code>candidates</code> 是 <code>candidate</code> 类型的数据。</p>
-</blockquote>
-<hr>
-<h2 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h2><ul>
-<li><p><strong>Example: Factorial</strong></p>
-</li>
-<li><p><strong>Base Case</strong> &#x2F; <strong>Recursive Case</strong>  </p>
-</li>
-<li><p><strong>Call Stack</strong></p>
-</li>
-<li><p><strong>Multiple Base Cases: The Fibonacci Sequence 斐波那契数列</strong></p>
-</li>
-<li><p><strong>Multiple Recursive Cases: The Collatz Conjecture 科拉茨猜想</strong></p>
-<pre><code>  int collatz(int n)
+  int main(void)
   &#123;
-  // base case
-  if (n == 1)
-      return 0;
-  // even numbers
-  else if ((n % 2) == 0)
-      return 1 + collatz(n/2);
-  // odd numbers
-  else
-      return 1 + collatz(3*n + 1);
+      int a = 10;
+      int b = 50;
+
+      printf(&quot;a is %i, b is %i\n&quot;, a, b);
+      swap(&amp;a, &amp;b);
+      printf(&quot;a is %i, b is %i\n&quot;, a, b);
+  &#125;
+
+  void swap(int *a, int *b)
+  &#123;
+      int temp = *a;
+      *a = *b;
+      *b = temp;
   &#125;
 </code></pre>
 </li>
 </ul>
-<blockquote>
-<p>想想高中学过的数列：<strong>递归公式</strong>和<strong>首项</strong>。</p>
-</blockquote>
+<hr>
+<h2 id="File-I-O"><a href="#File-I-O" class="headerlink" title="File I&#x2F;O"></a>File I&#x2F;O</h2><h3 id="Opening-Closing-Files"><a href="#Opening-Closing-Files" class="headerlink" title="Opening &amp; Closing Files"></a>Opening &amp; Closing Files</h3><ul>
+<li><p><code>fopen</code> opens a file for future reading&#x2F;writing.</p>
+<pre><code>  FILE *f = fopen(&quot;hi.txt&quot;, &quot;r&quot;);
+</code></pre>
+<ul>
+<li><p>“r”, if opening the file in order to read from it,</p>
+</li>
+<li><p>“w”, if opening the file in order to write to it, and</p>
+</li>
+<li><p>“a”, if opening the file in order to append to it.</p>
+</li>
+<li><p>fopen returns a pointer to “FILE” type.</p>
+</li>
+</ul>
+</li>
+<li><p><code>fclose</code> closes a file.</p>
+<p>  fclose(f);</p>
+</li>
+<li><p>Always fclose all files you fopen! (Reasons?)</p>
+</li>
+</ul>
+<h3 id="Reading-Writing"><a href="#Reading-Writing" class="headerlink" title="Reading &amp; Writing"></a>Reading &amp; Writing</h3><ul>
+<li><p><code>fread</code> reads data from a file into a buffer (a chunk of memory that can temporarily store some data from the file). Allows us to look at some particular pieces of our file and not the entire file all at once. It would <strong>return how many blocks</strong> it has read as an interger.</p>
+<pre><code>  fread(buffer, 1, 4, f);
+
+  // To where? / What size? / How many? / From where?
+  // `buffer` is a **pointer**.
+</code></pre>
+<ul>
+<li>Pointer <code>f</code> continues through the file until spins to the end and back to the beginning.</li>
+</ul>
+</li>
+<li><p><code>fwrite</code> writes data from a buffer to a file.</p>
+</li>
+<li><p><code>fprintf</code></p>
+<pre><code>  fprintf(file, &quot;%c %i\n&quot;, c, c);
+  // `file` is a **pointer**
+</code></pre>
+</li>
+</ul>
 
   </div>
 </mdui-card>
