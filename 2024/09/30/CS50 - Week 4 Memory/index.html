@@ -15,7 +15,7 @@
 <meta property="og:description" content="这牛魔的 File I&#x2F;O 是真不太懂啊，立个flag慢慢学。  Pointers type * *x &#x2F;&#x2F; Dereference Operator &amp;x  Reasons to Use Pointers-You can pass variables to functions by reference, not just by copy. The code you">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-30T04:31:47.000Z">
-<meta property="article:modified_time" content="2024-10-10T12:33:29.793Z">
+<meta property="article:modified_time" content="2024-10-10T16:00:56.079Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-09-30 12:31:47 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-10-10 20:33:29
+        2024-10-11 00:00:56
     </span>
     <br>
     <span>
@@ -249,25 +249,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a><code>malloc</code></h3><pre><code>#include &lt;stdlib.h&gt;
-int *x = malloc(sizeof(int));
-if (arr == NULL) 
-&#123;
-    // 处理内存分配失败
-    return 1;
-&#125;
-</code></pre>
-<ul>
-<li><p>每次都需要使用 <code>free</code> 释放内存。</p>
-</li>
-<li><p>最好检查返回值是否是 <code>NULL</code> 。</p>
-</li>
-</ul>
-<h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a><code>valgrind</code></h3><pre><code>valgrind ./program
-</code></pre>
-<h3 id="free"><a href="#free" class="headerlink" title="free"></a><code>free</code></h3><pre><code>free(x);
-</code></pre>
-<h3 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof()"></a><code>sizeof()</code></h3><ul>
+<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><h3 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof()"></a><code>sizeof()</code></h3><ul>
 <li><p>是<strong>运算符</strong>而不是函数。</p>
 </li>
 <li><p>返回一个 size_t 类型的值，表示字节数。</p>
@@ -304,6 +286,50 @@ double engine_size;
 &#125;
 car_t;
 </code></pre>
+<hr>
+<h2 id="Dynamic-Memory-Allocation"><a href="#Dynamic-Memory-Allocation" class="headerlink" title="Dynamic Memory Allocation"></a>Dynamic Memory Allocation</h2><ul>
+<li><p>This memory comes from a pool of memory know as the <strong>HEAP (堆)</strong>.</p>
+</li>
+<li><p>Previously all memory comes from a pool of the memory known as the <strong>STACK (栈zhan4)</strong>.</p>
+<pre><code>  // get an integer from the user
+  int x = GetInt();
+  // array of floats on the stack
+  float stack_array[x];
+  // array of floats on the heap
+  float* heap_array = malloc(x * sizeof(float));
+</code></pre>
+</li>
+</ul>
+<p>&#x2F;&#x2F; Put an image here</p>
+<h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a><code>malloc</code></h3><pre><code>#include &lt;stdlib.h&gt;
+int *x = malloc(sizeof(int)); // How many bytes
+if (x == NULL) 
+&#123;
+    // 处理内存分配失败
+    return 1;
+&#125;
+</code></pre>
+<ul>
+<li><p>每次都需要使用 <code>free</code> 释放内存。</p>
+</li>
+<li><p>最好检查返回值是否是 <code>NULL</code> 。</p>
+</li>
+</ul>
+<h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a><code>valgrind</code></h3><pre><code>valgrind ./program
+</code></pre>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a><code>free</code></h3><pre><code>free(x);
+// ONLY USE in Dynamic Memory Allocation
+// DO NOT use more then once.
+</code></pre>
+<hr>
+<h2 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h2><ul>
+<li><p><strong>The Active Frame</strong>: At the top of the stack while other functions waiting to be the active frames.</p>
+<ul>
+<li>Process: be <strong>PUSHED onto</strong> the top of the stack and be <strong>POPPED off</strong> the stack.</li>
+</ul>
+</li>
+</ul>
+<p>&#x2F;&#x2F; image here</p>
 
   </div>
 </mdui-card>
