@@ -15,7 +15,7 @@
 <meta property="og:description" content="这牛魔的 File I&#x2F;O 是真不太懂啊，立个flag慢慢学。  Pointers type * *x &#x2F;&#x2F; Dereference Operator &amp;x  Reasons to Use Pointers-You can pass variables to functions by reference, not just by copy. The code you">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-30T04:31:47.000Z">
-<meta property="article:modified_time" content="2024-10-10T16:00:56.079Z">
+<meta property="article:modified_time" content="2024-10-11T02:17:50.607Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-09-30 12:31:47 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-10-11 00:00:56
+        2024-10-11 10:17:50
     </span>
     <br>
     <span>
@@ -330,6 +330,126 @@ if (x == NULL)
 </li>
 </ul>
 <p>&#x2F;&#x2F; image here</p>
+<hr>
+<h2 id="File-Pointers"><a href="#File-Pointers" class="headerlink" title="File Pointers"></a>File Pointers</h2><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>fgets()</code></td>
+<td>Reads a full string from a file.</td>
+</tr>
+<tr>
+<td><code>fputs()</code></td>
+<td>Writes a full string to a file.</td>
+</tr>
+<tr>
+<td><code>fprintf()</code></td>
+<td>Writes a formatted string to a file.</td>
+</tr>
+<tr>
+<td><code>fseek()</code></td>
+<td>Allows you rewind or fast-forward within a file.</td>
+</tr>
+<tr>
+<td><code>ftell()</code></td>
+<td>Tells you at what (byte) position you are at within a file.</td>
+</tr>
+<tr>
+<td><code>feof()</code></td>
+<td>Tells you whether you’ve read to the end of a file.</td>
+</tr>
+<tr>
+<td><code>ferror()</code></td>
+<td>Indicates whether an error has occurred in working with a file.</td>
+</tr>
+</tbody></table>
+<h3 id="FILE-FILE"><a href="#FILE-FILE" class="headerlink" title="FILE &#x2F; FILE *"></a><code>FILE</code> &#x2F; <code>FILE *</code></h3><h3 id="fopen"><a href="#fopen" class="headerlink" title="fopen()"></a><code>fopen()</code></h3><ul>
+<li><p>Opens a file and returns a file pointer to it.</p>
+</li>
+<li><p>Always check the return value to make sure you don’t get back <code>NULL</code>.</p>
+<pre><code>  FILE* ptr = fopen(&lt;filename&gt;, &lt;operation&gt;);
+</code></pre>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&quot;a&quot;</code></td>
+<td>以追加模式打开文件。如果文件不存在，则创建新文件；如果文件已存在，数据将被写入文件末尾，而不会覆盖原有内容。</td>
+</tr>
+<tr>
+<td><code>&quot;w&quot;</code></td>
+<td>以写入模式打开文件。如果文件已存在，文件内容将被清空（覆盖）；如果文件不存在，则创建新文件。</td>
+</tr>
+</tbody></table>
+<h3 id="fclose"><a href="#fclose" class="headerlink" title="fclose()"></a><code>fclose()</code></h3><pre><code>fclose(&lt;file pointer&gt;);
+</code></pre>
+<h3 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc()"></a><code>fgetc()</code></h3><ul>
+<li><p>Reads and returns the next character from the file pointed to.</p>
+</li>
+<li><p>Note: The operation of the file pointer passed in as a parameter MUST BE <code>“r”</code> for read, or you will suffer an error.</p>
+<pre><code>  char ch = fgetc(&lt;file pointer&gt;);
+
+  char ch;
+  while((ch = fgetc(ptr)) != EOF)
+  &#123;
+      printf(“%c”, ch);
+  &#125;
+  
+</code></pre>
+</li>
+<li><p>Equal to <code>cat</code>.</p>
+</li>
+<li><p>‘EOF’: The end of the file.</p>
+</li>
+</ul>
+<h3 id="fputc"><a href="#fputc" class="headerlink" title="fputc()"></a><code>fputc()</code></h3><ul>
+<li><p>Writes or appends the specified character to the pointed-to file.</p>
+</li>
+<li><p>Note: The operation of the file pointer passed in as a parameter must be <code>“w”</code> for write or <code>“a”</code> for append, or you will suffer an error.</p>
+<pre><code>  fputc(&lt;character&gt;, &lt;file pointer&gt;);
+
+  char ch;
+  while((ch = fgetc(ptr)) != EOF)
+  &#123;
+      fputc(ch, ptr2);
+  &#125;
+</code></pre>
+</li>
+<li><p>Equal to <code>cp</code>.</p>
+</li>
+</ul>
+<h3 id="fread"><a href="#fread" class="headerlink" title="fread()"></a><code>fread()</code></h3><pre><code>fread(&lt;buffer&gt;, &lt;size&gt;, &lt;qty&gt;, &lt;file pointer&gt;);
+
+int arr[10];
+fread(arr, sizeof(int), 10, ptr);
+
+double* arr2 = malloc(sizeof(double) * 80);
+fread(arr2, sizeof(double), 80, ptr);
+
+char c;
+fread(**&amp;c**, sizeof(char), 1, ptr);
+</code></pre>
+<h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite()"></a><code>fwrite()</code></h3><pre><code>fwrite(&lt;buffer&gt;, &lt;size&gt;, &lt;qty&gt;, &lt;file pointer&gt;);
+
+int arr[10];
+fwrite(arr, sizeof(int), 10, ptr);
+
+double* arr2 = malloc(sizeof(double) * 80);
+fwrite(arr2, sizeof(double), 80, ptr);
+
+char c;
+fwrite(&amp;c, sizeof(char), 1, ptr);
+</code></pre>
 
   </div>
 </mdui-card>
