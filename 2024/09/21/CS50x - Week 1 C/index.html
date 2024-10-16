@@ -15,7 +15,7 @@
 <meta property="og:description" content="Data Typesint%i   Take up 32 bits.  Compare %i to %d 当使用 %i 时，如果输入的整数以 0 开头，程序会将其视为八进制（base 8）；如果以 0x 或 0X 开头，则视为十六进制（base 16）。例如： scanf(&quot;%i&quot;, &amp;num); 输入 010 会将其视为八进制（8），输入 0x10 会将其视为十六进">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-21T01:50:02.422Z">
-<meta property="article:modified_time" content="2024-10-09T14:50:09.045Z">
+<meta property="article:modified_time" content="2024-10-16T06:12:16.941Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-09-21 09:50:02 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-10-09 22:50:09
+        2024-10-16 14:12:16
     </span>
     <br>
     <span>
@@ -182,6 +182,31 @@
 <h3 id="unsigned-int"><a href="#unsigned-int" class="headerlink" title="unsigned int"></a><code>unsigned int</code></h3><pre><code>%u
 </code></pre>
 <p>Take up <strong>32 bits</strong>, only for positive integers.</p>
+<ul>
+<li><p><strong>思考如下的代码</strong></p>
+<pre><code>  #include &lt;stdio.h&gt;
+  int main(void)
+  &#123;
+      unsigned int m = 1 &lt;&lt; 31;
+      printf(&quot;%u &quot;, m);
+      printf(&quot;%u &quot;, (m &gt;&gt; 1));
+
+      int n = 1 &lt;&lt; 31;
+      printf(&quot;%d &quot;, n);
+      printf(&quot;%d\n&quot;, (n &gt;&gt; 1));
+  &#125;
+</code></pre>
+<p>  假设输入 n &#x3D; -1（其二进制补码表示为 11111111111111111111111111111111）：</p>
+<ul>
+<li><p>使用 <code>unsigned int</code>：</p>
+<p>m 从 10000000000000000000000000000000 开始，逐位检查并打印出 11111111111111111111111111111111。</p>
+</li>
+<li><p>使用 <code>int</code>：</p>
+<p>m 从 10000000000000000000000000000000 开始，但在右移时，符号位会被保留，导致最终结果不正确。</p>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="long-long-int"><a href="#long-long-int" class="headerlink" title="long &#x2F; long int"></a><code>long</code> &#x2F; <code>long int</code></h3><pre><code>%li
 </code></pre>
 <ul>
