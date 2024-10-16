@@ -1,0 +1,11 @@
+<% if (page.total > 1){ %>
+      <div class="mdui-prose">
+        <%- paginator({ 
+        prev_text: __('paginator.prev_text'), 
+        next_text: __('paginator.next_text'),
+        prev_class:"",
+        next_class:"",
+        current_class:"paginator-current",
+        page_class:"paginator-page"
+      }) %></div>
+    <% } %>

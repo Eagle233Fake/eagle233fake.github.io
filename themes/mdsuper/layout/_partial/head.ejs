@@ -1,0 +1,37 @@
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="<%-page.keywords||config.keywords%>">
+  <meta name="description" content="<%-page.description||config.description%>">
+  <meta name="author" content="<%-config.author%>">
+  <%- meta_generator() %>
+    <%- open_graph({}) %>
+      <link rel="icon" href="<%-theme.favicon%>">
+      <title>
+        <%if(page.title){%>
+          <%= page.title %> - <%= config.title %>
+              <%}else{%>
+                <%= config.title %>
+                  <%}%>
+      </title>
+      <%- css("css/site")%>
+      <%-css(theme.mdui.css)%>
+      <style>
+        /*禁用mdui对code的样式，因为它干扰了prism.js*/
+        .mdui-prose pre code {
+          background-color: transparent;
+          padding: 0px 0px;
+        }
+      </style>
+      <%-js(theme.mdui.js)%>
+      <%- js("fancybox/fancybox.umd.js")%>
+      <%- css("fancybox/fancybox")%>
+      <%- js("carousel/carousel.umd.js")%>
+      <%- css("carousel/carousel")%>
+      <%- css("css/prism")%>
+          <%- css("css/katex.min")%>
+            <%- css("css/font-material-icon-filled/MaterialIconFilled")%>
+              <!-- Filled -->
+              <script>window.$=mdui.$</script>
+
+</head>
