@@ -1,5 +1,7 @@
 ---
 title: CS50x - Week 1 C
+date: 2024-09-21 09:50:02
+tags:
 categories: 
 - CS50x
 ---
