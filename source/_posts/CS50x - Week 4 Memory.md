@@ -2,11 +2,13 @@
 title: CS50x - Week 4 Memory
 date: 2024-09-30 12:31:47
 tags:
+categories: 
+- CS50x
 ---
 
 ---
 
-这牛魔的 `File I/O` 是真不太懂啊，立个flag慢慢学。
+`File I/O` 是真不太懂啊，立个flag慢慢学。
 
 ---
 

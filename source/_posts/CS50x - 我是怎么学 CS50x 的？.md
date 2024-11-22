@@ -6,6 +6,8 @@ categories:
 - CS50x
 ---
 
+---
+
 CS50x 的介绍就不必在这里重复了，请看[《CS50: This is CS50x - CS自学指南》](https://csdiy.wiki/%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/C/CS50/)
 
 ---

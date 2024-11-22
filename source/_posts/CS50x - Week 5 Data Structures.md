@@ -2,6 +2,8 @@
 title: CS50x - Week 5 Data Structures
 date: 2024-10-12 15:47:02
 tags:
+categories: 
+- CS50x
 ---
 
 ---
@@ -64,3 +66,4 @@ tags:
     srand(time(0));
     rand() % 2 // 返回余数1或者2。
     
+---
