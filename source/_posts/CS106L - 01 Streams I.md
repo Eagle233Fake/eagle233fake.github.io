@@ -8,11 +8,11 @@ categories:
 
 ---
 
-- 视频链接：
+- Video Links：
 
-**[CS 106L Fall 2019 - Lecture 1: Streams I (Video)](https://www.youtube.com/watch?v=nmXAy_59twk&list=PLCgD3ws8aVdolCexlz8f3U-RROA0s5jWA&index=4)**
+  **[CS 106L Fall 2019 - Lecture 1: Streams I (Video)](https://www.youtube.com/watch?v=nmXAy_59twk&list=PLCgD3ws8aVdolCexlz8f3U-RROA0s5jWA&index=4)**
 
-**[CS 106L Fall 2019 - Lecture 1: Streams I (Screencast)](https://www.youtube.com/watch?v=_WvkljZzGug&list=PLCgD3ws8aVdolCexlz8f3U-RROA0s5jWA&index=3)**
+  **[CS 106L Fall 2019 - Lecture 1: Streams I (Screencast)](https://www.youtube.com/watch?v=_WvkljZzGug&list=PLCgD3ws8aVdolCexlz8f3U-RROA0s5jWA&index=3)**
 
 ---
 
