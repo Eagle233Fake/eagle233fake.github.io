@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns#" class="mdui-theme-auto" data-theme="auto">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="Eagle233">
+  <meta name="generator" content="Hexo 7.3.0">
+    <meta name="description" content="THE STRUCTURED QUERY LANGUAGE  SQLite  phpMyAdmin: GUI   Click here to know more: Introduction to Databases with SQL  Data Types   数据类型 描述    INT 整数类型，通常用于存储整数值。   SMALLINT 较小的整数类型，范围比 INT 小。   TINY">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50x - Week 7 SQL">
+<meta property="og:url" content="https://blog.eagle233.top/2024/11/22/CS50x%20-%20Week%207%20SQL/index.html">
+<meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="THE STRUCTURED QUERY LANGUAGE  SQLite  phpMyAdmin: GUI   Click here to know more: Introduction to Databases with SQL  Data Types   数据类型 描述    INT 整数类型，通常用于存储整数值。   SMALLINT 较小的整数类型，范围比 INT 小。   TINY">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-11-22T13:55:29.000Z">
+<meta property="article:modified_time" content="2024-11-28T12:14:49.341Z">
+<meta property="article:author" content="Eagle233">
+<meta name="twitter:card" content="summary">
+      <link rel="icon" href="">
+      <title>
+        
+          CS50x - Week 7 SQL - Eagle233-Blog
+              
+      </title>
+      
+<link rel="stylesheet" href="/css/site.css">
+
+      
+<link rel="stylesheet" href="/css/mdui_2.0.3/mdui.css">
+
+      <style>
+        /*禁用mdui对code的样式，因为它干扰了prism.js*/
+        .mdui-prose pre code {
+          background-color: transparent;
+          padding: 0px 0px;
+        }
+      </style>
+      
+<script src="/css/mdui_2.0.3/mdui.global.js"></script>
+
+      
+<script src="/fancybox/fancybox.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/fancybox/fancybox.css">
+
+      
+<script src="/carousel/carousel.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/carousel/carousel.css">
+
+      
+<link rel="stylesheet" href="/css/prism.css">
+
+          
+<link rel="stylesheet" href="/css/katex.min.css">
+
+            
+<link rel="stylesheet" href="/css/font-material-icon-filled/MaterialIconFilled.css">
+
+              <!-- Filled -->
+              <script>window.$=mdui.$</script>
+</head>
+
+  <body class="line-numbers">
+    <mdui-layout>
+      <mdui-top-app-bar>
+        <mdui-button-icon icon="menu" id="menu-btn">
+        </mdui-button-icon>
+        <mdui-top-app-bar-title>
+          Eagle233-Blog
+        </mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon icon="search" id="search-dlg-btn"></mdui-button-icon>
+          
+      </mdui-top-app-bar>
+      <mdui-navigation-drawer close-on-overlay-click close-on-esc id="drawer">
+    <mdui-list>
+        
+            
+            <mdui-list-item rounded icon="home"
+                href="/"
+                
+                
+                rel="next">
+                Home
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="folder"
+                href="/categories"
+                
+                
+                rel="next">
+                Categories
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="bookmark"
+                href="/tags"
+                
+                
+                rel="next">
+                Tags
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="archive"
+                href="/archives"
+                
+                
+                rel="next">
+                Archives
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="info"
+                href="/about"
+                
+                
+                rel="next">
+                About
+            </mdui-list-item>
+            
+            
+    </mdui-list>
+</mdui-navigation-drawer>
+        <mdui-layout-main style="min-height: 800px;" id="main">
+          <div style="padding-left: 16px;padding-right: 16px;" id="content">
+            <mdui-card variant="filled" style="padding: 16px;width: 100%;">
+  <div class="mdui-prose post" id="post-all">
+    <h1 style="margin-bottom: 8px;">
+      CS50x - Week 7 SQL
+    </h1>
+    <span class="post-date">
+      <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+      2024-11-22 21:55:29 &nbsp; <mdui-icon name="update"
+          style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+        2024-11-28 20:14:49
+    </span>
+    <br>
+    <span>
+        Categories
+          
+            <!-- <mdui-chip href="/categories/CS50x/" variant="filter" style="vertical-align: middle;">
+                          CS50x
+                      </mdui-chip> -->
+            <a href="/categories/CS50x/">
+              CS50x
+            </a>
+            
+              <br>
+      </span>
+      
+        
+          Tags
+            
+                
+                  <!-- photos gallery -->
+                  
+                      <!-- content -->
+                      <hr>
+<ul>
+<li><p><strong>THE STRUCTURED QUERY LANGUAGE</strong></p>
+</li>
+<li><p><strong>SQLite</strong></p>
+</li>
+<li><p><strong>phpMyAdmin: GUI</strong></p>
+</li>
+</ul>
+<p>Click here to know more: <strong><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/sql">Introduction to Databases with SQL</a></strong></p>
+<hr>
+<h2 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h2><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>INT</strong></td>
+<td>整数类型，通常用于存储整数值。</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>较小的整数类型，范围比 INT 小。</td>
+</tr>
+<tr>
+<td>TINYINT</td>
+<td>非常小的整数类型，通常用于存储小范围的整数。</td>
+</tr>
+<tr>
+<td>MEDIUMINT</td>
+<td>中等大小的整数类型，范围介于 SMALLINT 和 INT 之间。</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>大整数类型，适用于存储非常大的整数值。</td>
+</tr>
+<tr>
+<td>DECIMAL</td>
+<td>精确的小数类型，适用于财务计算。</td>
+</tr>
+<tr>
+<td>FLOAT</td>
+<td>单精度浮点数类型，适用于存储近似值。</td>
+</tr>
+<tr>
+<td>BIT</td>
+<td>位类型，通常用于存储布尔值（0 或 1）。</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>日期类型，格式为 ‘YYYY-MM-DD’。</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>时间类型，格式为 ‘HH:MM:SS’。</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>日期和时间类型，格式为 ‘YYYY-MM-DD HH:MM:SS’。</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>时间戳类型，记录自1970年1月1日以来的秒数。</td>
+</tr>
+<tr>
+<td>CHAR</td>
+<td>固定长度字符串类型。e.g. CHAR(10)</td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>可变长度字符串类型。e.g. VARCHAR(99)</td>
+</tr>
+<tr>
+<td>BINARY</td>
+<td>固定长度的二进制数据类型。</td>
+</tr>
+<tr>
+<td><strong>BLOB</strong></td>
+<td>二进制大对象，适用于存储大量二进制数据。</td>
+</tr>
+<tr>
+<td><strong>TEXT</strong></td>
+<td>文本类型，适用于存储长文本。</td>
+</tr>
+<tr>
+<td>ENUM</td>
+<td>枚举类型，允许从预定义的值中选择。</td>
+</tr>
+<tr>
+<td>GEOMETRY</td>
+<td>用于存储几何数据的类型。</td>
+</tr>
+<tr>
+<td>LINESTRING</td>
+<td>用于存储线段的几何数据类型。</td>
+</tr>
+</tbody></table>
+<p>更简单的：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NULL</td>
+<td>表示缺失或未知的值。</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>整数类型，通常用于存储整数值。</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>浮点数类型，通常用于存储近似值。</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>文本类型，适用于存储长文本。</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>二进制大对象，适用于存储大量二进制数据。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Design-Principles"><a href="#Design-Principles" class="headerlink" title="Design Principles"></a>Design Principles</h2><ul>
+<li><p>Create one table for each <strong>entity</strong> in your dataset.</p>
+</li>
+<li><p>All tables should have a <strong>primary key</strong>.</p>
+</li>
+<li><p>The information in the table should depend on the primary key <em><strong>only</strong></em>.</p>
+</li>
+</ul>
+<hr>
+<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><h3 id="Open-Files"><a href="#Open-Files" class="headerlink" title="Open Files"></a>Open Files</h3><p><code>sqlite3 reads.db</code></p>
+<h3 id="Create-Tables"><a href="#Create-Tables" class="headerlink" title="Create Tables"></a>Create Tables</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name (<br>    column0 <span class="hljs-type">INTEGER</span>,<br>    column1 TEXT,<br>    column2 <span class="hljs-type">NUMERIC</span>, <span class="hljs-comment">-- DATES</span><br>    colunm3 <span class="hljs-type">REAL</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(column0)<br>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Check-Tables"><a href="#Check-Tables" class="headerlink" title="Check Tables"></a>Check Tables</h3><p><code>.schema books</code></p>
+<h3 id="Type-Affinities"><a href="#Type-Affinities" class="headerlink" title="Type Affinities"></a>Type Affinities</h3><ul>
+<li><p>在 SQL 中，Type Affinities 是 SQLite 中的一个概念，用于定义列的数据类型和它们的优先级。SQLite 允许你在创建表时指定列的数据类型，但它并不严格遵循这些类型，而是根据类型亲和性（type affinity）来处理数据。</p>
+</li>
+<li><p>数据在插入时，若不是同类型的数据，也不会报错。</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (<br>    id <span class="hljs-type">INTEGER</span>,<br>    name TEXT<br>);<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (id, name) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;usbw&#x27;</span>, <span class="hljs-string">&#x27;Test User&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>0</strong></td>
+<td>Test User</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (<br>    id <span class="hljs-type">INTEGER</span>,<br>    name TEXT<br>);<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (id, name) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">4.5</span>, <span class="hljs-string">&#x27;Test User&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>4</strong></td>
+<td>Test User</td>
+</tr>
+</tbody></table>
+<h3 id="Quit-SQL"><a href="#Quit-SQL" class="headerlink" title="Quit SQL"></a>Quit SQL</h3><p><code>.quit</code></p>
+<h3 id="Run-sql"><a href="#Run-sql" class="headerlink" title="Run .sql"></a>Run <code>.sql</code></h3><p><code>.read 1.sql</code></p>
+<h3 id="Show-All-Tables"><a href="#Show-All-Tables" class="headerlink" title="Show All Tables"></a>Show All Tables</h3><p><code>.table</code></p>
+<h3 id="Keep-Track-of-the-Time"><a href="#Keep-Track-of-the-Time" class="headerlink" title="Keep Track of the Time"></a>Keep Track of the Time</h3><p><code>.timer ON</code></p>
+<h3 id="Indexes"><a href="#Indexes" class="headerlink" title="Indexes"></a>Indexes</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> INDEX name <span class="hljs-keyword">ON</span> <span class="hljs-keyword">table</span> (<span class="hljs-keyword">column</span>, ...);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Primary-Key"><a href="#Primary-Key" class="headerlink" title="Primary Key"></a>Primary Key</h3><ul>
+<li><p><strong>Joint Primary Key</strong>: a combination of two columns that is always guaranteed to be unique.</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> authored (<br>    author_id <span class="hljs-type">INTEGER</span>,<br>    book_id <span class="hljs-type">INTEGER</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(author_id, book_id)<br>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Foreign-Key"><a href="#Foreign-Key" class="headerlink" title="Foreign Key"></a>Foreign Key</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> authored (<br>    author_id <span class="hljs-type">INTEGER</span>,<br>    book_id <span class="hljs-type">INTEGER</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(author_id, book_id), <span class="hljs-comment">-- Order has some slight underlying effects on your database.</span><br><br>    <span class="hljs-keyword">FOREIGN</span> KEY(author_id) <span class="hljs-keyword">REFERENCES</span> authors(id),<br>    <span class="hljs-keyword">FOREIGN</span> KEY(book_id) <span class="hljs-keyword">REFERENCES</span> books(id)<br>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><table>
+<thead>
+<tr>
+<th>SQL 操作</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INSERT</td>
+<td>向数据库表中插入新记录。</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>从数据库表中查询数据。</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>更新数据库表中现有记录的值。</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>从数据库表中删除现有记录。</td>
+</tr>
+</tbody></table>
+<p>users:</p>
+<table>
+<thead>
+<tr>
+<th>idnum</th>
+<th>username</th>
+<th>password</th>
+<th>fullname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>jerry</td>
+<td>fus!ll!</td>
+<td>Jerry Seinfeld</td>
+</tr>
+<tr>
+<td>11</td>
+<td>gcostanza</td>
+<td>b0sc0</td>
+<td>George Costanza</td>
+</tr>
+</tbody></table>
+<p>moms:</p>
+<table>
+<thead>
+<tr>
+<th>username</th>
+<th>mother</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jerry</td>
+<td>Helen Seinfeld</td>
+</tr>
+<tr>
+<td>gcostanza</td>
+<td>Estelle Costanza</td>
+</tr>
+</tbody></table>
+<h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a><code>INSERT</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br>(<span class="hljs-operator">&lt;</span>columns<span class="hljs-operator">&gt;</span>)<br><span class="hljs-keyword">VALUES</span><br>(<span class="hljs-operator">&lt;</span><span class="hljs-keyword">values</span><span class="hljs-operator">&gt;</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span><br>users<br>(username, password, fullname)<br><span class="hljs-keyword">VALUES</span><br>(‘newman’, ‘USMAIL’, ‘Newman’)<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>idnum</th>
+<th>username</th>
+<th>password</th>
+<th>fullname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>jerry</td>
+<td>fus!ll!</td>
+<td>Jerry Seinfeld</td>
+</tr>
+<tr>
+<td>11</td>
+<td>gcostanza</td>
+<td>b0sc0</td>
+<td>George Costanza</td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td>newman</td>
+<td>USMAIL</td>
+<td>Newman</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>Usually a good idea to have the colume that ultimately ends up being your table’s primary key be an interger.</p>
+</li>
+<li><p>Automatically add by one when you configure that column to <strong>autoincrement</strong>.</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span><br>moms<br>(username, mother)<br><span class="hljs-keyword">VALUES</span><br>(‘kramer’, ‘Babs Kramer’)<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>username</th>
+<th>mother</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jerry</td>
+<td>Helen Seinfeld</td>
+</tr>
+<tr>
+<td>gcostanza</td>
+<td>Estelle Costanza</td>
+</tr>
+<tr>
+<td>kramer</td>
+<td>Babs Kramer</td>
+</tr>
+</tbody></table>
+<h3 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a><code>SELECT</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-operator">&lt;</span>columns<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">WHERE</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">column</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>idnum, fullname<br><span class="hljs-keyword">FROM</span><br>users<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>password<br><span class="hljs-keyword">FROM</span><br>users<br><span class="hljs-keyword">WHERE</span><br>idnum <span class="hljs-operator">&lt;</span> <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-operator">*</span> <span class="hljs-comment">-- ALL</span><br><span class="hljs-keyword">FROM</span><br>moms<br><span class="hljs-keyword">WHERE</span><br>username <span class="hljs-operator">=</span> ‘jerry’<br></code></pre></td></tr></table></figure>
+
+<h3 id="SELECT-JOIN"><a href="#SELECT-JOIN" class="headerlink" title="SELECT (JOIN)"></a><code>SELECT (JOIN)</code></h3><ul>
+<li>What if we now find ourselves in a situation where we need to get a user’s full name (from the users table) and their mother’s name (from the mother table)?</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>users.fullname, moms.mother<br><span class="hljs-keyword">FROM</span><br>users<br><span class="hljs-keyword">JOIN</span><br>moms<br><span class="hljs-keyword">ON</span><br>users.username <span class="hljs-operator">=</span> moms.username<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>username</th>
+<th>mother</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jerry</td>
+<td>Helen Seinfeld</td>
+</tr>
+<tr>
+<td>gcostanza</td>
+<td>Estelle Costanza</td>
+</tr>
+<tr>
+<td>kramer</td>
+<td>Babs Kramer</td>
+</tr>
+</tbody></table>
+<p>ALL JOIN TOGETHER:</p>
+<table>
+<thead>
+<tr>
+<th>users.idnum</th>
+<th>users.username moms.username</th>
+<th>users.password</th>
+<th>users.fullname</th>
+<th>moms.mother</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>jerry</td>
+<td>fus!ll!</td>
+<td>Jerry Seinfeld</td>
+<td>Helen Seinfeld</td>
+</tr>
+<tr>
+<td>11</td>
+<td>gcostanza</td>
+<td>b0sc0</td>
+<td>George Costanza</td>
+<td>Estelle Costanza</td>
+</tr>
+</tbody></table>
+<h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a><code>UPDATE</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">SET</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">column</span><span class="hljs-operator">&gt;</span> <span class="hljs-operator">=</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">value</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">WHERE</span><br><span class="hljs-operator">&lt;</span>predicate<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span><br>users<br><span class="hljs-keyword">SET</span><br>password <span class="hljs-operator">=</span> ‘yadayada’<br><span class="hljs-keyword">WHERE</span><br>idnum <span class="hljs-operator">=</span> <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>idnum</th>
+<th>username</th>
+<th>password</th>
+<th>fullname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>jerry</td>
+<td><strong>yadayada</strong></td>
+<td>Jerry Seinfeld</td>
+</tr>
+<tr>
+<td>11</td>
+<td>gcostanza</td>
+<td>b0sc0</td>
+<td>George Costanza</td>
+</tr>
+<tr>
+<td>12</td>
+<td>newman</td>
+<td>USMAIL</td>
+<td>Newman</td>
+</tr>
+</tbody></table>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a><code>DELETE</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">WHERE</span><br><span class="hljs-operator">&lt;</span>predicate<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span><br>users<br><span class="hljs-keyword">WHERE</span><br>username <span class="hljs-operator">=</span> ‘newman’<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>idnum</th>
+<th>username</th>
+<th>password</th>
+<th>fullname</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>jerry</td>
+<td>yadayada</td>
+<td>Jerry Seinfeld</td>
+</tr>
+<tr>
+<td>11</td>
+<td>gcostanza</td>
+<td>b0sc0</td>
+<td>George Costanza</td>
+</tr>
+</tbody></table>
+<h3 id="ORDER-BY"><a href="#ORDER-BY" class="headerlink" title="ORDER BY"></a><code>ORDER BY</code></h3><ul>
+<li>End of the sentences.</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name, tempo<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tempo;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p><code>ASC</code>: <strong>Ascending 升序</strong></p>
+</li>
+<li><p><code>DESC</code>: <strong>Descending 降序</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> diration_ms <span class="hljs-keyword">DESC</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Syntax-Order"><a href="#Syntax-Order" class="headerlink" title="Syntax Order"></a>Syntax Order</h3><ul>
+<li><code>SELECT FROM</code> - <code>WHERE</code> - <code>ORDER BY</code> - <code>LIMIT</code></li>
+</ul>
+<h3 id="AND-OR"><a href="#AND-OR" class="headerlink" title="AND OR"></a><code>AND</code> <code>OR</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">WHERE</span> danceability <span class="hljs-operator">&gt;</span> <span class="hljs-number">0.75</span><br><span class="hljs-keyword">AND</span> energy <span class="hljs-operator">&gt;</span> <span class="hljs-number">0.75</span><br><span class="hljs-keyword">AND</span> valence <span class="hljs-operator">&gt;</span> <span class="hljs-number">0.75</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Aggregate-Functions"><a href="#Aggregate-Functions" class="headerlink" title="Aggregate Functions"></a>Aggregate Functions</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">column</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> ROUND(<span class="hljs-built_in">AVG</span>(<span class="hljs-keyword">column</span>), <span class="hljs-number">2</span>) <span class="hljs-comment">-- `ROUND()` is not an aggregate function.</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MIN</span>(<span class="hljs-keyword">column</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(<span class="hljs-keyword">column</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Combining-Tables"><a href="#Combining-Tables" class="headerlink" title="Combining Tables"></a>Combining Tables</h3><h4 id="Subqueries"><a href="#Subqueries" class="headerlink" title="Subqueries"></a>Subqueries</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> rating<br><span class="hljs-keyword">FROM</span> ratings<br><span class="hljs-keyword">WHERE</span> movie_id <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">SELECT</span> id<br>    <span class="hljs-keyword">FROM</span> movies<br>    <span class="hljs-keyword">WHERE</span> title <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Cars 3&#x27;</span><br>);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>ALWAYS USE SINGLE QUOTES!!!</strong></p>
+</li>
+<li><p><strong>USING DOUBLE QUOTES FOR IDENTIFIERS</strong></p>
+</li>
+</ul>
+<h4 id="Joins"><a href="#Joins" class="headerlink" title="Joins"></a>Joins</h4><p><code>JOIN ON</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> songs.name, energy, artists.name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">JOIN</span> artists<br><span class="hljs-keyword">ON</span> artists.id <span class="hljs-operator">=</span> songs.artists_id<br><span class="hljs-keyword">WHERE</span> artists.name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Drake&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li><p>一个结果使用 Subqueries ，多个结果使用 Joins ，这在两个作业当中会体现中区别。</p>
+<ul>
+<li>The subquery might return multiple rows, which isn’t allowed in this context.</li>
+</ul>
+</li>
+</ul>
+<h3 id="EXPLAIN-QUERY-PLAN"><a href="#EXPLAIN-QUERY-PLAN" class="headerlink" title="*EXPLAIN QUERY PLAN"></a>*<code>EXPLAIN QUERY PLAN</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">EXPLAIN QUERY PLAN<br><span class="hljs-keyword">SELECT</span> songs.name, artists.name<br><span class="hljs-keyword">FROM</span> songs <br><span class="hljs-keyword">JOIN</span> artists<br><span class="hljs-keyword">ON</span> artists.id <span class="hljs-operator">=</span> songs.artists_id;<br></code></pre></td></tr></table></figure>
+
+<h3 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a><code>LIKE</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%feat.%&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a><code>GROUP BY</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> artists.name, <span class="hljs-built_in">COUNT</span>(artists.name)<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">JOIN</span> artists <span class="hljs-keyword">ON</span> artists.id <span class="hljs-operator">=</span> songs.artists_id<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> artists.name;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;It&#x27;&#x27;s a sunny day&#x27;</span>;  <span class="hljs-comment">-- 输出: It&#x27;s a sunny day</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Escape-Character"><a href="#Escape-Character" class="headerlink" title="Escape Character"></a>Escape Character</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;It&#x27;&#x27;s a sunny day&#x27;</span>;  <span class="hljs-comment">-- 输出: It&#x27;s a sunny day</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a><code>HAVING</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> title<br><span class="hljs-keyword">FROM</span> movies<br><span class="hljs-keyword">JOIN</span> stars<br><span class="hljs-keyword">ON</span> stars.movie_id <span class="hljs-operator">=</span> movies.id<br><span class="hljs-keyword">JOIN</span> people<br><span class="hljs-keyword">ON</span> people.id <span class="hljs-operator">=</span> stars.person_id<br><span class="hljs-keyword">WHERE</span> people.name<br><span class="hljs-keyword">IN</span> (<span class="hljs-string">&#x27;Bradley Cooper&#x27;</span>, <span class="hljs-string">&#x27;Jennifer Lawrence&#x27;</span>)<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> movies.title<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> people.name) <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; <span class="hljs-comment">-- 确保每部电影都有两人. (From &quot;Movies&quot; 12.sql)</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="SQL-with-Python"><a href="#SQL-with-Python" class="headerlink" title="SQL with Python"></a>SQL with Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> cs50 <span class="hljs-keyword">import</span> SQL<br></code></pre></td></tr></table></figure>
+
+<h3 id="Race-Conditions"><a href="#Race-Conditions" class="headerlink" title="Race Conditions"></a>Race Conditions</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">db.execute(<span class="hljs-string">&quot;BEGIN TRANSACTION&quot;</span>)<br>rows = db.execute(<span class="hljs-string">&quot;SELECT likes FROM posts WHERE id = ?&quot;</span>, <span class="hljs-built_in">id</span>)<br>likes = rows[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;likes&quot;</span>]<br>db.execute(<span class="hljs-string">&quot;UPDATE posts SET likes = ? WHERE id = ?&quot;</span>, likes + <span class="hljs-number">1</span>, <span class="hljs-built_in">id</span>)<br>db.execute(<span class="hljs-string">&quot;COMMIT&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="SQL-Injection-Attacks"><a href="#SQL-Injection-Attacks" class="headerlink" title="SQL Injection Attacks"></a>SQL Injection Attacks</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">rows = db.execute(<span class="hljs-string">f&quot;SELECT * FROM users WHERE username = &#x27;malan@harvard.edu&#x27;--&#x27; AND password = &#x27;<span class="hljs-subst">&#123;password&#125;</span>&#x27;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>So don’t use <code>format</code>.</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">rows = db.execute(<span class="hljs-string">&quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;</span>, username, password)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+
+  </div>
+</mdui-card>
+<script>
+  const $ = mdui.$;
+  $("#post-all").find("img").each((index, ele) => {
+    $(ele).replaceWith(`<a data-src="${$(ele).prop("src")}" class="fancybox-enabled" data-fancybox="picture" data-caption="${$(ele).prop("alt")}">${ele.outerHTML}</a>`)
+  });
+  Fancybox.bind(".fancybox-enabled", {
+    on: {
+      ready: () => {
+        $("mdui-top-app-bar").addClass("invisible")
+      }, close: () => {
+        $("mdui-top-app-bar").removeClass("invisible")
+      }
+    }
+  });
+  
+</script>
+
+    
+                    
+              <br>
+              <span>© 2024 Eagle233 <br>Powered By Hexo & Theme mdsuper</span>
+          </div>
+        </mdui-layout-main>
+    </mdui-layout>
+    <script>const searchxml_url = "/search.xml";</script>
+
+<script src="/js/mdsuper-search.js"></script>
+
+    <mdui-dialog close-on-overlay-click close-on-esc fullscreen id="search-dlg">
+        <mdui-top-app-bar slot="header" style="padding: 32px;">
+            <mdui-top-app-bar-title>
+                Search
+            </mdui-top-app-bar-title>
+            <mdui-button-icon icon="close" id="search-dlg-close"></mdui-button-icon>
+        </mdui-top-app-bar>
+        <mdui-text-field icon="search" label='Search' id="search-input"></mdui-text-field>
+        <mdui-list id="search-res-list">
+        </mdui-list>
+    </mdui-dialog>
+    <script>
+        $("#search-dlg-close").on("click", function () {
+            $("#search-dlg").get(0).open = false;
+        });
+        $("#search-input").get(0).addEventListener('input', function () {
+            let val = $(this).val().toLowerCase();
+            $("#search-res-list").html("");
+            if (!val) return;
+            let keywords = val.split(" ").filter((x)=>x.length>=2);
+            let searchRes = search(keywords);
+            searchRes.forEach((dat) => {
+                $("#search-res-list").append(`<mdui-list-item href="${dat.url}" rounded headline-line="1" description-line="3">
+          ${highlightSearch(dat.title, keywords)}
+          <span slot="description">${highlightSearch(dat.content, keywords)}</span>
+        </mdui-list-item>`);
+            })
+        })
+    </script>
+        
+          <script>
+            mdui.setColorScheme('#3f51b5');
+            const navigationDrawer = document.querySelector("#drawer");
+            const mainlayout = document.querySelector("#main");
+            const breakpointCondition = mdui.breakpoint();
+            if (breakpointCondition.up('sm')) {
+              if (localStorage.getItem('navigationDrawer') == null) {
+                if("true"=="true")localStorage.setItem('navigationDrawer', "true");
+              }
+              if("true"=="true")navigationDrawer.setAttribute("open", (localStorage.getItem('navigationDrawer') == "true" ? true : false))
+            }
+            const menuBtn = document.querySelector("#menu-btn");
+            menuBtn.addEventListener("click", () => {
+              navigationDrawer.open = !navigationDrawer.open;
+              if("true"=="true")localStorage.setItem('navigationDrawer', navigationDrawer.open.toString());
+            });
+            const searchBtn = document.querySelector("#search-dlg-btn");
+            searchBtn.addEventListener("click", () => {
+              document.querySelector("#search-dlg").open = true;
+            });
+          </script>
+          
+<script src="/js/prism.js"></script>
+
+  </body>
+
+</html>
