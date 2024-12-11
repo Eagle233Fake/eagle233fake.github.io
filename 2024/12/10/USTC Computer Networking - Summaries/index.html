@@ -7,15 +7,15 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta name="description" content="采用每节课后总结要点的方式呈现知识体系。  1.1 什么是Internet？ Internet 从构成的角度来看，包括 节点 (Node) 、 边 (Edge) 、 协议 (Protocol) 。 节点包括 主机节点 (PC, Server) 和 **数据交换节点 (Router, Switch)**。 边包括 接入网链路 (Access Networking Link) （和主机节点相关）和 骨">
+    <meta name="description" content="采用每节课后总结要点的方式呈现知识体系。  1.1 什么是Internet？ Internet 从构成的角度来看，包括 节点 (Node) 、 边 (Edge) 、 协议 (Protocol) 。 节点包括 主机节点 (PC, Server) 和 数据交换节点 (Router, Switch) 。 边包括 接入网链路 (Access Networking Link) （和主机节点相关）和 骨干链路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="USTC Computer Networking - Summaries">
 <meta property="og:url" content="https://blog.eagle233.top/2024/12/10/USTC%20Computer%20Networking%20-%20Summaries/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
-<meta property="og:description" content="采用每节课后总结要点的方式呈现知识体系。  1.1 什么是Internet？ Internet 从构成的角度来看，包括 节点 (Node) 、 边 (Edge) 、 协议 (Protocol) 。 节点包括 主机节点 (PC, Server) 和 **数据交换节点 (Router, Switch)**。 边包括 接入网链路 (Access Networking Link) （和主机节点相关）和 骨">
+<meta property="og:description" content="采用每节课后总结要点的方式呈现知识体系。  1.1 什么是Internet？ Internet 从构成的角度来看，包括 节点 (Node) 、 边 (Edge) 、 协议 (Protocol) 。 节点包括 主机节点 (PC, Server) 和 数据交换节点 (Router, Switch) 。 边包括 接入网链路 (Access Networking Link) （和主机节点相关）和 骨干链路">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-12-10T08:35:59.000Z">
-<meta property="article:modified_time" content="2024-12-10T15:14:20.429Z">
+<meta property="article:modified_time" content="2024-12-11T15:47:13.861Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-12-10 16:35:59 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-12-10 23:14:20
+        2024-12-11 23:47:13
     </span>
     <br>
     <span>
@@ -170,7 +170,7 @@
 <hr>
 <h2 id="1-1-什么是Internet？"><a href="#1-1-什么是Internet？" class="headerlink" title="1.1 什么是Internet？"></a>1.1 什么是Internet？</h2><ul>
 <li>Internet 从构成的角度来看，包括 <strong>节点 (Node)</strong> 、 <strong>边 (Edge)</strong> 、 <strong>协议 (Protocol)</strong> 。<ul>
-<li>节点包括 <strong>主机节点 (PC, Server)</strong> 和 **数据交换节点 (Router, Switch)**。</li>
+<li>节点包括 <strong>主机节点 (PC, Server)</strong> 和 <strong>数据交换节点 (Router, Switch)</strong> 。</li>
 <li>边包括 <strong>接入网链路 (Access Networking Link)</strong> （和主机节点相关）和 <strong>骨干链路 (Backbone Link)</strong> （和数据交换节点相关）。</li>
 <li>协议存在于不同的层级之中 <strong>（物理层、数据链路层、网络层、传输层、应用层）</strong> ，规定了 <strong>报文格式 (Message Format) （语法、语义）</strong> 、 <strong>次序 (Sequence)</strong> 、 <strong>动作 (Action)</strong> 。</li>
 </ul>
@@ -187,7 +187,7 @@
 <h2 id="1-2-网络边缘"><a href="#1-2-网络边缘" class="headerlink" title="1.2 网络边缘"></a>1.2 网络边缘</h2><ul>
 <li>网络结构包括 <strong>边缘 (Edge)</strong> 、 <strong>核心 (Core)</strong> 、 <strong>接入网 (Access Network)</strong> 。<ul>
 <li>边缘是 <strong>主机 (Host) &#x2F; 端系统 (End System)</strong> 及其运行的 <strong>应用程序 (Client &#x2F; Server)</strong> 。</li>
-<li>核心是 <strong>交换机 (Switch)</strong> 、 <strong>路由器 (Router)</strong> 组成的 <strong>网络</strong> 。</li>
+<li>核心是 <strong>交换机 (Switch)</strong> 、 <strong>路由器 (Router)</strong> 组成的 <strong>网络</strong> (交换节点和交换节点及其链路)。</li>
 <li>接入网是有线或无线的通信链路。</li>
 </ul>
 </li>
@@ -198,6 +198,36 @@
 <li>基础设施为网络应用提供的服务有两种方式： <strong>TCP (Transmission Control Protocol)</strong> 和 <strong>UDP (User Datagram Protocol)</strong> 。<ul>
 <li>采用网络设施的面向连接服务 (TCP) 要求传输准确： <strong>可靠地、按顺序地传送数据</strong> 、 <strong>流量控制</strong> 、 <strong>拥塞控制</strong></li>
 <li>采用基础设施的无连接服务 (UDP) 要求传输的时效性 ( <strong>DNS</strong> , 流媒体)： <strong>无连接</strong> 、 <strong>不可靠数据传输</strong> 、 <strong>无流量控制</strong> 、 <strong>无拥塞控制</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3 网络核心"></a>1.3 网络核心</h2><ul>
+<li>网络核心是路由器的网状网络，包括 <strong>电路交换 (Circuit Switching)</strong> 和 <strong>分组交换 (Packet Switching)</strong> 。</li>
+<li><strong>电路交换</strong> 是端到端的资源分配，选取每条链路中的一条传输数据。<ul>
+<li>eg. <code>1.536Mbps</code> 的带宽分为 <code>24</code> 条线路，每条线路享有 <code>64Kbps</code> ( <strong>片 Piece</strong> )。</li>
+<li>特点： <strong>线路独享 (Dedicated Line)</strong> 、保证 <strong>传输性能</strong> 、 不使用时造成 <strong>资源浪费</strong> 、 需要建立 <strong>呼叫链接</strong> (延迟)</li>
+<li>经常被电话网络采用。</li>
+<li>分成片的方法有 <strong>频分 (Frequency-Division Multiplexing)</strong> 、 <strong>时分 (Time-Division Multiplexing)</strong> 、 <strong>波分 (Wave-Division Multiplexing)</strong> 和 <strong>码分 (Code-Division Multiplexing)</strong> 。对接入网链路而言加上 “Access”。<blockquote>
+<p>例题：在一个电路交换网络上，从主机A到主机B发送一个 <code>640,000 bits</code> 的文件需要多长时间？ 所有的链路速率为 <code>1.536 Mbps</code> 、每条链路使用时隙数为 <code>24</code> 的TDM、建立端-端的电路需 <code>500 ms</code></p>
+</blockquote>
+</li>
+<li>缺点：连接建立时间长、对计算机通信的偶发性而言浪费片段多、可靠性不高(?)</li>
+</ul>
+</li>
+<li><strong>分组交换</strong> 是以分组为单位的 <strong>存储-转发 (Store and Forward) (一动一跳 (Hop))</strong> 方式。<ul>
+<li>特点：使用 <strong>全部带宽</strong> 传输 (不再使用片)、数据被 <strong>分组</strong> 、 <strong>线路共享 (Line Sharing )</strong> 、节点 <strong>全部接收数据</strong> 才转发、延迟大、可能需要排队 (存在缓冲区)</li>
+<li>在一个速率为 <code>R bps</code> 的链路，一个长度为 <code>L bits</code> 的分组的存储转发延时： <code>L/R s</code> 。</li>
+<li>到达速率 &gt; 链路的输出速率，分组将会排队，超出缓存就会被抛弃。</li>
+<li><strong>路由 (Routing)</strong> 决定分组传输路径 (路由算法：计算路由表)， <strong>转发 (Forwarding)</strong> 将分组由输入链路转移到输出链路。</li>
+<li><strong>统计多路复用 (Statistical Multiplexing)</strong> 没有固定分组模式。</li>
+<li>按照有无网络层连接分为 <strong>数据报网络 (Datagram)</strong> 和 **虚电路网络 (Virtual Circuit)**。</li>
+<li>数据报网络中每个分组都存有 <strong>目标地址</strong> ，路由器不维护通讯状态，路由表会改变 (路径可能不同)，不需要建立连接。虚电路网络中每个分组带有标签 <strong>虚电路标识 VC ID</strong> ，路由器维持每个呼叫状态 (通讯关系)。</li>
+<li>虚电路网络是 <strong>有连接</strong> ，TCP是 <strong>面向连接</strong> ，区别在于虚电路的路由需要维持通讯关系，而TCP只要建立源主机和目标主机的联系。(一个在网络层，一个在传输层)</li>
+</ul>
+</li>
+<li>比较两种分组：活动概率 <code>p</code>、活动带宽、链路带宽 (PPT P8)<ul>
+<li>分组交换允许更多用户同时使用，即便超出带宽也有缓存。</li>
 </ul>
 </li>
 </ul>
