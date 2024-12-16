@@ -180,7 +180,27 @@
 <li><p>You can use <strong>dynamic memory</strong> (e.g., with malloc). Your programs can now scale their usage of memory according to user behavior.</p>
 </li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cs50.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br>    <span class="hljs-type">int</span> b = <span class="hljs-number">50</span>;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a is %i, b is %i\n&quot;</span>, a, b);<br>    swap(&amp;a, &amp;b);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a is %i, b is %i\n&quot;</span>, a, b);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span><br>&#123;<br>    <span class="hljs-type">int</span> temp = *a;<br>    *a = *b;<br>    *b = temp;<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cs50.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a is %i, b is %i\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a is %i, b is %i\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
+    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="Attentions"><a href="#Attentions" class="headerlink" title="Attentions"></a>Attentions</h3><ul>
 <li><p>The name of an array is ACTUALLY a pointer to the first element of the array.</p>
@@ -188,7 +208,8 @@
 <li><p>One more annoying thing with those *s. They’re an important<br>part of both the type name and the variable name.</p>
 </li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">~~~<span class="hljs-type">int</span>* px, py, pz;~~~<br><span class="hljs-type">int</span>* pa, *pb, *pc;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token keyword">int</span><span class="token operator">*</span> px<span class="token punctuation">,</span> py<span class="token punctuation">,</span> pz<span class="token punctuation">;</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token keyword">int</span><span class="token operator">*</span> pa<span class="token punctuation">,</span> <span class="token operator">*</span>pb<span class="token punctuation">,</span> <span class="token operator">*</span>pc<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="Segmentation-Fault"><a href="#Segmentation-Fault" class="headerlink" title="Segmentation Fault"></a>Segmentation Fault</h3><ul>
 <li>ALWAYS set the value to <code>NULL</code>, otherwise you would probably mess up your memory, functions or programs.</li>
@@ -196,7 +217,7 @@
 <hr>
 <h2 id="File-I-O"><a href="#File-I-O" class="headerlink" title="File I&#x2F;O"></a>File I&#x2F;O</h2><h3 id="Opening-Closing-Files"><a href="#Opening-Closing-Files" class="headerlink" title="Opening &amp; Closing Files"></a>Opening &amp; Closing Files</h3><ul>
 <li><p><code>fopen</code> opens a file for future reading&#x2F;writing.</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">FILE *f = fopen(<span class="hljs-string">&quot;hi.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);<br></code></pre></td></tr></table></figure>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c">FILE <span class="token operator">*</span>f <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"hi.txt"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li><p>“r”, if opening the file in order to read from it,</p>
@@ -210,14 +231,17 @@
 </ul>
 </li>
 <li><p><code>fclose</code> closes a file.</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">fclose(f);<br></code></pre></td></tr></table></figure>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fclose</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>Always fclose all files you fopen! (Reasons?)</p>
 </li>
 </ul>
 <h3 id="Reading-Writing"><a href="#Reading-Writing" class="headerlink" title="Reading &amp; Writing"></a>Reading &amp; Writing</h3><ul>
 <li><p><code>fread</code> reads data from a file into a buffer (a chunk of memory that can temporarily store some data from the file). Allows us to look at some particular pieces of our file and not the entire file all at once. It would <strong>return how many blocks</strong> it has read as an interger.</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">fread(buffer, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, f);<br><br><span class="hljs-comment">// To where? / What size? / How many? / From where?</span><br><span class="hljs-comment">// `buffer` is a **pointer**.</span><br></code></pre></td></tr></table></figure>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fread</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// To where? / What size? / How many? / From where?</span>
+<span class="token comment">// `buffer` is a **pointer**.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>Pointer <code>f</code> continues through the file until spins to the end and back to the beginning.</li>
@@ -226,7 +250,8 @@
 <li><p><code>fwrite</code> writes data from a buffer to a file.</p>
 </li>
 <li><p><code>fprintf</code></p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">fprintf</span>(file, <span class="hljs-string">&quot;%c %i\n&quot;</span>, c, c);<br><span class="hljs-comment">// `file` is a **pointer**</span><br></code></pre></td></tr></table></figure></li>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fprintf</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> <span class="token string">"%c %i\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// `file` is a **pointer**</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
 <hr>
 <h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><h3 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof()"></a><code>sizeof()</code></h3><ul>
@@ -236,12 +261,35 @@
 </li>
 </ul>
 <hr>
-<h2 id="奇怪的语法"><a href="#奇怪的语法" class="headerlink" title="奇怪的语法"></a>奇怪的语法</h2><h3 id="Bitwise-Operations"><a href="#Bitwise-Operations" class="headerlink" title="Bitwise Operations &amp;"></a>Bitwise Operations <code>&amp;</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">(buffer[<span class="hljs-number">3</span>] &amp; <span class="hljs-number">0xf0</span>) == <span class="hljs-number">0xe0</span><br><br><span class="hljs-comment">// 看不懂，以后再说。</span><br></code></pre></td></tr></table></figure>
+<h2 id="奇怪的语法"><a href="#奇怪的语法" class="headerlink" title="奇怪的语法"></a>奇怪的语法</h2><h3 id="Bitwise-Operations"><a href="#Bitwise-Operations" class="headerlink" title="Bitwise Operations &amp;"></a>Bitwise Operations <code>&amp;</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span> <span class="token number">0xf0</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0xe0</span>
 
-<h3 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a><code>sprintf</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> *filename = <span class="hljs-built_in">malloc</span>(<span class="hljs-number">8</span> * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">char</span>));<br><span class="hljs-built_in">sprintf</span>(filename, <span class="hljs-string">&quot;%03i.jpg&quot;</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+<span class="token comment">// 看不懂，以后再说。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a><code>sprintf</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span>filename <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">8</span> <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">sprintf</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">"%03i.jpg"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <hr>
-<h2 id="Defining-Custom-Types"><a href="#Defining-Custom-Types" class="headerlink" title="Defining Custom Types"></a>Defining Custom Types</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span> * <span class="hljs-built_in">string</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">car</span></span><br><span class="hljs-class">&#123;</span><br><span class="hljs-type">int</span> year;<br><span class="hljs-type">char</span> model[<span class="hljs-number">10</span>];<br><span class="hljs-type">char</span> plate[<span class="hljs-number">7</span>];<br><span class="hljs-type">int</span> odometer;<br><span class="hljs-type">double</span> engine_size;<br>&#125;;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">car</span> <span class="hljs-title">car_t</span>;</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">car</span></span><br><span class="hljs-class">&#123;</span><br><span class="hljs-type">int</span> year;<br><span class="hljs-type">char</span> model[<span class="hljs-number">10</span>];<br><span class="hljs-type">char</span> plate[<span class="hljs-number">7</span>];<br><span class="hljs-type">int</span> odometer;<br><span class="hljs-type">double</span> engine_size;<br>&#125;<br><span class="hljs-type">car_t</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="Defining-Custom-Types"><a href="#Defining-Custom-Types" class="headerlink" title="Defining Custom Types"></a>Defining Custom Types</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">char</span> <span class="token operator">*</span> string<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">car</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">int</span> year<span class="token punctuation">;</span>
+<span class="token keyword">char</span> model<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> plate<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> odometer<span class="token punctuation">;</span>
+<span class="token keyword">double</span> engine_size<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">car</span> <span class="token class-name">car_t</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">car</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">int</span> year<span class="token punctuation">;</span>
+<span class="token keyword">char</span> model<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> plate<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> odometer<span class="token punctuation">;</span>
+<span class="token keyword">double</span> engine_size<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token class-name">car_t</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h2 id="Dynamic-Memory-Allocation"><a href="#Dynamic-Memory-Allocation" class="headerlink" title="Dynamic Memory Allocation"></a>Dynamic Memory Allocation</h2><ul>
@@ -250,10 +298,21 @@
 <li><p>Previously all memory comes from a pool of the memory known as the <strong>STACK (栈zhan4)</strong>.</p>
 </li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// get an integer from the user</span><br><span class="hljs-type">int</span> x = GetInt();<br><span class="hljs-comment">// array of floats on the stack</span><br><span class="hljs-type">float</span> stack_array[x];<br><span class="hljs-comment">// array of floats on the heap</span><br><span class="hljs-type">float</span>* heap_array = <span class="hljs-built_in">malloc</span>(x * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">float</span>));<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// get an integer from the user</span>
+<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">GetInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// array of floats on the stack</span>
+<span class="token keyword">float</span> stack_array<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// array of floats on the heap</span>
+<span class="token keyword">float</span><span class="token operator">*</span> heap_array <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span>x <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>&#x2F;&#x2F; Put an image here</p>
-<h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a><code>malloc</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-type">int</span> *x = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>)); <span class="hljs-comment">// How many bytes</span><br><span class="hljs-keyword">if</span> (x == <span class="hljs-literal">NULL</span>) <br>&#123;<br>    <span class="hljs-comment">// 处理内存分配失败</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a><code>malloc</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token keyword">int</span> <span class="token operator">*</span>x <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// How many bytes</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> 
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 处理内存分配失败</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><p>每次都需要使用 <code>free</code> 释放内存。</p>
@@ -262,7 +321,9 @@
 </li>
 </ul>
 <h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a><code>valgrind</code></h3><p><code>valgrind ./program</code></p>
-<h3 id="free"><a href="#free" class="headerlink" title="free"></a><code>free</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">free</span>(x);<br><span class="hljs-comment">// ONLY USE in Dynamic Memory Allocation</span><br><span class="hljs-comment">// DO NOT use more then once.</span><br></code></pre></td></tr></table></figure>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a><code>free</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">free</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ONLY USE in Dynamic Memory Allocation</span>
+<span class="token comment">// DO NOT use more then once.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h2 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h2><ul>
@@ -314,7 +375,7 @@
 <li><p>Opens a file and returns a file pointer to it.</p>
 </li>
 <li><p>Always check the return value to make sure you don’t get back <code>NULL</code>.</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">FILE* ptr = fopen(&lt;filename&gt;, &lt;operation&gt;);<br></code></pre></td></tr></table></figure></li>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c">FILE<span class="token operator">*</span> ptr <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>filename<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>operation<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 <table>
 <thead>
@@ -332,13 +393,19 @@
 <td>以写入模式打开文件。如果文件已存在，文件内容将被清空（覆盖）；如果文件不存在，则创建新文件。</td>
 </tr>
 </tbody></table>
-<h3 id="fclose"><a href="#fclose" class="headerlink" title="fclose()"></a><code>fclose()</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">fclose(&lt;file pointer&gt;);<br></code></pre></td></tr></table></figure>
+<h3 id="fclose"><a href="#fclose" class="headerlink" title="fclose()"></a><code>fclose()</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fclose</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>file pointer<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc()"></a><code>fgetc()</code></h3><ul>
 <li><p>Reads and returns the next character from the file pointed to.</p>
 </li>
 <li><p>Note: The operation of the file pointer passed in as a parameter MUST BE <code>“r”</code> for read, or you will suffer an error.</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> ch = fgetc(&lt;file pointer&gt;);<br><br><span class="hljs-type">char</span> ch;<br><span class="hljs-keyword">while</span>((ch = fgetc(ptr)) != EOF)<br>&#123;<br>    <span class="hljs-built_in">printf</span>(“%c”, ch);<br>&#125;<br></code></pre></td></tr></table></figure>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> ch <span class="token operator">=</span> <span class="token function">fgetc</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>file pointer<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">char</span> ch<span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ch <span class="token operator">=</span> <span class="token function">fgetc</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">EOF</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span>“<span class="token operator">%</span>c”<span class="token punctuation">,</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><p>Equal to <code>cat</code>.</p>
@@ -352,16 +419,40 @@
 <li><p>Writes or appends the specified character to the pointed-to file.</p>
 </li>
 <li><p>Note: The operation of the file pointer passed in as a parameter must be <code>“w”</code> for write or <code>“a”</code> for append, or you will suffer an error.</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">fputc(&lt;character&gt;, &lt;file pointer&gt;);<br><br><span class="hljs-type">char</span> ch;<br><span class="hljs-keyword">while</span>((ch = fgetc(ptr)) != EOF)<br>&#123;<br>    fputc(ch, ptr2);<br>&#125;<br></code></pre></td></tr></table></figure>
+  <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fputc</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>character<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>file pointer<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">char</span> ch<span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ch <span class="token operator">=</span> <span class="token function">fgetc</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">EOF</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token function">fputc</span><span class="token punctuation">(</span>ch<span class="token punctuation">,</span> ptr2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>Equal to <code>cp</code>.</li>
 </ul>
 </li>
 </ul>
-<h3 id="fread"><a href="#fread" class="headerlink" title="fread()"></a><code>fread()</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c">fread(&lt;buffer&gt;, &lt;size&gt;, &lt;qty&gt;, &lt;file pointer&gt;);<br><br><span class="hljs-type">int</span> arr[<span class="hljs-number">10</span>];<br>fread(arr, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>), <span class="hljs-number">10</span>, ptr);<br><br><span class="hljs-type">double</span>* arr2 = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">double</span>) * <span class="hljs-number">80</span>);<br>fread(arr2, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">double</span>), <span class="hljs-number">80</span>, ptr);<br><br><span class="hljs-type">char</span> c;<br>fread(**&amp;c**, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">char</span>), <span class="hljs-number">1</span>, ptr);<br></code></pre></td></tr></table></figure>
+<h3 id="fread"><a href="#fread" class="headerlink" title="fread()"></a><code>fread()</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fread</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>buffer<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>size<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>qty<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>file pointer<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite()"></a><code>fwrite()</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c">fwrite(&lt;buffer&gt;, &lt;size&gt;, &lt;qty&gt;, &lt;file pointer&gt;);<br><br><span class="hljs-type">int</span> arr[<span class="hljs-number">10</span>];<br>fwrite(arr, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>), <span class="hljs-number">10</span>, ptr);<br><br><span class="hljs-type">double</span>* arr2 = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">double</span>) * <span class="hljs-number">80</span>);<br>fwrite(arr2, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">double</span>), <span class="hljs-number">80</span>, ptr);<br><br><span class="hljs-type">char</span> c;<br>fwrite(&amp;c, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">char</span>), <span class="hljs-number">1</span>, ptr);<br></code></pre></td></tr></table></figure>
+<span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">fread</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">double</span><span class="token operator">*</span> arr2 <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fread</span><span class="token punctuation">(</span>arr2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">char</span> c<span class="token punctuation">;</span>
+<span class="token function">fread</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">&amp;</span>c<span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite()"></a><code>fwrite()</code></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>buffer<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>size<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>qty<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>file pointer<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">fwrite</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">double</span><span class="token operator">*</span> arr2 <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fwrite</span><span class="token punctuation">(</span>arr2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">char</span> c<span class="token punctuation">;</span>
+<span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>c<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 

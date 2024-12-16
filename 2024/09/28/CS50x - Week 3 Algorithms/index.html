@@ -249,7 +249,18 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> </span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-built_in">string</span> name;<br>    <span class="hljs-type">int</span> votes; <br>&#125;<br>candidate;<br><br>candidate president;<br>president.name = <span class="hljs-string">&quot;Samia&quot;</span>;<br>president.votes = <span class="hljs-number">10</span>;<br><br>candidate candidates[<span class="hljs-number">4</span>];<br></code></pre></td></tr></table></figure>
+<h2 id="Structs"><a href="#Structs" class="headerlink" title="Structs"></a>Structs</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> 
+<span class="token punctuation">&#123;</span>
+    string name<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> votes<span class="token punctuation">;</span> 
+<span class="token punctuation">&#125;</span>
+candidate<span class="token punctuation">;</span>
+
+candidate president<span class="token punctuation">;</span>
+president<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Samia"</span><span class="token punctuation">;</span>
+president<span class="token punctuation">.</span>votes <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+candidate candidates<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>那这边要注意一下，经常会混淆数据类型和变量名称。例如创造了一个叫做 <code>candidate</code> 的数据类型，然后定义变量 <code>candidates</code> 是 <code>candidate</code> 类型的数据。</p>
@@ -267,7 +278,18 @@
 <li><p><strong>Multiple Recursive Cases: The Collatz Conjecture 科拉茨猜想</strong></p>
 </li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">collatz</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br><span class="hljs-comment">// base case</span><br><span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><span class="hljs-comment">// even numbers</span><br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((n % <span class="hljs-number">2</span>) == <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + collatz(n/<span class="hljs-number">2</span>);<br><span class="hljs-comment">// odd numbers</span><br><span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + collatz(<span class="hljs-number">3</span>*n + <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">collatz</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+<span class="token comment">// base case</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">// even numbers</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>n <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token function">collatz</span><span class="token punctuation">(</span>n<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// odd numbers</span>
+<span class="token keyword">else</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token function">collatz</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">*</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>想想高中学过的数列：<strong>递归公式</strong>和<strong>首项</strong>。</p>

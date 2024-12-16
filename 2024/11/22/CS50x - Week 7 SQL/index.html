@@ -15,7 +15,7 @@
 <meta property="og:description" content="THE STRUCTURED QUERY LANGUAGE  SQLite  phpMyAdmin: GUI   Click here to know more: Introduction to Databases with SQL  Data Types   数据类型 描述    INT 整数类型，通常用于存储整数值。   SMALLINT 较小的整数类型，范围比 INT 小。   TINY">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-11-22T13:55:29.000Z">
-<meta property="article:modified_time" content="2024-11-28T12:14:49.341Z">
+<meta property="article:modified_time" content="2024-12-02T07:21:00.000Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-11-22 21:55:29 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-11-28 20:14:49
+        2024-12-02 15:21:00
     </span>
     <br>
     <span>
@@ -305,7 +305,13 @@
 </ul>
 <hr>
 <h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><h3 id="Open-Files"><a href="#Open-Files" class="headerlink" title="Open Files"></a>Open Files</h3><p><code>sqlite3 reads.db</code></p>
-<h3 id="Create-Tables"><a href="#Create-Tables" class="headerlink" title="Create Tables"></a>Create Tables</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name (<br>    column0 <span class="hljs-type">INTEGER</span>,<br>    column1 TEXT,<br>    column2 <span class="hljs-type">NUMERIC</span>, <span class="hljs-comment">-- DATES</span><br>    colunm3 <span class="hljs-type">REAL</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(column0)<br>);<br></code></pre></td></tr></table></figure>
+<h3 id="Create-Tables"><a href="#Create-Tables" class="headerlink" title="Create Tables"></a>Create Tables</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> table_name <span class="token punctuation">(</span>
+    column0 <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    column1 <span class="token keyword">TEXT</span><span class="token punctuation">,</span>
+    column2 <span class="token keyword">NUMERIC</span><span class="token punctuation">,</span> <span class="token comment">-- DATES</span>
+    colunm3 <span class="token keyword">REAL</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>column0<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="Check-Tables"><a href="#Check-Tables" class="headerlink" title="Check Tables"></a>Check Tables</h3><p><code>.schema books</code></p>
 <h3 id="Type-Affinities"><a href="#Type-Affinities" class="headerlink" title="Type Affinities"></a>Type Affinities</h3><ul>
@@ -314,7 +320,12 @@
 <li><p>数据在插入时，若不是同类型的数据，也不会报错。</p>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (<br>    id <span class="hljs-type">INTEGER</span>,<br>    name TEXT<br>);<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (id, name) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;usbw&#x27;</span>, <span class="hljs-string">&#x27;Test User&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> example <span class="token punctuation">(</span>
+    id <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    name <span class="token keyword">TEXT</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> example <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'usbw'</span><span class="token punctuation">,</span> <span class="token string">'Test User'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -328,7 +339,12 @@
 <td>Test User</td>
 </tr>
 </tbody></table>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (<br>    id <span class="hljs-type">INTEGER</span>,<br>    name TEXT<br>);<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (id, name) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">4.5</span>, <span class="hljs-string">&#x27;Test User&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> example <span class="token punctuation">(</span>
+    id <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    name <span class="token keyword">TEXT</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> example <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">4.5</span><span class="token punctuation">,</span> <span class="token string">'Test User'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -346,13 +362,24 @@
 <h3 id="Run-sql"><a href="#Run-sql" class="headerlink" title="Run .sql"></a>Run <code>.sql</code></h3><p><code>.read 1.sql</code></p>
 <h3 id="Show-All-Tables"><a href="#Show-All-Tables" class="headerlink" title="Show All Tables"></a>Show All Tables</h3><p><code>.table</code></p>
 <h3 id="Keep-Track-of-the-Time"><a href="#Keep-Track-of-the-Time" class="headerlink" title="Keep Track of the Time"></a>Keep Track of the Time</h3><p><code>.timer ON</code></p>
-<h3 id="Indexes"><a href="#Indexes" class="headerlink" title="Indexes"></a>Indexes</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> INDEX name <span class="hljs-keyword">ON</span> <span class="hljs-keyword">table</span> (<span class="hljs-keyword">column</span>, ...);<br></code></pre></td></tr></table></figure>
+<h3 id="Indexes"><a href="#Indexes" class="headerlink" title="Indexes"></a>Indexes</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> name <span class="token keyword">ON</span> <span class="token keyword">table</span> <span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="Primary-Key"><a href="#Primary-Key" class="headerlink" title="Primary Key"></a>Primary Key</h3><ul>
 <li><p><strong>Joint Primary Key</strong>: a combination of two columns that is always guaranteed to be unique.</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> authored (<br>    author_id <span class="hljs-type">INTEGER</span>,<br>    book_id <span class="hljs-type">INTEGER</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(author_id, book_id)<br>)<br></code></pre></td></tr></table></figure></li>
+  <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> authored <span class="token punctuation">(</span>
+    author_id <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    book_id <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>author_id<span class="token punctuation">,</span> book_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<h3 id="Foreign-Key"><a href="#Foreign-Key" class="headerlink" title="Foreign Key"></a>Foreign Key</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> authored (<br>    author_id <span class="hljs-type">INTEGER</span>,<br>    book_id <span class="hljs-type">INTEGER</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(author_id, book_id), <span class="hljs-comment">-- Order has some slight underlying effects on your database.</span><br><br>    <span class="hljs-keyword">FOREIGN</span> KEY(author_id) <span class="hljs-keyword">REFERENCES</span> authors(id),<br>    <span class="hljs-keyword">FOREIGN</span> KEY(book_id) <span class="hljs-keyword">REFERENCES</span> books(id)<br>)<br></code></pre></td></tr></table></figure>
+<h3 id="Foreign-Key"><a href="#Foreign-Key" class="headerlink" title="Foreign Key"></a>Foreign Key</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> authored <span class="token punctuation">(</span>
+    author_id <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    book_id <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>author_id<span class="token punctuation">,</span> book_id<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">-- Order has some slight underlying effects on your database.</span>
+
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>author_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> authors<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>book_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> books<span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><table>
 <thead>
@@ -418,9 +445,17 @@
 <td>Estelle Costanza</td>
 </tr>
 </tbody></table>
-<h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a><code>INSERT</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br>(<span class="hljs-operator">&lt;</span>columns<span class="hljs-operator">&gt;</span>)<br><span class="hljs-keyword">VALUES</span><br>(<span class="hljs-operator">&lt;</span><span class="hljs-keyword">values</span><span class="hljs-operator">&gt;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a><code>INSERT</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span>
+<span class="token operator">&lt;</span><span class="token keyword">table</span><span class="token operator">></span>
+<span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token keyword">columns</span><span class="token operator">></span><span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token keyword">values</span><span class="token operator">></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span><br>users<br>(username, password, fullname)<br><span class="hljs-keyword">VALUES</span><br>(‘newman’, ‘USMAIL’, ‘Newman’)<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span>
+users
+<span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">,</span> fullname<span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span>‘newman’<span class="token punctuation">,</span> ‘USMAIL’<span class="token punctuation">,</span> ‘Newman’<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -456,7 +491,11 @@
 <li><p>Automatically add by one when you configure that column to <strong>autoincrement</strong>.</p>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span><br>moms<br>(username, mother)<br><span class="hljs-keyword">VALUES</span><br>(‘kramer’, ‘Babs Kramer’)<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span>
+moms
+<span class="token punctuation">(</span>username<span class="token punctuation">,</span> mother<span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span>
+<span class="token punctuation">(</span>‘kramer’<span class="token punctuation">,</span> ‘Babs Kramer’<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -478,18 +517,45 @@
 <td>Babs Kramer</td>
 </tr>
 </tbody></table>
-<h3 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a><code>SELECT</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-operator">&lt;</span>columns<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">WHERE</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">column</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a><code>SELECT</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+<span class="token operator">&lt;</span><span class="token keyword">columns</span><span class="token operator">></span>
+<span class="token keyword">FROM</span>
+<span class="token operator">&lt;</span><span class="token keyword">table</span><span class="token operator">></span>
+<span class="token keyword">WHERE</span>
+<span class="token operator">&lt;</span>condition<span class="token operator">></span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
+<span class="token operator">&lt;</span><span class="token keyword">column</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>idnum, fullname<br><span class="hljs-keyword">FROM</span><br>users<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+idnum<span class="token punctuation">,</span> fullname
+<span class="token keyword">FROM</span>
+users<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>password<br><span class="hljs-keyword">FROM</span><br>users<br><span class="hljs-keyword">WHERE</span><br>idnum <span class="hljs-operator">&lt;</span> <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+password
+<span class="token keyword">FROM</span>
+users
+<span class="token keyword">WHERE</span>
+idnum <span class="token operator">&lt;</span> <span class="token number">12</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-operator">*</span> <span class="hljs-comment">-- ALL</span><br><span class="hljs-keyword">FROM</span><br>moms<br><span class="hljs-keyword">WHERE</span><br>username <span class="hljs-operator">=</span> ‘jerry’<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+<span class="token operator">*</span> <span class="token comment">-- ALL</span>
+<span class="token keyword">FROM</span>
+moms
+<span class="token keyword">WHERE</span>
+username <span class="token operator">=</span> ‘jerry’<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="SELECT-JOIN"><a href="#SELECT-JOIN" class="headerlink" title="SELECT (JOIN)"></a><code>SELECT (JOIN)</code></h3><ul>
 <li>What if we now find ourselves in a situation where we need to get a user’s full name (from the users table) and their mother’s name (from the mother table)?</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>users.fullname, moms.mother<br><span class="hljs-keyword">FROM</span><br>users<br><span class="hljs-keyword">JOIN</span><br>moms<br><span class="hljs-keyword">ON</span><br>users.username <span class="hljs-operator">=</span> moms.username<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+users<span class="token punctuation">.</span>fullname<span class="token punctuation">,</span> moms<span class="token punctuation">.</span>mother
+<span class="token keyword">FROM</span>
+users
+<span class="token keyword">JOIN</span>
+moms
+<span class="token keyword">ON</span>
+users<span class="token punctuation">.</span>username <span class="token operator">=</span> moms<span class="token punctuation">.</span>username<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -537,9 +603,19 @@
 <td>Estelle Costanza</td>
 </tr>
 </tbody></table>
-<h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a><code>UPDATE</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">SET</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">column</span><span class="hljs-operator">&gt;</span> <span class="hljs-operator">=</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">value</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">WHERE</span><br><span class="hljs-operator">&lt;</span>predicate<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a><code>UPDATE</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span>
+<span class="token operator">&lt;</span><span class="token keyword">table</span><span class="token operator">></span>
+<span class="token keyword">SET</span>
+<span class="token operator">&lt;</span><span class="token keyword">column</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token keyword">value</span><span class="token operator">></span>
+<span class="token keyword">WHERE</span>
+<span class="token operator">&lt;</span>predicate<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span><br>users<br><span class="hljs-keyword">SET</span><br>password <span class="hljs-operator">=</span> ‘yadayada’<br><span class="hljs-keyword">WHERE</span><br>idnum <span class="hljs-operator">=</span> <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span>
+users
+<span class="token keyword">SET</span>
+password <span class="token operator">=</span> ‘yadayada’
+<span class="token keyword">WHERE</span>
+idnum <span class="token operator">=</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -569,9 +645,15 @@
 <td>Newman</td>
 </tr>
 </tbody></table>
-<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a><code>DELETE</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span><br><span class="hljs-operator">&lt;</span><span class="hljs-keyword">table</span><span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">WHERE</span><br><span class="hljs-operator">&lt;</span>predicate<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a><code>DELETE</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span>
+<span class="token operator">&lt;</span><span class="token keyword">table</span><span class="token operator">></span>
+<span class="token keyword">WHERE</span>
+<span class="token operator">&lt;</span>predicate<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span><br>users<br><span class="hljs-keyword">WHERE</span><br>username <span class="hljs-operator">=</span> ‘newman’<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span>
+users
+<span class="token keyword">WHERE</span>
+username <span class="token operator">=</span> ‘newman’<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <table>
 <thead>
@@ -598,27 +680,41 @@
 <h3 id="ORDER-BY"><a href="#ORDER-BY" class="headerlink" title="ORDER BY"></a><code>ORDER BY</code></h3><ul>
 <li>End of the sentences.</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name, tempo<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tempo;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name<span class="token punctuation">,</span> tempo
+<span class="token keyword">FROM</span> songs
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> tempo<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p><code>ASC</code>: <strong>Ascending 升序</strong></p>
 </li>
 <li><p><code>DESC</code>: <strong>Descending 降序</strong></p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> diration_ms <span class="hljs-keyword">DESC</span><br></code></pre></td></tr></table></figure></li>
+  <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name
+<span class="token keyword">FROM</span> songs
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> diration_ms <span class="token keyword">DESC</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <h3 id="Syntax-Order"><a href="#Syntax-Order" class="headerlink" title="Syntax Order"></a>Syntax Order</h3><ul>
 <li><code>SELECT FROM</code> - <code>WHERE</code> - <code>ORDER BY</code> - <code>LIMIT</code></li>
 </ul>
-<h3 id="AND-OR"><a href="#AND-OR" class="headerlink" title="AND OR"></a><code>AND</code> <code>OR</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">WHERE</span> danceability <span class="hljs-operator">&gt;</span> <span class="hljs-number">0.75</span><br><span class="hljs-keyword">AND</span> energy <span class="hljs-operator">&gt;</span> <span class="hljs-number">0.75</span><br><span class="hljs-keyword">AND</span> valence <span class="hljs-operator">&gt;</span> <span class="hljs-number">0.75</span><br></code></pre></td></tr></table></figure>
+<h3 id="AND-OR"><a href="#AND-OR" class="headerlink" title="AND OR"></a><code>AND</code> <code>OR</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name
+<span class="token keyword">FROM</span> songs
+<span class="token keyword">WHERE</span> danceability <span class="token operator">></span> <span class="token number">0.75</span>
+<span class="token operator">AND</span> energy <span class="token operator">></span> <span class="token number">0.75</span>
+<span class="token operator">AND</span> valence <span class="token operator">></span> <span class="token number">0.75</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Aggregate-Functions"><a href="#Aggregate-Functions" class="headerlink" title="Aggregate Functions"></a>Aggregate Functions</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">column</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="Aggregate-Functions"><a href="#Aggregate-Functions" class="headerlink" title="Aggregate Functions"></a>Aggregate Functions</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> ROUND(<span class="hljs-built_in">AVG</span>(<span class="hljs-keyword">column</span>), <span class="hljs-number">2</span>) <span class="hljs-comment">-- `ROUND()` is not an aggregate function.</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token function">AVG</span><span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">-- `ROUND()` is not an aggregate function.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MIN</span>(<span class="hljs-keyword">column</span>)<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(<span class="hljs-keyword">column</span>)<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Combining-Tables"><a href="#Combining-Tables" class="headerlink" title="Combining Tables"></a>Combining Tables</h3><h4 id="Subqueries"><a href="#Subqueries" class="headerlink" title="Subqueries"></a>Subqueries</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> rating<br><span class="hljs-keyword">FROM</span> ratings<br><span class="hljs-keyword">WHERE</span> movie_id <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">SELECT</span> id<br>    <span class="hljs-keyword">FROM</span> movies<br>    <span class="hljs-keyword">WHERE</span> title <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Cars 3&#x27;</span><br>);<br></code></pre></td></tr></table></figure>
+<h3 id="Combining-Tables"><a href="#Combining-Tables" class="headerlink" title="Combining Tables"></a>Combining Tables</h3><h4 id="Subqueries"><a href="#Subqueries" class="headerlink" title="Subqueries"></a>Subqueries</h4><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> rating
+<span class="token keyword">FROM</span> ratings
+<span class="token keyword">WHERE</span> movie_id <span class="token operator">=</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> id
+    <span class="token keyword">FROM</span> movies
+    <span class="token keyword">WHERE</span> title <span class="token operator">=</span> <span class="token string">'Cars 3'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><p><strong>ALWAYS USE SINGLE QUOTES!!!</strong></p>
@@ -627,7 +723,11 @@
 </li>
 </ul>
 <h4 id="Joins"><a href="#Joins" class="headerlink" title="Joins"></a>Joins</h4><p><code>JOIN ON</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> songs.name, energy, artists.name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">JOIN</span> artists<br><span class="hljs-keyword">ON</span> artists.id <span class="hljs-operator">=</span> songs.artists_id<br><span class="hljs-keyword">WHERE</span> artists.name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Drake&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> songs<span class="token punctuation">.</span>name<span class="token punctuation">,</span> energy<span class="token punctuation">,</span> artists<span class="token punctuation">.</span>name
+<span class="token keyword">FROM</span> songs
+<span class="token keyword">JOIN</span> artists
+<span class="token keyword">ON</span> artists<span class="token punctuation">.</span>id <span class="token operator">=</span> songs<span class="token punctuation">.</span>artists_id
+<span class="token keyword">WHERE</span> artists<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Drake'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
 <li><p>一个结果使用 Subqueries ，多个结果使用 Joins ，这在两个作业当中会体现中区别。</p>
@@ -636,28 +736,50 @@
 </ul>
 </li>
 </ul>
-<h3 id="EXPLAIN-QUERY-PLAN"><a href="#EXPLAIN-QUERY-PLAN" class="headerlink" title="*EXPLAIN QUERY PLAN"></a>*<code>EXPLAIN QUERY PLAN</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">EXPLAIN QUERY PLAN<br><span class="hljs-keyword">SELECT</span> songs.name, artists.name<br><span class="hljs-keyword">FROM</span> songs <br><span class="hljs-keyword">JOIN</span> artists<br><span class="hljs-keyword">ON</span> artists.id <span class="hljs-operator">=</span> songs.artists_id;<br></code></pre></td></tr></table></figure>
+<h3 id="EXPLAIN-QUERY-PLAN"><a href="#EXPLAIN-QUERY-PLAN" class="headerlink" title="*EXPLAIN QUERY PLAN"></a>*<code>EXPLAIN QUERY PLAN</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">EXPLAIN</span> QUERY <span class="token keyword">PLAN</span>
+<span class="token keyword">SELECT</span> songs<span class="token punctuation">.</span>name<span class="token punctuation">,</span> artists<span class="token punctuation">.</span>name
+<span class="token keyword">FROM</span> songs 
+<span class="token keyword">JOIN</span> artists
+<span class="token keyword">ON</span> artists<span class="token punctuation">.</span>id <span class="token operator">=</span> songs<span class="token punctuation">.</span>artists_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a><code>LIKE</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%feat.%&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a><code>LIKE</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name
+<span class="token keyword">FROM</span> songs
+<span class="token keyword">WHERE</span> name <span class="token operator">LIKE</span> <span class="token string">'%feat.%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a><code>GROUP BY</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> artists.name, <span class="hljs-built_in">COUNT</span>(artists.name)<br><span class="hljs-keyword">FROM</span> songs<br><span class="hljs-keyword">JOIN</span> artists <span class="hljs-keyword">ON</span> artists.id <span class="hljs-operator">=</span> songs.artists_id<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> artists.name;<br></code></pre></td></tr></table></figure>
+<h3 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a><code>GROUP BY</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> artists<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>artists<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> songs
+<span class="token keyword">JOIN</span> artists <span class="token keyword">ON</span> artists<span class="token punctuation">.</span>id <span class="token operator">=</span> songs<span class="token punctuation">.</span>artists_id
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> artists<span class="token punctuation">.</span>name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;It&#x27;&#x27;s a sunny day&#x27;</span>;  <span class="hljs-comment">-- 输出: It&#x27;s a sunny day</span><br></code></pre></td></tr></table></figure>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token string">'It''s a sunny day'</span><span class="token punctuation">;</span>  <span class="token comment">-- 输出: It's a sunny day</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Escape-Character"><a href="#Escape-Character" class="headerlink" title="Escape Character"></a>Escape Character</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;It&#x27;&#x27;s a sunny day&#x27;</span>;  <span class="hljs-comment">-- 输出: It&#x27;s a sunny day</span><br></code></pre></td></tr></table></figure>
+<h3 id="Escape-Character"><a href="#Escape-Character" class="headerlink" title="Escape Character"></a>Escape Character</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token string">'It''s a sunny day'</span><span class="token punctuation">;</span>  <span class="token comment">-- 输出: It's a sunny day</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a><code>HAVING</code></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> title<br><span class="hljs-keyword">FROM</span> movies<br><span class="hljs-keyword">JOIN</span> stars<br><span class="hljs-keyword">ON</span> stars.movie_id <span class="hljs-operator">=</span> movies.id<br><span class="hljs-keyword">JOIN</span> people<br><span class="hljs-keyword">ON</span> people.id <span class="hljs-operator">=</span> stars.person_id<br><span class="hljs-keyword">WHERE</span> people.name<br><span class="hljs-keyword">IN</span> (<span class="hljs-string">&#x27;Bradley Cooper&#x27;</span>, <span class="hljs-string">&#x27;Jennifer Lawrence&#x27;</span>)<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> movies.title<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> people.name) <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; <span class="hljs-comment">-- 确保每部电影都有两人. (From &quot;Movies&quot; 12.sql)</span><br></code></pre></td></tr></table></figure>
+<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a><code>HAVING</code></h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> title
+<span class="token keyword">FROM</span> movies
+<span class="token keyword">JOIN</span> stars
+<span class="token keyword">ON</span> stars<span class="token punctuation">.</span>movie_id <span class="token operator">=</span> movies<span class="token punctuation">.</span>id
+<span class="token keyword">JOIN</span> people
+<span class="token keyword">ON</span> people<span class="token punctuation">.</span>id <span class="token operator">=</span> stars<span class="token punctuation">.</span>person_id
+<span class="token keyword">WHERE</span> people<span class="token punctuation">.</span>name
+<span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token string">'Bradley Cooper'</span><span class="token punctuation">,</span> <span class="token string">'Jennifer Lawrence'</span><span class="token punctuation">)</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> movies<span class="token punctuation">.</span>title
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> people<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">-- 确保每部电影都有两人. (From "Movies" 12.sql)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
-<h2 id="SQL-with-Python"><a href="#SQL-with-Python" class="headerlink" title="SQL with Python"></a>SQL with Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> cs50 <span class="hljs-keyword">import</span> SQL<br></code></pre></td></tr></table></figure>
+<h2 id="SQL-with-Python"><a href="#SQL-with-Python" class="headerlink" title="SQL with Python"></a>SQL with Python</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> cs50 <span class="token keyword">import</span> SQL<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Race-Conditions"><a href="#Race-Conditions" class="headerlink" title="Race Conditions"></a>Race Conditions</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">db.execute(<span class="hljs-string">&quot;BEGIN TRANSACTION&quot;</span>)<br>rows = db.execute(<span class="hljs-string">&quot;SELECT likes FROM posts WHERE id = ?&quot;</span>, <span class="hljs-built_in">id</span>)<br>likes = rows[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;likes&quot;</span>]<br>db.execute(<span class="hljs-string">&quot;UPDATE posts SET likes = ? WHERE id = ?&quot;</span>, likes + <span class="hljs-number">1</span>, <span class="hljs-built_in">id</span>)<br>db.execute(<span class="hljs-string">&quot;COMMIT&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="Race-Conditions"><a href="#Race-Conditions" class="headerlink" title="Race Conditions"></a>Race Conditions</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"BEGIN TRANSACTION"</span><span class="token punctuation">)</span>
+rows <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT likes FROM posts WHERE id = ?"</span><span class="token punctuation">,</span> <span class="token builtin">id</span><span class="token punctuation">)</span>
+likes <span class="token operator">=</span> rows<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"likes"</span><span class="token punctuation">]</span>
+db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"UPDATE posts SET likes = ? WHERE id = ?"</span><span class="token punctuation">,</span> likes <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">id</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"COMMIT"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL-Injection-Attacks"><a href="#SQL-Injection-Attacks" class="headerlink" title="SQL Injection Attacks"></a>SQL Injection Attacks</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">rows = db.execute(<span class="hljs-string">f&quot;SELECT * FROM users WHERE username = &#x27;malan@harvard.edu&#x27;--&#x27; AND password = &#x27;<span class="hljs-subst">&#123;password&#125;</span>&#x27;&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="SQL-Injection-Attacks"><a href="#SQL-Injection-Attacks" class="headerlink" title="SQL Injection Attacks"></a>SQL Injection Attacks</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">rows <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"SELECT * FROM users WHERE username = 'malan@harvard.edu'--' AND password = '</span><span class="token interpolation"><span class="token punctuation">&#123;</span>password<span class="token punctuation">&#125;</span></span><span class="token string">'"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li><p>So don’t use <code>format</code>.</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">rows = db.execute(<span class="hljs-string">&quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;</span>, username, password)<br></code></pre></td></tr></table></figure></li>
+  <pre class="line-numbers language-python" data-language="python"><code class="language-python">rows <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT * FROM users WHERE username = ? AND password = ?"</span><span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 <hr>
 
