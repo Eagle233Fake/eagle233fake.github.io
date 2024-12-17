@@ -15,7 +15,7 @@
 <meta property="og:description" content="采用每节课后总结要点的方式呈现知识体系。  1.1 什么是 Internet？ Internet 从构成的角度来看，包括 节点 (Node) 、 边 (Edge) 、 协议 (Protocol) 。 节点包括 主机节点 (PC, Server) 和 数据交换节点 (Router, Switch) 。 边包括 接入网链路 (Access Networking Link) （和主机节点相关）和 骨干链">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-12-10T08:35:59.000Z">
-<meta property="article:modified_time" content="2024-12-16T15:41:24.512Z">
+<meta property="article:modified_time" content="2024-12-17T15:31:43.352Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-12-10 16:35:59 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-12-16 23:41:24
+        2024-12-17 23:31:43
     </span>
     <br>
     <span>
@@ -295,6 +295,65 @@
 <li>中国的 ICPs 通过向政府呼吁，使得李克强总理发起电信运营商通信改革—— <strong>提速降费</strong> (流量不清零、流量转赠…) 。<blockquote>
 <p>这是中国特有的降低成本的形式(?)，得益于三大运营商的国有运营和政府对经济的宏观调控，通过适当对运营商利润的削减达到刺激互联网经济发展的目的，但同时保证国有企业能够盈利，又能服务于民。<br>我这一代人对此深有感触，感觉一夜之间流量便宜了，还能在下个月继续使用。永远悼念这一位为民的好总理…</p>
 </blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-6-分组延时、丢失和吞吐量"><a href="#1-6-分组延时、丢失和吞吐量" class="headerlink" title="1.6 分组延时、丢失和吞吐量"></a>1.6 分组延时、丢失和吞吐量</h2><ul>
+<li><p>分组延迟的四种分类：</p>
+<p>$$<br>d_{nodal} &#x3D; d_{proc} + d_{queue} + d_{trans} + d_{prop}<br>$$</p>
+<ul>
+<li><p><strong>处理延时 (Processing Delay)</strong> ：微秒数量级或者更小。检查 bit 级别差错和检查分组首部和决定将分组导向何处。</p>
+</li>
+<li><p><strong>排队延时 (Queuing Delay)</strong> ：取决于拥塞程度。</p>
+</li>
+<li><p><strong>传输延时 (Transmission Delay)</strong> ：存储转发的延时。</p>
+<p>$$<br>d_{trans} &#x3D; L (分组长度 &#x2F; bits) &#x2F; R (链路带宽 &#x2F; bps)<br>$$</p>
+</li>
+<li><p><strong>传播延时 (Propagation Delay)</strong> ：<br>$$<br>d_{prop} &#x3D; d (物理链路长度) &#x2F; s (电磁波信号在媒体上的传播速度 约等于 2*10^8 m&#x2F;s)<br>$$</p>
+</li>
+<li><p>类比：车队。局域网：还没传输完就已到达下一个节点；广域网：传输完了还要好久才到下一个节点。</p>
+</li>
+<li><p><strong>流量强度 (Traffic Intensity)</strong> ：</p>
+<p>$$<br>I &#x3D; L (分组长度) a (分组到达队列的平均速率) &#x2F; R (链路带宽)<br>$$</p>
+<ul>
+<li>(I &#x3D; 0)：排队延时很小</li>
+<li>(I -&gt; 1)：延时变得很大</li>
+<li>(I &gt; 1)：排队延时趋近于无限大</li>
+<li>设计系统的流量强度<strong>不能大于1</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Internet 的延时和路由</strong> ：使用 <strong>Traceroute 诊断程序</strong> 计算 <strong>RTT (Round Trip Time)</strong></p>
+<ul>
+<li><p><strong>TTL (Time to Live)</strong> ：在 IP 数据包的头部中。每一 <strong>跳 (Hop 段)</strong> 减一，等于0时 <strong>被丢弃</strong> ，并发送一个 <strong>ICMP</strong> 消息 (通常是“超时”消息) 回源主机。</p>
+</li>
+<li><p><strong>ICMP (Internet Control Message Protocol)</strong> ：网络协议，主要用于发送控制消息和错误消息</p>
+</li>
+<li><p>最终访问目标主机一个 <strong>比较大的端口号</strong> ，目标主机必定 <strong>没有应用在监听或者直接没有开放该端口</strong> ，此时目标主机就会给源主机回一个 <strong>ICMP 端口不可达</strong> 的差错信息，源主机就知道了到目标主机的条数以及往返时间。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tracert <span class="token function">hostname</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+</li>
+<li><p><strong>分组丢失 (Packet Loss)</strong></p>
+<ul>
+<li>链路的队列 <strong>缓冲区容量有限</strong> 。</li>
+<li>当分组到达一个满的队列时，该分组将会丢失。</li>
+<li>丢失的分组可能会 <strong>被前一个节点 (链路是可靠的)</strong> 或 <strong>源端系统 (物理层是可靠的) 重传</strong> ，或 <strong>根本不重传 (UDP)</strong> 。</li>
+</ul>
+</li>
+<li><p><strong>吞吐量 (Throughput)</strong> ：传输的实际速率</p>
+<ul>
+<li><p><strong>瞬间吞吐量 (Instantaneous Throughput)</strong></p>
+</li>
+<li><p><strong>平均吞吐量 (Average Throughput)</strong></p>
+<ul>
+<li>每个连接会公平地共享带宽。</li>
+</ul>
+<p>$$<br>AT &#x3D; min(R_i &#x2F; n_i)<br>$$</p>
+</li>
+<li><p><strong>瓶颈链路</strong> 经常是 (R_c) (连接源主机) 和 (R_s) (连接目标主机)。</p>
 </li>
 </ul>
 </li>
