@@ -14,10 +14,14 @@
 <meta property="og:site_name" content="Eagle233-Blog">
 <meta property="og:description" content="采用每节课后总结要点的方式呈现知识体系。  1.1 什么是 Internet？ Internet 从构成的角度来看，包括 节点 (Node) 、 边 (Edge) 、 协议 (Protocol) 。 节点包括 主机节点 (PC, Server) 和 数据交换节点 (Router, Switch) 。 边包括 接入网链路 (Access Networking Link) （和主机节点相关）和 骨干链">
 <meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2024/12/21/uGwbLg4alDW9Ed1.png">
+<meta property="og:image" content="https://s2.loli.net/2024/12/21/UCwmsAJBM7NKIto.png">
+<meta property="og:image" content="https://s2.loli.net/2024/12/21/TyzRHxmANF24Jge.png">
 <meta property="article:published_time" content="2024-12-10T08:35:59.000Z">
-<meta property="article:modified_time" content="2024-12-17T15:31:43.352Z">
+<meta property="article:modified_time" content="2024-12-21T05:30:04.323Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/12/21/uGwbLg4alDW9Ed1.png">
       <link rel="icon" href="">
       <title>
         
@@ -143,7 +147,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2024-12-10 16:35:59 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2024-12-17 23:31:43
+        2024-12-21 13:30:04
     </span>
     <br>
     <span>
@@ -328,13 +332,11 @@
 </li>
 <li><p><strong>Internet 的延时和路由</strong> ：使用 <strong>Traceroute 诊断程序</strong> 计算 <strong>RTT (Round Trip Time)</strong></p>
 <ul>
-<li><p><strong>TTL (Time to Live)</strong> ：在 IP 数据包的头部中。每一 <strong>跳 (Hop 段)</strong> 减一，等于0时 <strong>被丢弃</strong> ，并发送一个 <strong>ICMP</strong> 消息 (通常是“超时”消息) 回源主机。</p>
-</li>
-<li><p><strong>ICMP (Internet Control Message Protocol)</strong> ：网络协议，主要用于发送控制消息和错误消息</p>
-</li>
-<li><p>最终访问目标主机一个 <strong>比较大的端口号</strong> ，目标主机必定 <strong>没有应用在监听或者直接没有开放该端口</strong> ，此时目标主机就会给源主机回一个 <strong>ICMP 端口不可达</strong> 的差错信息，源主机就知道了到目标主机的条数以及往返时间。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tracert <span class="token function">hostname</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><strong>TTL (Time to Live)</strong> ：在 IP 数据包的头部中。每一 <strong>跳 (Hop 段)</strong> 减一，等于0时 <strong>被丢弃</strong> ，并发送一个 <strong>ICMP</strong> 消息 (通常是“超时”消息) 回源主机。</li>
+<li><strong>ICMP (Internet Control Message Protocol)</strong> ：网络协议，主要用于发送控制消息和错误消息</li>
+<li>最终访问目标主机一个 <strong>比较大的端口号</strong> ，目标主机必定 <strong>没有应用在监听或者直接没有开放该端口</strong> ，此时目标主机就会给源主机回一个 <strong>ICMP 端口不可达</strong> 的差错信息，源主机就知道了到目标主机的条数以及往返时间。</li>
 </ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tracert <span class="token function">hostname</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p><strong>分组丢失 (Packet Loss)</strong></p>
 <ul>
@@ -359,7 +361,59 @@
 </li>
 </ul>
 <hr>
-
+<h2 id="1-7-协议层次及服务模型"><a href="#1-7-协议层次及服务模型" class="headerlink" title="1.7 协议层次及服务模型"></a>1.7 协议层次及服务模型</h2><ul>
+<li>网络是极其复杂的系统，以 <strong>层次化 (Hierarchy)</strong> 的方式实现。<ul>
+<li>不同的层次实现了一个或一组 <strong>功能</strong> ，功能为上一层提供更好的 <strong>服务</strong> 。(功能是服务的 <strong>超集</strong> )</li>
+<li><strong>本层协议 (Protocol)</strong> 实体相互交互执行本层 <strong>协议动作</strong> 。</li>
+<li>本层的服务 &#x3D; 本层协议实体之间交互带来的新功能 <strong>+</strong> 所有下层通过接口向本层提供的服务。</li>
+</ul>
+</li>
+<li>服务和服务访问点：<ul>
+<li><strong>服务 (Service)</strong> 低层向上层提供通信的能力。<ul>
+<li><strong>服务用户 (Service User)</strong> &#x2F; <strong>服务提供者 (Service Provider)</strong></li>
+</ul>
+</li>
+<li><strong>原语 (Primitive)</strong> 是上层使用下层的 <strong>形式</strong> 。高层使用下层服务和下层为上层提供服务都是通过访问原语交互的。</li>
+<li><strong>服务访问点 SAP (Services Access Point)</strong> 是上层使用下层服务通过层间的 <strong>接口</strong> 。例如 <strong>套接字 Socket API</strong> 。</li>
+</ul>
+</li>
+<li>服务分为 <strong>面向连接的服务 (Connection-Oriented Service)</strong> 和 <strong>无连接的服务 (Connectionless Service)</strong> 。<ul>
+<li>面向连接的服务 <strong>可靠、保序 (不尽然)</strong> ，需要 <strong>预留资源</strong> 。</li>
+<li>无连接的服务 <strong>不可靠 (不尽然)、可能重复、可能失序</strong> ，不需要 <strong>缓冲区的置位</strong> 。</li>
+</ul>
+</li>
+<li>服务是垂直的，协议是水平的。低层向高层提供通信的能力通过原语来实现。<ul>
+<li><strong>协议 (Protocol)</strong> 是 <strong>对等层实体 (Peer Entity)</strong> 之间在相互通信的过程中需要遵守的规则的集合。<ul>
+<li>协议的 <strong>实现</strong> ：本层协议的实现要靠下层提供的服务来实现。</li>
+<li>协议的 <strong>目的</strong> ：本层实体通过协议为上层提供更高级的服务。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>数据单元 (DU)</strong> 存在于每一层中。<br><img src="https://s2.loli.net/2024/12/21/uGwbLg4alDW9Ed1.png" alt="du_00.png"><br><img src="https://s2.loli.net/2024/12/21/UCwmsAJBM7NKIto.png" alt="du_01.png"></li>
+<li>分层处理的特性：<ul>
+<li><strong>概念化</strong> ：结构清晰便于描述。</li>
+<li><strong>结构化</strong> ：模块化更易于维护和升级，改变其中一层不改变其他层级。</li>
+<li><strong>缺点</strong> ：效率较低。</li>
+</ul>
+</li>
+<li><strong>Internet 协议栈</strong><ul>
+<li><strong>物理层 (Physical Layer)</strong> ：传输 <strong>bit</strong>。</li>
+<li><strong>数据链路层 (Data Link Layer)</strong> ：实现 <strong>点到点 (P2P)</strong> 的通信，相邻两点以 <strong>帧 (Frame)</strong> 为数据单元传输，有帧头、帧尾，可靠或不可靠。<strong>和物理层封装在网卡当中</strong>。 <strong>PPP, 802.11(wifi), Ethernet</strong></li>
+<li><strong>网络层 (Network Layer)</strong> ：实现 <strong>端到端 (E2E)</strong> 的通信，以 <strong>分组 (Packet) (无连接方式：数据报 Datagram)</strong> 为数据单元传输，不可靠。 <strong>IP, 路由协议</strong></li>
+<li><strong>传输层 (Transport Layer)</strong> ：实现 <strong>进程到进程</strong> 的通信，以 <strong>报文段 (Segment) (TCP段、UDP Datagram)</strong> 为数据单元传输，将不可靠变为可靠。 <strong>TCP, UDP</strong></li>
+<li><strong>应用层 (Application Layer)</strong> 实现网络应用服务，以 <strong>报文 (Message)</strong> 为数据单元传输。 <strong>FTP, SMTP, HTTP, DNS</strong></li>
+</ul>
+</li>
+<li><strong>ISO&#x2F;OSI 参考模型</strong> (在 TCP&#x2F;IP 中于应用层实现)<ul>
+<li><strong>表示层 (Presentation Layer)</strong> ：关心语义不关心表达。解释传输的数据 (加密，压缩，机器相关的表示转换)。</li>
+<li><strong>会话层 (Session Layer)</strong> ：数据交换的同步、检查点、恢复。</li>
+</ul>
+</li>
+<li><strong>封装 (Encapsulation) 和解封装 (Decapsulation)</strong><br><img src="https://s2.loli.net/2024/12/21/TyzRHxmANF24Jge.png" alt="encapsulation_00.png"></li>
+</ul>
+<hr>
+<h2 id="1-8-历史"><a href="#1-8-历史" class="headerlink" title="1.8 历史"></a>1.8 历史</h2>
   </div>
 </mdui-card>
 <script>
