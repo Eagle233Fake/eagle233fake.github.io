@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns#" class="mdui-theme-auto" data-theme="auto">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="Eagle233">
+  <meta name="generator" content="Hexo 7.3.0">
+    <meta name="description" content="Some of the most popular include: Django, Pyramid, and Flask. 看了两遍 Lecture 作业 Finance 真的有够难啊，做了六个小时…   ShortsDisplay Minutes&lt;html&gt;     &lt;head&gt;         &lt;title&gt;Current Time in Cambridge&lt;&#x2F;ti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50x - Week 9 Flask">
+<meta property="og:url" content="https://blog.eagle233.top/2024/12/02/CS50x%20-%20Week%209%20Flask/index.html">
+<meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="Some of the most popular include: Django, Pyramid, and Flask. 看了两遍 Lecture 作业 Finance 真的有够难啊，做了六个小时…   ShortsDisplay Minutes&lt;html&gt;     &lt;head&gt;         &lt;title&gt;Current Time in Cambridge&lt;&#x2F;ti">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2024/12/02/3lSJfX7954RcFzQ.png">
+<meta property="og:image" content="https://s2.loli.net/2024/12/02/Ro3WABtFHv1pCuK.png">
+<meta property="article:published_time" content="2024-12-02T07:20:34.000Z">
+<meta property="article:modified_time" content="2024-12-03T15:44:02.417Z">
+<meta property="article:author" content="Eagle233">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/12/02/3lSJfX7954RcFzQ.png">
+      <link rel="icon" href="">
+      <title>
+        
+          CS50x - Week 9 Flask - Eagle233-Blog
+              
+      </title>
+      
+<link rel="stylesheet" href="/css/site.css">
+
+      
+<link rel="stylesheet" href="/css/mdui_2.0.3/mdui.css">
+
+      <style>
+        /*禁用mdui对code的样式，因为它干扰了prism.js*/
+        .mdui-prose pre code {
+          background-color: transparent;
+          padding: 0px 0px;
+        }
+      </style>
+      
+<script src="/css/mdui_2.0.3/mdui.global.js"></script>
+
+      
+<script src="/fancybox/fancybox.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/fancybox/fancybox.css">
+
+      
+<script src="/carousel/carousel.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/carousel/carousel.css">
+
+      
+<link rel="stylesheet" href="/css/prism.css">
+
+          
+<link rel="stylesheet" href="/css/katex.min.css">
+
+            
+<link rel="stylesheet" href="/css/font-material-icon-filled/MaterialIconFilled.css">
+
+              <!-- Filled -->
+              <script>window.$=mdui.$</script>
+</head>
+
+  <body class="line-numbers">
+    <mdui-layout>
+      <mdui-top-app-bar>
+        <mdui-button-icon icon="menu" id="menu-btn">
+        </mdui-button-icon>
+        <mdui-top-app-bar-title>
+          Eagle233-Blog
+        </mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon icon="search" id="search-dlg-btn"></mdui-button-icon>
+          
+      </mdui-top-app-bar>
+      <mdui-navigation-drawer close-on-overlay-click close-on-esc id="drawer">
+    <mdui-list>
+        
+            
+            <mdui-list-item rounded icon="home"
+                href="/"
+                
+                
+                rel="next">
+                Home
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="folder"
+                href="/categories"
+                
+                
+                rel="next">
+                Categories
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="bookmark"
+                href="/tags"
+                
+                
+                rel="next">
+                Tags
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="archive"
+                href="/archives"
+                
+                
+                rel="next">
+                Archives
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="info"
+                href="/about"
+                
+                
+                rel="next">
+                About
+            </mdui-list-item>
+            
+            
+    </mdui-list>
+</mdui-navigation-drawer>
+        <mdui-layout-main style="min-height: 800px;" id="main">
+          <div style="padding-left: 16px;padding-right: 16px;" id="content">
+            <mdui-card variant="filled" style="padding: 16px;width: 100%;">
+  <div class="mdui-prose post" id="post-all">
+    <h1 style="margin-bottom: 8px;">
+      CS50x - Week 9 Flask
+    </h1>
+    <span class="post-date">
+      <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+      2024-12-02 15:20:34 &nbsp; <mdui-icon name="update"
+          style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+        2024-12-03 23:44:02
+    </span>
+    <br>
+    <span>
+        Categories
+          
+            <!-- <mdui-chip href="/categories/CS50x/" variant="filter" style="vertical-align: middle;">
+                          CS50x
+                      </mdui-chip> -->
+            <a href="/categories/CS50x/">
+              CS50x
+            </a>
+            
+              <br>
+      </span>
+      
+        
+          Tags
+            
+                
+                  <!-- photos gallery -->
+                  
+                      <!-- content -->
+                      <hr>
+<ul>
+<li>Some of the most popular include: <strong>Django</strong>, <strong>Pyramid</strong>, and <strong>Flask</strong>.</li>
+<li>看了两遍 Lecture</li>
+<li>作业 <code>Finance</code> 真的有够难啊，做了六个小时…</li>
+</ul>
+<hr>
+<h2 id="Shorts"><a href="#Shorts" class="headerlink" title="Shorts"></a>Shorts</h2><h3 id="Display-Minutes"><a href="#Display-Minutes" class="headerlink" title="Display Minutes"></a>Display Minutes</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Current Time in Cambridge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+        The current time in Cambridge is 14:08
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime
+<span class="token keyword">from</span> pytz <span class="token keyword">import</span> timezone
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    now <span class="token operator">=</span> datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span>timezone<span class="token punctuation">(</span><span class="token string">'America/New_York'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">"The current date and time in Cambridge is &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Initiate"><a href="#Initiate" class="headerlink" title="Initiate"></a>Initiate</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="Def-Functions"><a href="#Def-Functions" class="headerlink" title="Def Functions"></a>Def Functions</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"You are at the index page!"</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/sample"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">sample</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"You are on the sample page!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">FLASK_APP</span><span class="token operator">=</span>application.py
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">FLASK_DEBUG</span><span class="token operator">=</span><span class="token number">1</span>
+flask run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Pass-Data"><a href="#Pass-Data" class="headerlink" title="Pass Data"></a>Pass Data</h3><h4 id="HTTP-GET"><a href="#HTTP-GET" class="headerlink" title="HTTP GET"></a>HTTP GET</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/show/&lt;number>"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">show</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"You passed in &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="HTTP-POST"><a href="#HTTP-POST" class="headerlink" title="HTTP POST"></a>HTTP POST</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/login"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> apology<span class="token punctuation">(</span><span class="token string">"must provide username"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Vary-the-Behaviours"><a href="#Vary-the-Behaviours" class="headerlink" title="Vary the Behaviours"></a>Vary the Behaviours</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/login"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">"POST"</span><span class="token punctuation">:</span>
+        <span class="token comment"># do one thing</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token comment"># do a different thing</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+<th>用法示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>url_for()</code></td>
+<td>生成指定视图函数的 URL。</td>
+<td><code>url_for(&#39;index&#39;)</code> 生成 <code>/</code> 的 URL。</td>
+</tr>
+<tr>
+<td><code>redirect()</code></td>
+<td>重定向到指定的 URL。</td>
+<td><code>return redirect(url_for(&#39;login&#39;))</code></td>
+</tr>
+<tr>
+<td><code>session()</code></td>
+<td>用于存储用户会话数据，数据在用户会话期间保持。</td>
+<td><code>session[&#39;username&#39;] = &#39;John&#39;</code></td>
+</tr>
+<tr>
+<td><code>render_template()</code></td>
+<td>渲染指定的模板文件并返回 HTML 响应。</td>
+<td><code>return render_template(&#39;index.html&#39;)</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h2><h3 id="Routes-and-Requests"><a href="#Routes-and-Requests" class="headerlink" title="Routes and Requests"></a>Routes and Requests</h3><h4 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h4><ul>
+<li>Routes can dene pages of your web application.<br>For example<ul>
+<li><code>/</code></li>
+<li><code>/about-us</code></li>
+<li><code>/register</code></li>
+<li><code>/submit</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Run-a-Flask-Application"><a href="#Run-a-Flask-Application" class="headerlink" title="Run a Flask Application"></a>Run a Flask Application</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">flask run<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="Flask-1"><a href="#Flask-1" class="headerlink" title="Flask"></a>Flask</h3><ul>
+<li><strong>Listen for requests</strong> to a certain route.</li>
+<li><strong>Execute Python code</strong> depending on the route requested.</li>
+<li><strong>Render HTML files</strong> depending on the route requested.</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span> <span class="token comment"># '@' is a decorator.</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    row <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT * FROM birthday"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span> birthdays<span class="token operator">=</span>row<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Request-Methods"><a href="#Request-Methods" class="headerlink" title="Request Methods"></a>Request Methods</h3><h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p><img src="https://s2.loli.net/2024/12/02/3lSJfX7954RcFzQ.png" alt="flask_00.png"></p>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p><img src="https://s2.loli.net/2024/12/02/Ro3WABtFHv1pCuK.png" alt="flask_01.png"></p>
+<h2 id="Forms"><a href="#Forms" class="headerlink" title="Forms"></a>Forms</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        Submit
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"email"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="HTML-Form-Elements"><a href="#HTML-Form-Elements" class="headerlink" title="HTML Form Elements"></a>HTML Form Elements</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>number<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>month<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>number<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Month<span class="token punctuation">"</span></span> <span class="token attr-name">min</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">max</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>off<span class="token punctuation">"</span></span> <span class="token attr-name">autofocus</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="Databases"><a href="#Databases" class="headerlink" title="Databases"></a>Databases</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token triple-quoted-string string">"""INSERT INTO birthdays (name, month, day) 
+           VALUES (?, ?, ?)
+           """</span><span class="token punctuation">,</span> 
+           name<span class="token punctuation">,</span> 
+           month<span class="token punctuation">,</span> 
+           day<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Jinja"><a href="#Jinja" class="headerlink" title="Jinja"></a><a target="_blank" rel="noopener" href="https://jinja.palletsprojects.com/">Jinja</a></h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">&#123;% extends "layout.html" %&#125;
+ 
+&#123;% block body %&#125;
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span><span class="token punctuation">></span></span>
+        &#123;% for birthday in birthdays %&#125;
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>&#123;&#123; birthday.name &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>&#123;&#123; birthday.month &#125;&#125; / &#123;&#123; birthday.day &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+        &#123;% endfor %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+
+&#123;% endblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="Lecture"><a href="#Lecture" class="headerlink" title="Lecture"></a>Lecture</h2><h3 id="Pass-the-Key-Value-Pairs"><a href="#Pass-the-Key-Value-Pairs" class="headerlink" title="Pass the Key-Value Pairs"></a>Pass the Key-Value Pairs</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token string">"name"</span> <span class="token keyword">in</span> request<span class="token punctuation">.</span>args<span class="token punctuation">:</span>
+        name <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> 
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> <span class="token string">"world"</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span> placeholder<span class="token operator">=</span>name<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"world"</span><span class="token punctuation">)</span> <span class="token comment"># For `GET`.</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="自适配网页"><a href="#自适配网页" class="headerlink" title="自适配网页"></a>自适配网页</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>initial-scale=1, width=device-width<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><h4 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">&#123;% extends "layout.html" %&#125;
+ 
+&#123;% block body %&#125;
+
+    <span class="token comment">&lt;!-- Your Content --></span>
+
+&#123;% endblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="创建模板"><a href="#创建模板" class="headerlink" title="创建模板"></a>创建模板</h4><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- layout.html --></span>
+
+<span class="token comment">&lt;!-- Your Content --></span>
+    &#123;% block body %&#125; &#123;% endblock %&#125;
+<span class="token comment">&lt;!-- Your Content --></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="POST-1"><a href="#POST-1" class="headerlink" title="POST"></a><code>POST</code></h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>off<span class="token punctuation">"</span></span> <span class="token attr-name">autofocus</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Greet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/greet"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"world"</span><span class="token punctuation">)</span> <span class="token comment"># For `POST`.</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"greet.html"</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="整合到一个函数"><a href="#整合到一个函数" class="headerlink" title="整合到一个函数"></a>整合到一个函数</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- `action` can be ignore --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>off<span class="token punctuation">"</span></span> <span class="token attr-name">autofocus</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Greet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- greet.html --></span>
+
+    hello &#123;&#123; name &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">"POST"</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"world"</span><span class="token punctuation">)</span> <span class="token comment"># For `POST`.</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"greet.html"</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>如果输入了空的东西呢？ <code>&quot;world&quot;</code> 其实没有用了。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">"POST"</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"greet.html"</span><span class="token punctuation">,</span> name<span class="token operator">=</span>name<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>检查是否空白。</li>
+</ul>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- greet.html --></span>
+
+    hello &#123;% if name %&#125;&#123;&#123; name &#125;&#125;&#123;% else %&#125;world&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Dropdown-Menu"><a href="#Dropdown-Menu" class="headerlink" title="Dropdown Menu"></a>Dropdown Menu</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sport<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">disabled</span> <span class="token attr-name">selected</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Sport<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">></span></span>Basketball<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">></span></span>Football<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">></span></span>Ultimate Frisbee<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="输入框必须含有输入"><a href="#输入框必须含有输入" class="headerlink" title="输入框必须含有输入"></a>输入框必须含有输入</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">required</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="检查是否非空"><a href="#检查是否非空" class="headerlink" title="检查是否非空"></a>检查是否非空</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token keyword">not</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"sport"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"failure.html"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"success.html"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="服务端验证数据"><a href="#服务端验证数据" class="headerlink" title="服务端验证数据"></a>服务端验证数据</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+SPORTS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Basketball"</span><span class="token punctuation">,</span> <span class="token string">"Football"</span><span class="token punctuation">,</span> <span class="token string">"Ultimate Frisbee"</span><span class="token punctuation">]</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span>sports<span class="token operator">=</span>SPORTS<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span> <span class="token keyword">or</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"sport"</span><span class="token punctuation">)</span> <span class="token keyword">not</span> <span class="token keyword">in</span> SPORTS<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"failure.html"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"success.html"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sport<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">disabled</span> <span class="token attr-name">selected</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Sport<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        &#123;% for sport in sports %&#125;
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; sport &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; sport &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+        &#123;% endfor %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Type-radio-exclusive"><a href="#Type-radio-exclusive" class="headerlink" title="Type radio (exclusive)"></a>Type <code>radio</code> (exclusive)</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+    &#123;% for sport in sports %&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sport<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; sport &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; sport &#125;&#125;
+    &#123;% endfor %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Type-checkbox-inclusive"><a href="#Type-checkbox-inclusive" class="headerlink" title="Type checkbox (inclusive)"></a>Type <code>checkbox</code> (inclusive)</h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+    &#123;% for sport in sports %&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sport<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; sport &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; sport &#125;&#125;
+    &#123;% endfor %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>需要修改程序代码</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+SPORTS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Basketball"</span><span class="token punctuation">,</span> <span class="token string">"Football"</span><span class="token punctuation">,</span> <span class="token string">"Ultimate Frisbee"</span><span class="token punctuation">]</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span>sports<span class="token operator">=</span>SPORTS<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"failure.html"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> sport <span class="token keyword">in</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>getlist<span class="token punctuation">(</span><span class="token string">"sport"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> sport <span class="token keyword">not</span> <span class="token keyword">in</span> SPORTS<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"failure.html"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"success.html"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="展示注册信息-Using-SQL"><a href="#展示注册信息-Using-SQL" class="headerlink" title="展示注册信息 Using SQL"></a>展示注册信息 Using <code>SQL</code></h3><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+&#123;% extends "layout.html" %&#125;
+ 
+&#123;% block body %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Registrants<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thead</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>Sport<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thead</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span><span class="token punctuation">></span></span>
+            &#123;% for registrant in registrants %&#125;
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>&#123;&#123; registrant.name &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>&#123;&#123; registrant.sport &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/deregister<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; registrant.id &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Deregister<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+            &#123;% endfor %&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+&#123;% endblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Implements a registration form, storing registrants in a SQLite database, with support for deregistration</span>
+ 
+<span class="token keyword">from</span> cs50 <span class="token keyword">import</span> SQL
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> redirect<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+ 
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+ 
+db <span class="token operator">=</span> SQL<span class="token punctuation">(</span><span class="token string">"sqlite:///froshims.db"</span><span class="token punctuation">)</span>
+ 
+SPORTS <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">"Basketball"</span><span class="token punctuation">,</span>
+    <span class="token string">"Soccer"</span><span class="token punctuation">,</span>
+    <span class="token string">"Ultimate Frisbee"</span>
+<span class="token punctuation">]</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span> sports<span class="token operator">=</span>SPORTS<span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/deregister"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">deregister</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+ 
+    <span class="token comment"># Forget registrant</span>
+    <span class="token builtin">id</span> <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token builtin">id</span><span class="token punctuation">:</span>
+        db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"DELETE FROM registrants WHERE id = ?"</span><span class="token punctuation">,</span> <span class="token builtin">id</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">"/registrants"</span><span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+ 
+    <span class="token comment"># Validate submission</span>
+    name <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span>
+    sport <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"sport"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> name <span class="token keyword">or</span> sport <span class="token keyword">not</span> <span class="token keyword">in</span> SPORTS<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"failure.html"</span><span class="token punctuation">)</span>
+ 
+    <span class="token comment"># Remember registrant</span>
+    db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"INSERT INTO registrants (name, sport) VALUES(?, ?)"</span><span class="token punctuation">,</span> name<span class="token punctuation">,</span> sport<span class="token punctuation">)</span>
+ 
+    <span class="token comment"># Confirm registration</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">"/registrants"</span><span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/registrants"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">registrants</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    registrants <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT * FROM registrants"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"registrants.html"</span><span class="token punctuation">,</span> registrants<span class="token operator">=</span>registrants<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> redirect<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request<span class="token punctuation">,</span> session
+<span class="token keyword">from</span> flask_session <span class="token keyword">import</span> Session
+ 
+<span class="token comment"># Configure app</span>
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+ 
+<span class="token comment"># Configure session</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">"SESSION_PERMANENT"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span>
+app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">"SESSION_TYPE"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"filesystem"</span>
+Session<span class="token punctuation">(</span>app<span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">,</span> name<span class="token operator">=</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/login"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">"POST"</span><span class="token punctuation">:</span>
+        session<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">=</span> request<span class="token punctuation">.</span>form<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span> <span class="token comment"># 实际上是 `dictionary`.</span>
+        <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"login.html"</span><span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/logout"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    session<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- index.html --></span>
+
+&#123;% extends "layout.html" %&#125;
+ 
+&#123;% block body %&#125;
+ 
+    &#123;% if name %&#125;
+        You are logged in as &#123;&#123; name &#125;&#125;. <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/logout<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Log out<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>.
+    &#123;% else %&#125;
+        You are not logged in. <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Log in<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>.
+    &#123;% endif %&#125;
+ 
+&#123;% endblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- login.html --></span>
+
+&#123;% extends "layout.html" %&#125;
+ 
+&#123;% block body %&#125;
+ 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/login<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>off<span class="token punctuation">"</span></span> <span class="token attr-name">autofocus</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Name<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Log In<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+ 
+&#123;% endblock %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Safe-Wildcard-Searches"><a href="#Safe-Wildcard-Searches" class="headerlink" title="Safe Wildcard Searches"></a>Safe Wildcard Searches</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">q <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"q"</span><span class="token punctuation">)</span>
+shows <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT * FROM shows WHERE title LIKE ?"</span><span class="token punctuation">,</span> <span class="token string">"%"</span> <span class="token operator">+</span> q <span class="token operator">+</span> <span class="token string">"%"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="Interactive-AJAX"><a href="#Interactive-AJAX" class="headerlink" title="Interactive AJAX"></a>Interactive <code>AJAX</code></h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+input<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'/search?q='</span> <span class="token operator">+</span> input<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> shows <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> shows<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="API-Application-Programming-Interface"><a href="#API-Application-Programming-Interface" class="headerlink" title="API (Application Programming Interface)"></a>API (Application Programming Interface)</h3><h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><ul>
+<li>Using double quotes but not single quotes in Python <code>list</code>.</li>
+<li>Machine readable.</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Searches for shows using Ajax with JSON</span>
+ 
+<span class="token keyword">from</span> cs50 <span class="token keyword">import</span> SQL
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> jsonify<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+ 
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+ 
+db <span class="token operator">=</span> SQL<span class="token punctuation">(</span><span class="token string">"sqlite:///shows.db"</span><span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">)</span>
+ 
+ 
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/search"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    q <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"q"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> q<span class="token punctuation">:</span>
+        shows <span class="token operator">=</span> db<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SELECT * FROM shows WHERE title LIKE ? LIMIT 50"</span><span class="token punctuation">,</span> <span class="token string">"%"</span> <span class="token operator">+</span> q <span class="token operator">+</span> <span class="token string">"%"</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        shows <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span>shows<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+  </div>
+</mdui-card>
+<script>
+  const $ = mdui.$;
+  $("#post-all").find("img").each((index, ele) => {
+    $(ele).replaceWith(`<a data-src="${$(ele).prop("src")}" class="fancybox-enabled" data-fancybox="picture" data-caption="${$(ele).prop("alt")}">${ele.outerHTML}</a>`)
+  });
+  Fancybox.bind(".fancybox-enabled", {
+    on: {
+      ready: () => {
+        $("mdui-top-app-bar").addClass("invisible")
+      }, close: () => {
+        $("mdui-top-app-bar").removeClass("invisible")
+      }
+    }
+  });
+  
+</script>
+
+    
+                    
+              <br>
+              <span>© 2024 Eagle233 <br>Powered By Hexo & Theme mdsuper</span>
+          </div>
+        </mdui-layout-main>
+    </mdui-layout>
+    <script>const searchxml_url = "/search.xml";</script>
+
+<script src="/js/mdsuper-search.js"></script>
+
+    <mdui-dialog close-on-overlay-click close-on-esc fullscreen id="search-dlg">
+        <mdui-top-app-bar slot="header" style="padding: 32px;">
+            <mdui-top-app-bar-title>
+                Search
+            </mdui-top-app-bar-title>
+            <mdui-button-icon icon="close" id="search-dlg-close"></mdui-button-icon>
+        </mdui-top-app-bar>
+        <mdui-text-field icon="search" label='Search' id="search-input"></mdui-text-field>
+        <mdui-list id="search-res-list">
+        </mdui-list>
+    </mdui-dialog>
+    <script>
+        $("#search-dlg-close").on("click", function () {
+            $("#search-dlg").get(0).open = false;
+        });
+        $("#search-input").get(0).addEventListener('input', function () {
+            let val = $(this).val().toLowerCase();
+            $("#search-res-list").html("");
+            if (!val) return;
+            let keywords = val.split(" ").filter((x)=>x.length>=2);
+            let searchRes = search(keywords);
+            searchRes.forEach((dat) => {
+                $("#search-res-list").append(`<mdui-list-item href="${dat.url}" rounded headline-line="1" description-line="3">
+          ${highlightSearch(dat.title, keywords)}
+          <span slot="description">${highlightSearch(dat.content, keywords)}</span>
+        </mdui-list-item>`);
+            })
+        })
+    </script>
+        
+          <script>
+            mdui.setColorScheme('#3f51b5');
+            const navigationDrawer = document.querySelector("#drawer");
+            const mainlayout = document.querySelector("#main");
+            const breakpointCondition = mdui.breakpoint();
+            if (breakpointCondition.up('sm')) {
+              if (localStorage.getItem('navigationDrawer') == null) {
+                if("true"=="true")localStorage.setItem('navigationDrawer', "true");
+              }
+              if("true"=="true")navigationDrawer.setAttribute("open", (localStorage.getItem('navigationDrawer') == "true" ? true : false))
+            }
+            const menuBtn = document.querySelector("#menu-btn");
+            menuBtn.addEventListener("click", () => {
+              navigationDrawer.open = !navigationDrawer.open;
+              if("true"=="true")localStorage.setItem('navigationDrawer', navigationDrawer.open.toString());
+            });
+            const searchBtn = document.querySelector("#search-dlg-btn");
+            searchBtn.addEventListener("click", () => {
+              document.querySelector("#search-dlg").open = true;
+            });
+          </script>
+          
+<script src="/js/prism.js"></script>
+
+  </body>
+
+</html>
