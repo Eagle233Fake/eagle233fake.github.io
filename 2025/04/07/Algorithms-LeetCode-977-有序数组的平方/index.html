@@ -7,21 +7,21 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta name="description" content="总结  CS50x  CS106L  USTC Computer Networking  In Class Practices  Algorithms">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://blog.eagle233.top/categories/index.html">
+    <meta name="description" content="Link 双指针法，倒序写进结果数组。 class Solution &#123; public:     vector&lt;int&gt; sortedSquares(vector&lt;int&gt;&amp; nums) &#123;         int i &#x3D; 0;         int j &#x3D; nums.size() - 1;         vector&lt;int&gt; result(nu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithms - LeetCode 977. 有序数组的平方">
+<meta property="og:url" content="https://blog.eagle233.top/2025/04/07/Algorithms-LeetCode-977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
-<meta property="og:description" content="总结  CS50x  CS106L  USTC Computer Networking  In Class Practices  Algorithms">
+<meta property="og:description" content="Link 双指针法，倒序写进结果数组。 class Solution &#123; public:     vector&lt;int&gt; sortedSquares(vector&lt;int&gt;&amp; nums) &#123;         int i &#x3D; 0;         int j &#x3D; nums.size() - 1;         vector&lt;int&gt; result(nu">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-09-17T15:06:29.000Z">
-<meta property="article:modified_time" content="2025-04-07T08:32:02.765Z">
+<meta property="article:published_time" content="2025-04-07T08:53:02.000Z">
+<meta property="article:modified_time" content="2025-04-07T08:56:21.606Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
       <title>
         
-          分类 - Eagle233-Blog
+          Algorithms - LeetCode 977. 有序数组的平方 - Eagle233-Blog
               
       </title>
       
@@ -93,7 +93,7 @@
             
             <mdui-list-item rounded icon="folder"
                 href="/categories"
-                active
+                
                 
                 rel="next">
                 Categories
@@ -137,34 +137,52 @@
             <mdui-card variant="filled" style="padding: 16px;width: 100%;">
   <div class="mdui-prose post" id="post-all">
     <h1 style="margin-bottom: 8px;">
-      分类
+      Algorithms - LeetCode 977. 有序数组的平方
     </h1>
     <span class="post-date">
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-      2024-09-17 23:06:29 &nbsp; <mdui-icon name="update"
+      2025-04-07 16:53:02 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-04-07 16:32:02
+        2025-04-07 16:56:21
     </span>
     <br>
-    
+    <span>
+        Categories
+          
+              <br>
+      </span>
+      
         
+          Tags
+            
+                
                   <!-- photos gallery -->
                   
                       <!-- content -->
-                      <ul>
-<li><p><strong><a href="/categories/%E6%80%BB%E7%BB%93/">总结</a></strong></p>
-</li>
-<li><p><strong><a href="/categories/CS50x/">CS50x</a></strong></p>
-</li>
-<li><p><strong><a href="/categories/CS106L/">CS106L</a></strong></p>
-</li>
-<li><p><strong><a href="/categories/USTC-Computer-Networking/">USTC Computer Networking</a></strong></p>
-</li>
-<li><p><strong><a href="/categories/In-Class-Practices/">In Class Practices</a></strong></p>
-</li>
-<li><p><strong><a href="/categories/Algorithms/">Algorithms</a></strong></p>
-</li>
-</ul>
+                      <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array">Link</a></p>
+<p>双指针法，倒序写进结果数组。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">sortedSquares</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> j <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">result</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> k <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> j<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                result<span class="token punctuation">[</span>k<span class="token operator">--</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                j<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                result<span class="token punctuation">[</span>k<span class="token operator">--</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                i<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
 
   </div>
 </mdui-card>
