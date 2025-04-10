@@ -7,21 +7,21 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta name="description" content="20250407LeetCode 977. 有序数组的平方 LeetCode 209. 长度最小的子数组 LeetCode 27. 移除元素 KamaCoder 44. 开发商购买土地（第五期模拟笔试） 20250408LeetCode 203. 移除链表元素 递归法 LeetCode 707. 设计链表 单链表和双链表 LeetCode 203. 移除链表元素 双指针和两种递归 LeetCode">
+    <meta name="description" content="来源：代码随想录  LeetCode 202. 快乐数 用unordered_set保存出现过的结果class Solution &#123; public:     int getSum(int n) &#123;         int sum &#x3D; 0;         while (n) &#123;             sum +&#x3D; (n % 10) * (n % 10);">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Algorithms] 待复习">
-<meta property="og:url" content="https://blog.eagle233.top/2025/04/08/Algorithms/Algorithms-%E5%BE%85%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:title" content="[Algorithms] LeetCode 202. 快乐数">
+<meta property="og:url" content="https://blog.eagle233.top/2025/04/09/Algorithms-LeetCode-202-%E5%BF%AB%E4%B9%90%E6%95%B0/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
-<meta property="og:description" content="20250407LeetCode 977. 有序数组的平方 LeetCode 209. 长度最小的子数组 LeetCode 27. 移除元素 KamaCoder 44. 开发商购买土地（第五期模拟笔试） 20250408LeetCode 203. 移除链表元素 递归法 LeetCode 707. 设计链表 单链表和双链表 LeetCode 203. 移除链表元素 双指针和两种递归 LeetCode">
+<meta property="og:description" content="来源：代码随想录  LeetCode 202. 快乐数 用unordered_set保存出现过的结果class Solution &#123; public:     int getSum(int n) &#123;         int sum &#x3D; 0;         while (n) &#123;             sum +&#x3D; (n % 10) * (n % 10);">
 <meta property="og:locale">
-<meta property="article:published_time" content="2025-04-08T11:00:49.000Z">
-<meta property="article:modified_time" content="2025-04-10T06:14:34.126Z">
+<meta property="article:published_time" content="2025-04-09T08:39:56.000Z">
+<meta property="article:modified_time" content="2025-04-10T05:29:35.541Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
       <title>
         
-          [Algorithms] 待复习 - Eagle233-Blog
+          [Algorithms] LeetCode 202. 快乐数 - Eagle233-Blog
               
       </title>
       
@@ -137,13 +137,13 @@
             <mdui-card variant="filled" style="padding: 16px;width: 100%;">
   <div class="mdui-prose post" id="post-all">
     <h1 style="margin-bottom: 8px;">
-      [Algorithms] 待复习
+      [Algorithms] LeetCode 202. 快乐数
     </h1>
     <span class="post-date">
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-      2025-04-08 19:00:49 &nbsp; <mdui-icon name="update"
+      2025-04-09 16:39:56 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-04-10 14:14:34
+        2025-04-10 13:29:35
     </span>
     <br>
     <span>
@@ -156,6 +156,13 @@
               Algorithms
             </a>
             
+            <!-- <mdui-chip href="/categories/Algorithms/HashTable/" variant="filter" style="vertical-align: middle;">
+                          HashTable
+                      </mdui-chip> -->
+            <a href="/categories/Algorithms/HashTable/">
+              HashTable
+            </a>
+            
               <br>
       </span>
       
@@ -166,28 +173,36 @@
                   <!-- photos gallery -->
                   
                       <!-- content -->
-                      <h2 id="20250407"><a href="#20250407" class="headerlink" title="20250407"></a>20250407</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array">LeetCode 977. 有序数组的平方</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/">LeetCode 209. 长度最小的子数组</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element">LeetCode 27. 移除元素</a></p>
-<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1044">KamaCoder 44. 开发商购买土地（第五期模拟笔试）</a></p>
-<h2 id="20250408"><a href="#20250408" class="headerlink" title="20250408"></a>20250408</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/">LeetCode 203. 移除链表元素</a> 递归法</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-linked-list/">LeetCode 707. 设计链表</a> 单链表和双链表</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/">LeetCode 203. 移除链表元素</a> 双指针和两种递归</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/">LeetCode 24. 两两交换链表中的节点</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/">LeetCode 19. 删除链表的倒数第 N 个结点</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">LeetCode 142. 环形链表 II</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/787/">AcWing 785. 快速排序</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/788/">AcWing 786. 第k个数</a></p>
-<h2 id="20250409"><a href="#20250409" class="headerlink" title="20250409"></a>20250409</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">LeetCode 1. 两数之和</a></p>
+                      <blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://programmercarl.com/">代码随想录</a></p>
+</blockquote>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/happy-number/">LeetCode 202. 快乐数</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/">LeetCode 454. 四数相加 II</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/789/">AcWing 787. 归并排序</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/790/">AcWing 788. 逆序对的数量</a></p>
-<h2 id="20250410"><a href="#20250410" class="headerlink" title="20250410"></a>20250410</h2><p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/791/">AcWing 789. 数的范围</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">LeetCode 15. 三数之和</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">LeetCode 18. 四数之和</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/792/">AcWing 790. 数的三次方根</a></p>
+<h2 id="用unordered-set保存出现过的结果"><a href="#用unordered-set保存出现过的结果" class="headerlink" title="用unordered_set保存出现过的结果"></a>用<code>unordered_set</code>保存出现过的结果</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> <span class="token function">getSum</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            sum <span class="token operator">+=</span> <span class="token punctuation">(</span>n <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>n <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            n <span class="token operator">/=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">bool</span> <span class="token function">isHappy</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        unordered_set<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> us<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>us<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">==</span> us<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> n <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            us<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            n <span class="token operator">=</span> <span class="token function">getSum</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
 
   </div>
 </mdui-card>
