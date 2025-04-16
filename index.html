@@ -192,7 +192,7 @@ Phase 1汇编代码0000000000400ee0 ...
             <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
             2025-04-13 11:25:17 &nbsp; <mdui-icon name="update"
                     style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-                2025-04-13 12:05:55
+                2025-04-16 16:22:42
         </span>
         <br>
         <span>Categories 
@@ -221,11 +221,7 @@ Phase 1汇编代码0000000000400ee0 ...
 来源：代码随想录
 
 LeetCode 459. 重复的子字符串
-KMP
-
-
-字符串双拼 + 掐头去尾暴力解法。注意string::npos实际上是-1 (1 &lt;&lt; 31)。
-sta...
+KMP如果 len % (len - next[len - 1]) == 0并且next[len - 1] != 0 ，则说明数...
                                     
                 </p>
     </div>
@@ -243,7 +239,7 @@ sta...
             <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
             2025-04-13 11:25:09 &nbsp; <mdui-icon name="update"
                     style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-                2025-04-13 11:59:11
+                2025-04-16 16:34:15
         </span>
         <br>
         <span>Categories 
@@ -272,10 +268,8 @@ sta...
 来源：代码随想录
 
 LeetCode 28. 找出字符串中第一个匹配项的下标
-KMP
-
-
-
+KMPKMP实际上是优化过的滑动窗口，只不过优化得有点太巧妙了。
+看这个视频：Knuth–Morris–Pratt...
                                     
                 </p>
     </div>

@@ -7,15 +7,15 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta name="description" content="来源：代码随想录  LeetCode 142. 环形链表 II 双指针没什么好说的，写到就是赚到，没写到就偶偶偶买嘎了。一个走1一个走2，碰到的时候同时移动头节点和其中一个节点，相遇的就是入口。 &#x2F;**  * Definition for singly-linked list.  * struct ListNode &#123;  *     int val;  *     ListNode *">
+    <meta name="description" content="来源：代码随想录  LeetCode 142. 环形链表 II 双指针没什么好说的，写到就是赚到，没写到就偶偶偶买嘎了。 一个走1一个走2，碰到的时候同时移动头节点和其中一个节点，相遇的就是入口。 while里面就处理结果，这样不用考虑别的情况需要怎么判断了。 &#x2F;**  * Definition for singly-linked list.  * struct ListNode &#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Algorithms] LeetCode 142. 环形链表 II">
 <meta property="og:url" content="https://blog.eagle233.top/2025/04/08/Algorithms/LinkedList/Algorithms-LeetCode-142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
-<meta property="og:description" content="来源：代码随想录  LeetCode 142. 环形链表 II 双指针没什么好说的，写到就是赚到，没写到就偶偶偶买嘎了。一个走1一个走2，碰到的时候同时移动头节点和其中一个节点，相遇的就是入口。 &#x2F;**  * Definition for singly-linked list.  * struct ListNode &#123;  *     int val;  *     ListNode *">
+<meta property="og:description" content="来源：代码随想录  LeetCode 142. 环形链表 II 双指针没什么好说的，写到就是赚到，没写到就偶偶偶买嘎了。 一个走1一个走2，碰到的时候同时移动头节点和其中一个节点，相遇的就是入口。 while里面就处理结果，这样不用考虑别的情况需要怎么判断了。 &#x2F;**  * Definition for singly-linked list.  * struct ListNode &#123;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-04-08T12:03:11.000Z">
-<meta property="article:modified_time" content="2025-04-08T12:38:21.634Z">
+<meta property="article:modified_time" content="2025-04-16T01:47:57.770Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2025-04-08 20:03:11 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-04-08 20:38:21
+        2025-04-16 09:47:57
     </span>
     <br>
     <span>
@@ -177,7 +177,9 @@
 <p>来源：<a target="_blank" rel="noopener" href="https://programmercarl.com/">代码随想录</a></p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">LeetCode 142. 环形链表 II</a></p>
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>没什么好说的，写到就是赚到，没写到就偶偶偶买嘎了。<br>一个走1一个走2，碰到的时候同时移动头节点和其中一个节点，相遇的就是入口。</p>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>没什么好说的，写到就是赚到，没写到就偶偶偶买嘎了。</p>
+<p>一个走1一个走2，碰到的时候同时移动头节点和其中一个节点，相遇的就是入口。</p>
+<p><code>while</code>里面就处理结果，这样不用考虑别的情况需要怎么判断了。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/**
  * Definition for singly-linked list.
  * struct ListNode &#123;

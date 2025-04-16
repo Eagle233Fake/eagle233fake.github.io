@@ -15,7 +15,7 @@
 <meta property="og:description" content="来源：代码随想录  LeetCode 707. 设计链表 单链表链表问题不大，cpp语法问题很大，构造函数都不会写。MyLinkedList是构造函数，变量不用类型是因为在私有里面已经声明过了。相当于this-&gt;_size this-&gt;_dummyHead 注意点：  成员结构体类型定义（内部类定义）   struct LinkedList &#123;     int val;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-04-08T06:19:45.000Z">
-<meta property="article:modified_time" content="2025-04-08T11:35:54.677Z">
+<meta property="article:modified_time" content="2025-04-16T00:35:38.632Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2025-04-08 14:19:45 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-04-08 19:35:54
+        2025-04-16 08:35:38
     </span>
     <br>
     <span>
@@ -208,6 +208,7 @@ LinkedList <span class="token operator">*</span>next<span class="token punctuati
 
 <span class="token keyword">struct</span> <span class="token class-name">LinkedList</span> <span class="token punctuation">&#123;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token comment">// ❌ 不是成员变量，是“类型定义”</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
+<p>三刷：结构体写在构造函数的外面，注意是要走到<code>index</code>，添加节点的分支语句要<code>return</code>，<code>index</code>和<code>_size</code>的关系。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span> <span class="token punctuation">&#123;</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
 
