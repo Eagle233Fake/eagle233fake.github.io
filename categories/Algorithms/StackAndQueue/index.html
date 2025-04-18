@@ -9,7 +9,7 @@
   <meta name="generator" content="Hexo 7.3.0">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Eagle233-Blog">
-<meta property="og:url" content="https://blog.eagle233.top/categories/CSAPP/index.html">
+<meta property="og:url" content="https://blog.eagle233.top/categories/Algorithms/StackAndQueue/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
 <meta property="og:locale">
 <meta property="article:author" content="Eagle233">
@@ -132,36 +132,43 @@
           <div style="padding-left: 16px;padding-right: 16px;" id="content">
             <div class="mdui-prose">
   
-  <h1>Categories CSAPP</h1>
+  <h1>Categories StackAndQueue</h1>
   <script>
     let title = document.getElementsByTagName('title')[0];
-    title.textContent="Categories CSAPP - Eagle233-Blog"
+    title.textContent="Categories StackAndQueue - Eagle233-Blog"
 </script>
   
-                    <span>2 posts </span>
+                    <span>1 post </span>
 </div>
 <br>
 
-<mdui-card clickable variant="filled" href="/2025/04/14/CSAPP/CSAPP-Lab2-Bomb-Lab-Report/" 
+<mdui-card clickable variant="filled" href="/2025/04/17/Algorithms-LeetCode-232-%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" 
     style="width:100%;">
     
     <div class="mdui-prose" style="padding: 16px;">
         <h1 style="margin-bottom: 8px;">
-            [CSAPP] Lab2 - Bomb Lab Report
+            [Algorithms] LeetCode 232.用栈实现队列
         </h1>
         <span class="post-date">
             <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-            2025-04-14 21:38:55 &nbsp; <mdui-icon name="update"
+            2025-04-17 21:02:25 &nbsp; <mdui-icon name="update"
                     style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-                2025-04-14 22:13:00
+                2025-04-17 21:03:56
         </span>
         <br>
         <span>Categories 
-                    <!-- <mdui-chip href="/categories/CSAPP/" variant="filter" style="vertical-align: middle;">
-                        CSAPP
+                    <!-- <mdui-chip href="/categories/Algorithms/" variant="filter" style="vertical-align: middle;">
+                        Algorithms
                     </mdui-chip> -->
-                    <a href="/categories/CSAPP/">
-                        CSAPP
+                    <a href="/categories/Algorithms/">
+                        Algorithms
+                    </a>
+                    
+                    <!-- <mdui-chip href="/categories/Algorithms/StackAndQueue/" variant="filter" style="vertical-align: middle;">
+                        StackAndQueue
+                    </mdui-chip> -->
+                    <a href="/categories/Algorithms/StackAndQueue/">
+                        StackAndQueue
                     </a>
                     
             </span>
@@ -172,51 +179,14 @@
                 <p>
                     
                                 
-整体思路：利用汇编语言知识结合 gdb 调试一起推导过程，仅调试和仅观察都无法解开问题，必须一边调试一边理解汇编代码，找出答案规律。
+来源：代码随想录
 
-Phase 1汇编代码0000000000400ee0 ...
-                                    
-                </p>
-    </div>
-</mdui-card>
-
-<mdui-card clickable variant="filled" href="/2025/03/12/CSAPP/CSAPP-Tests/" 
-    style="width:100%;">
-    
-    <div class="mdui-prose" style="padding: 16px;">
-        <h1 style="margin-bottom: 8px;">
-            [CSAPP] Tests
-        </h1>
-        <span class="post-date">
-            <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-            2025-03-12 23:56:23 &nbsp; <mdui-icon name="update"
-                    style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-                2025-04-18 09:54:27
-        </span>
-        <br>
-        <span>Categories 
-                    <!-- <mdui-chip href="/categories/CSAPP/" variant="filter" style="vertical-align: middle;">
-                        CSAPP
-                    </mdui-chip> -->
-                    <a href="/categories/CSAPP/">
-                        CSAPP
-                    </a>
-                    
-            </span>
-            
-                <span>| Tags </span>
-                            
-        
-                <p>
-                    
-                                Week 1问题 1在 C 语言编译过程中，汇编程序是由哪个工具产生？  
-
-A. 预处理器  
-B. 编译器  
-C. 汇编器  
-D. 链接器
-
-问题 2在 C 程序的编译过程中，以下哪一个...
+LeetCode 232.用栈实现队列
+直观的方法效率不高。
+class MyQueue &#123;
+public:
+    stack&lt;int> in;
+    ...
                                     
                 </p>
     </div>
