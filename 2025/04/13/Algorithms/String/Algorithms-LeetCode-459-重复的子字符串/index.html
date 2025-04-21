@@ -15,7 +15,7 @@
 <meta property="og:description" content="来源：代码随想录  LeetCode 459. 重复的子字符串 KMP如果 len % (len - next[len - 1]) &#x3D;&#x3D; 0并且next[len - 1] !&#x3D; 0 ，则说明数组的长度正好可以被最长相等前后缀不包含的子串的长度整除 ，说明该字符串有重复的子字符串。 class Solution &#123; public:     void kmp(vector&lt;int&gt;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-04-13T03:25:17.000Z">
-<meta property="article:modified_time" content="2025-04-16T08:22:42.562Z">
+<meta property="article:modified_time" content="2025-04-21T06:02:57.025Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2025-04-13 11:25:17 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-04-16 16:22:42
+        2025-04-21 14:02:57
     </span>
     <br>
     <span>
@@ -211,6 +211,7 @@
 
 <hr>
 <h2 id="字符串双拼-掐头去尾"><a href="#字符串双拼-掐头去尾" class="headerlink" title="字符串双拼 + 掐头去尾"></a>字符串双拼 + 掐头去尾</h2><p>暴力解法。注意<code>string::npos</code>实际上是<code>-1</code> (<code>1 &lt;&lt; 31</code>)。</p>
+<p>三刷：<code>erase</code>用法</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">static</span> <span class="token keyword">const</span> size_t npos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
