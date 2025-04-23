@@ -26,6 +26,13 @@ public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
+archive:
+  category: true
+  tag: true
+category_generator:
+  enable_index_page: true  # 启用分类首页
+  per_page: 100             # 每页显示的文章数
+  order_by: -date          # 按日期倒序排列
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
@@ -98,8 +105,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-mdsuper-main
-## remote_theme: tobylai-toby/hexo-theme-mdsuper
+theme: mdsuper
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -108,3 +114,9 @@ deploy:
   repo: git@github.com:Eagle233Fake/eagle233fake.github.io.git
   branch: main
   message:
+
+search:
+  path: search.xml
+  field: all
+  content: true
+  template: ./search.xml

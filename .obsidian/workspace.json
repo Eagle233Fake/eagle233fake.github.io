@@ -1,0 +1,178 @@
+{
+  "main": {
+    "id": "61559e47e8dd9044",
+    "type": "split",
+    "children": [
+      {
+        "id": "8d86dfb9fd08f67f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6f8ba32e01e39a22",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/总结-我的大一上.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "总结-我的大一上"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "916cba36fc5fd90a",
+    "type": "split",
+    "children": [
+      {
+        "id": "10bdc2c493230714",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "efff00a4279466b2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "4974c24e6eed26b8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "51b297194426d984",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ebeb0dec4f293a0a",
+    "type": "split",
+    "children": [
+      {
+        "id": "c06b69c943e1840a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "834b48514fbe2f0b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/总结-我的大一上.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "总结-我的大一上 的反向链接列表"
+            }
+          },
+          {
+            "id": "9e4d4854d8331e6b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "source/_posts/总结-我的大一上.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "总结-我的大一上 的出链列表"
+            }
+          },
+          {
+            "id": "ba1094e05bb7f60c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "76e1560d44e89f6e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/总结-我的大一上.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "总结-我的大一上 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "6f8ba32e01e39a22",
+  "lastOpenFiles": [
+    "source/_posts/Algorithms-LeetCode-150-逆波兰表达式求值.md",
+    "source/_posts/总结-我的大一上.md",
+    "source/_posts/Algorithms-LeetCode-239-滑动窗口最大值.md",
+    "source/_posts/Algorithms-LeetCode-347-前-K-个高频元素.md"
+  ]
+}
