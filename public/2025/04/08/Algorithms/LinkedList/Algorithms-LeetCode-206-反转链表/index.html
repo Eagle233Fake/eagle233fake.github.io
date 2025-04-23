@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns#" class="mdui-theme-auto" data-theme="auto">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="Eagle233">
+  <meta name="generator" content="Hexo 7.3.0">
+    <meta name="description" content="来源：代码随想录  LeetCode 206. 反转链表 双指针这题又忘记怎么做了。只需要cur pre两个指针，一开始各自指向head nullptr. &#x2F;**  * Definition for singly-linked list.  * struct ListNode &#123;  *     int val;  *     ListNode *next;  *     ListNod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Algorithms] LeetCode 206. 反转链表">
+<meta property="og:url" content="https://blog.eagle233.top/2025/04/08/Algorithms/LinkedList/Algorithms-LeetCode-206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="来源：代码随想录  LeetCode 206. 反转链表 双指针这题又忘记怎么做了。只需要cur pre两个指针，一开始各自指向head nullptr. &#x2F;**  * Definition for singly-linked list.  * struct ListNode &#123;  *     int val;  *     ListNode *next;  *     ListNod">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-04-08T10:40:01.000Z">
+<meta property="article:modified_time" content="2025-04-22T03:17:26.771Z">
+<meta property="article:author" content="Eagle233">
+<meta name="twitter:card" content="summary">
+      <link rel="icon" href="">
+      <title>
+        
+          [Algorithms] LeetCode 206. 反转链表 - Eagle233-Blog
+              
+      </title>
+      
+<link rel="stylesheet" href="/css/site.css">
+
+      
+<link rel="stylesheet" href="/css/mdui_2.0.3/mdui.css">
+
+      <style>
+        /*禁用mdui对code的样式，因为它干扰了prism.js*/
+        .mdui-prose pre code {
+          background-color: transparent;
+          padding: 0px 0px;
+        }
+      </style>
+      
+<script src="/css/mdui_2.0.3/mdui.global.js"></script>
+
+      
+<script src="/fancybox/fancybox.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/fancybox/fancybox.css">
+
+      
+<script src="/carousel/carousel.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/carousel/carousel.css">
+
+      
+<link rel="stylesheet" href="/css/prism.css">
+
+          
+<link rel="stylesheet" href="/css/katex.min.css">
+
+            
+<link rel="stylesheet" href="/css/font-material-icon-filled/MaterialIconFilled.css">
+
+              <!-- Filled -->
+              <script>window.$=mdui.$</script>
+</head>
+
+  <body class="line-numbers">
+    <mdui-layout>
+      <mdui-top-app-bar>
+        <mdui-button-icon icon="menu" id="menu-btn">
+        </mdui-button-icon>
+        <mdui-top-app-bar-title>
+          Eagle233-Blog
+        </mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon icon="search" id="search-dlg-btn"></mdui-button-icon>
+          
+      </mdui-top-app-bar>
+      <mdui-navigation-drawer close-on-overlay-click close-on-esc id="drawer">
+    <mdui-list>
+        
+            
+            <mdui-list-item rounded icon="home"
+                href="/"
+                
+                
+                rel="next">
+                Home
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="folder"
+                href="/categories"
+                
+                
+                rel="next">
+                Categories
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="bookmark"
+                href="/tags"
+                
+                
+                rel="next">
+                Tags
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="archive"
+                href="/archives"
+                
+                
+                rel="next">
+                Archives
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="info"
+                href="/about"
+                
+                
+                rel="next">
+                About
+            </mdui-list-item>
+            
+            
+    </mdui-list>
+</mdui-navigation-drawer>
+        <mdui-layout-main style="min-height: 800px;" id="main">
+          <div style="padding-left: 16px;padding-right: 16px;" id="content">
+            <mdui-card variant="filled" style="padding: 16px;width: 100%;">
+  <div class="mdui-prose post" id="post-all">
+    <h1 style="margin-bottom: 8px;">
+      [Algorithms] LeetCode 206. 反转链表
+    </h1>
+    <span class="post-date">
+      <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+      2025-04-08 18:40:01 &nbsp; <mdui-icon name="update"
+          style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+        2025-04-22 11:17:26
+    </span>
+    <br>
+    <span>
+        Categories
+          
+            <!-- <mdui-chip href="/categories/Algorithms/" variant="filter" style="vertical-align: middle;">
+                          Algorithms
+                      </mdui-chip> -->
+            <a href="/categories/Algorithms/">
+              Algorithms
+            </a>
+            
+            <!-- <mdui-chip href="/categories/Algorithms/LinkedList/" variant="filter" style="vertical-align: middle;">
+                          LinkedList
+                      </mdui-chip> -->
+            <a href="/categories/Algorithms/LinkedList/">
+              LinkedList
+            </a>
+            
+              <br>
+      </span>
+      
+        
+          Tags
+            
+                
+                  <!-- photos gallery -->
+                  
+                      <!-- content -->
+                      <blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://programmercarl.com/">代码随想录</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/">LeetCode 206. 反转链表</a></p>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><p>这题又忘记怎么做了。只需要<code>cur</code> <code>pre</code>两个指针，一开始各自指向<code>head</code> <code>nullptr</code>.</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        ListNode <span class="token operator">*</span>pre <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+        ListNode <span class="token operator">*</span>cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>cur <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            ListNode <span class="token operator">*</span>temp <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+            pre <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+            cur <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span>
+            pre<span class="token operator">-></span>next <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>其实和双指针很像。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    ListNode <span class="token operator">*</span><span class="token function">reverse</span><span class="token punctuation">(</span>ListNode <span class="token operator">*</span>cur<span class="token punctuation">,</span> ListNode <span class="token operator">*</span>pre<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cur <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        ListNode <span class="token operator">*</span>temp <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+        pre <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+        cur <span class="token operator">=</span> cur<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        pre<span class="token operator">-></span>next <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">reverse</span><span class="token punctuation">(</span>cur<span class="token punctuation">,</span> pre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    ListNode<span class="token operator">*</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token function">reverse</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<h2 id="从后往前翻转指针指向"><a href="#从后往前翻转指针指向" class="headerlink" title="从后往前翻转指针指向"></a>从后往前翻转指针指向</h2><h3 id="💡-举个例子：链表反转中的递归细节"><a href="#💡-举个例子：链表反转中的递归细节" class="headerlink" title="💡 举个例子：链表反转中的递归细节"></a>💡 举个例子：链表反转中的递归细节</h3><pre class="line-numbers language-rust" data-language="rust"><code class="language-rust"><span class="token number">1</span> <span class="token punctuation">-></span> <span class="token number">2</span> <span class="token punctuation">-></span> <span class="token number">3</span> <span class="token punctuation">-></span> <span class="token number">4</span> <span class="token punctuation">-></span> <span class="token number">5</span> <span class="token punctuation">-></span> <span class="token constant">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>递归处理后，后面的部分已经被反转成了：</p>
+<pre class="line-numbers language-rust" data-language="rust"><code class="language-rust"><span class="token number">5</span> <span class="token punctuation">-></span> <span class="token number">4</span> <span class="token punctuation">-></span> <span class="token number">3</span> <span class="token punctuation">-></span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>现在我们要做的，就是把 <code>1</code> 接到 <code>2</code> 的后面。</p>
+<p>你可以这样理解：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">head <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>             <span class="token comment">// 当前处理的节点是 1</span>
+head<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>       <span class="token comment">// 下一个节点是 2</span>
+
+<span class="token comment">// 关键操作：让 2 的 next 指向 1</span>
+head<span class="token operator">-></span>next<span class="token operator">-></span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>   <span class="token comment">// 即 2->next = 1，实现反转</span>
+
+<span class="token comment">// 为了避免死循环，把 1 的 next 设为 NULL</span>
+head<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最终结果：</p>
+<pre class="line-numbers language-rust" data-language="rust"><code class="language-rust"><span class="token number">5</span> <span class="token punctuation">-></span> <span class="token number">4</span> <span class="token punctuation">-></span> <span class="token number">3</span> <span class="token punctuation">-></span> <span class="token number">2</span> <span class="token punctuation">-></span> <span class="token number">1</span> <span class="token punctuation">-></span> <span class="token constant">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>四刷：要先保存反转后的链表，这样的话当前节点的下一个节点实际上就是反转后的末尾节点，那么末尾节点的下一个节点就是当前节点，当前节点现在成为了末尾节点，下一个节点就应该是空指针。最后返回黑箱子就可以了。</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span> <span class="token comment">// 按理来说有下面那条判断是不会出现head为空的，只是为了防止头节点本身就是空的情况</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token operator">-></span>next <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> head<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        ListNode <span class="token operator">*</span>node <span class="token operator">=</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>head<span class="token operator">-></span>next<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 这就是一个黑箱子，返回的是一个反转了的链表</span>
+        head<span class="token operator">-></span>next<span class="token operator">-></span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        head<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> node<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+
+  </div>
+</mdui-card>
+<script>
+  const $ = mdui.$;
+  $("#post-all").find("img").each((index, ele) => {
+    $(ele).replaceWith(`<a data-src="${$(ele).prop("src")}" class="fancybox-enabled" data-fancybox="picture" data-caption="${$(ele).prop("alt")}">${ele.outerHTML}</a>`)
+  });
+  Fancybox.bind(".fancybox-enabled", {
+    on: {
+      ready: () => {
+        $("mdui-top-app-bar").addClass("invisible")
+      }, close: () => {
+        $("mdui-top-app-bar").removeClass("invisible")
+      }
+    }
+  });
+  
+</script>
+
+    
+                    
+              <br>
+              <span>© 2025 Eagle233 <br>Powered By Hexo & Theme mdsuper</span>
+          </div>
+        </mdui-layout-main>
+    </mdui-layout>
+    <script>const searchxml_url = "/search.xml";</script>
+
+<script src="/js/mdsuper-search.js"></script>
+
+    <mdui-dialog close-on-overlay-click close-on-esc fullscreen id="search-dlg">
+        <mdui-top-app-bar slot="header" style="padding: 32px;">
+            <mdui-top-app-bar-title>
+                Search
+            </mdui-top-app-bar-title>
+            <mdui-button-icon icon="close" id="search-dlg-close"></mdui-button-icon>
+        </mdui-top-app-bar>
+        <mdui-text-field icon="search" label='Search' id="search-input"></mdui-text-field>
+        <mdui-list id="search-res-list">
+        </mdui-list>
+    </mdui-dialog>
+    <script>
+        $("#search-dlg-close").on("click", function () {
+            $("#search-dlg").get(0).open = false;
+        });
+        $("#search-input").get(0).addEventListener('input', function () {
+            let val = $(this).val().toLowerCase();
+            $("#search-res-list").html("");
+            if (!val) return;
+            let keywords = val.split(" ").filter((x)=>x.length>=2);
+            let searchRes = search(keywords);
+            searchRes.forEach((dat) => {
+                $("#search-res-list").append(`<mdui-list-item href="${dat.url}" rounded headline-line="1" description-line="3">
+          ${highlightSearch(dat.title, keywords)}
+          <span slot="description">${highlightSearch(dat.content, keywords)}</span>
+        </mdui-list-item>`);
+            })
+        })
+    </script>
+        
+          <script>
+            mdui.setColorScheme('#3f51b5');
+            const navigationDrawer = document.querySelector("#drawer");
+            const mainlayout = document.querySelector("#main");
+            const breakpointCondition = mdui.breakpoint();
+            if (breakpointCondition.up('sm')) {
+              if (localStorage.getItem('navigationDrawer') == null) {
+                if("true"=="true")localStorage.setItem('navigationDrawer', "true");
+              }
+              if("true"=="true")navigationDrawer.setAttribute("open", (localStorage.getItem('navigationDrawer') == "true" ? true : false))
+            }
+            const menuBtn = document.querySelector("#menu-btn");
+            menuBtn.addEventListener("click", () => {
+              navigationDrawer.open = !navigationDrawer.open;
+              if("true"=="true")localStorage.setItem('navigationDrawer', navigationDrawer.open.toString());
+            });
+            const searchBtn = document.querySelector("#search-dlg-btn");
+            searchBtn.addEventListener("click", () => {
+              document.querySelector("#search-dlg").open = true;
+            });
+          </script>
+          
+<script src="/js/prism.js"></script>
+
+  </body>
+
+</html>

@@ -16,7 +16,7 @@ date: 2024-11-22 13:55:29
 
 - 📧 Personal Email: [eagle233real@outlook.com](mailto:eagle233real@outlook.com)  
 - 🎓 School Email: [10245101560@stu.ecnu.edu.cn](mailto:10245101560@stu.ecnu.edu.cn)  
-- 💬 QQ: 1518007199  
+- 🐧 QQ: 1518007199  
 - 💬 WeChat: Eagle233Real
 
 ## **🌐 Find me on:**  

@@ -1,0 +1,11 @@
+.category-list .category-list-count {
+  margin-left: 8px;
+  font-size: 0.8em;
+  color: color-meta;
+}
+.category-list .category-list-count:before {
+  content: '(';
+}
+.category-list .category-list-count:after {
+  content: ')';
+}
