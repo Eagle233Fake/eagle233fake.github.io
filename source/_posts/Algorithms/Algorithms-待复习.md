@@ -83,6 +83,7 @@ categories:
 ## 20250410
 
 // 20250417 !!!
+// 20250424 !
 [AcWing 789. 数的范围](https://www.acwing.com/problem/content/791/)
 
 // 20250417 !!
@@ -94,6 +95,7 @@ categories:
 [LeetCode 18. 四数之和](https://leetcode.cn/problems/4sum/)
 
 // 20250417 !
+// 20250424 !
 [AcWing 790. 数的三次方根](https://www.acwing.com/problem/content/792/)
 
 ## 20250413
@@ -137,4 +139,6 @@ categories:
 
 ## 20250424
 
+[AcWing 793. 高精度乘法](https://www.acwing.com/problem/content/795/)
 
+[AcWing 794. 高精度除法](https://www.acwing.com/problem/content/796/)
