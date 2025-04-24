@@ -13,6 +13,8 @@ categories:
 
 ## 用`unordered_set`保存出现过的结果
 
+四刷：先插入再更新。
+
 ```cpp
 class Solution {
 public:
