@@ -2775,7 +2775,7 @@ int main() {
 
 ---
 
-## [Week9](https://voj.mobi/contest/372/)
+## [Week 9](https://voj.mobi/contest/372/)
 
 ### A 找出所有谎言
 
@@ -3289,6 +3289,936 @@ int main() {
     Solution().inorderthread(root);
     //TravIn_Thread_BT(root);
     return 0;
+}
+```
+
+---
+
+## [Week 10 课上](https://voj.mobi/contest/373/)
+
+### A Trees on the level
+
+```cpp
+#include<iostream>
+#include<cstring>
+#include<queue>
+#include<stdio.h>
+#include<string>
+using namespace std;
+#define maxn 300
+
+struct node {
+    int val;
+    bool haveVal;
+    int l,r;
+} tree[300];
+int root,len;
+bool ok;
+
+bool read_input() {
+    string s;
+    ok = true;
+    root = 0,len=1,tree[0].l=-1,tree[0].r=-1,tree[0].haveVal=false;
+    for (;;) {
+        if (!(cin>>s))return false;
+        if (s=="()")return true;
+        int v,now=root;
+        sscanf(&s[1], "%d", &v);
+        int i=s.find(',')+1;
+        while (s[i] != ')') {
+            if (s[i] == 'L') {
+                if (tree[now].l == -1) {
+                    tree[now].l = len++;
+                    tree[tree[now].l].l=-1,tree[tree[now].l].r=-1,tree[tree[now].l].haveVal=false;
+                }
+                now = tree[now].l;
+            }
+            else{
+                if (tree[now].r == -1){
+                    tree[now].r = len++;
+                    tree[tree[now].r].l=-1,tree[tree[now].r].r=-1,tree[tree[now].r].haveVal=false;
+                }
+                now = tree[now].r;
+            }
+            i++;
+        }
+        if (tree[now].haveVal) {
+            ok = false;
+        }
+        tree[now].val = v;
+        tree[now].haveVal = true;
+    }
+}
+
+int main() {
+    while (read_input()) {
+        if (!ok) {
+            cout << "not complete" << endl;
+            continue;
+        }
+        string s="";
+        queue<int> q;
+        q.push(root);
+        int now;
+        while (q.size()) {
+            now = q.front(); q.pop();
+            if (!tree[now].haveVal) {
+                s= "not complete";
+                break;
+            }
+            else {
+                if (s == "")
+                    s += to_string(tree[now].val);
+                else
+                    s += " "+to_string(tree[now].val);
+            }
+            if(tree[now].l!=-1)q.push(tree[now].l);
+            if(tree[now].r!=-1)q.push(tree[now].r);
+        }
+        cout << s << endl;
+    }
+    return 0;
+}
+```
+
+### C Shaolin
+
+```cpp
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <cmath>
+#include <map>
+using namespace std;
+
+#define MAX_N 100006
+int n;
+map<int, int> distanceMap;
+map<int, int>::iterator lowerIt, prevIt;
+
+int main() {
+    while (scanf("%d", &n) == 1 && n) {
+        distanceMap.clear();
+        distanceMap[1000000000] = 1;
+        
+        for (int i = 0; i < n; i++) {
+            int x, y;
+            scanf("%d %d", &x, &y);
+            
+            lowerIt = distanceMap.lower_bound(y);
+            
+            if (lowerIt == distanceMap.begin()) {
+                printf("%d %d\n", x, lowerIt->second);
+            } else {
+                prevIt = lowerIt;
+                prevIt--;
+                
+                if (abs(y - prevIt->first) <= abs(y - lowerIt->first)) {
+                    printf("%d %d\n", x, prevIt->second);
+                } else {
+                    printf("%d %d\n", x, lowerIt->second);
+                }
+            }
+            
+            distanceMap[y] = x;
+        }
+    }
+    return 0;
+}
+```
+
+### D Robotic Sort
+
+```cpp
+#include<stdio.h>
+#include<algorithm>
+#include<string.h>
+using namespace std;
+#define N 500006
+#define lc (tr[id].c[0])
+#define rc (tr[id].c[1])
+#define key (tr[tr[root].c[1]].c[0])
+struct tree
+{
+    int fa,sum,c[2],lz,v;
+}tr[N];
+struct point
+{
+    int v,id;
+    bool operator<(const point a)const
+    {
+        if(a.v==v)return id<a.id;
+        else return v<a.v;
+    }
+}so[N/5];
+int tot,root,n;
+int xia[N];
+int newpoint(int d,int f)
+{
+    tr[tot].sum=1;
+    tr[tot].v=d;
+    tr[tot].c[0]=tr[tot].c[1]=-1;
+    tr[tot].lz=0;
+    tr[tot].fa=f;
+    return tot++;
+}
+void push(int id)
+{
+    int lsum,rsum;
+    if(lc==-1)lsum=0;
+    else lsum=tr[lc].sum;
+    if(rc==-1)rsum=0;
+    else rsum=tr[rc].sum;
+    tr[id].sum=lsum+rsum+1;
+}
+int build(int l,int r,int v)
+{
+    if(r<l)return -1;
+    int mid=(r+l)>>1;
+    int ro=newpoint(mid,v);
+    xia[mid]=ro;
+    tr[ro].c[0]=build(l,mid-1,ro);
+    tr[ro].c[1]=build(mid+1,r,ro);
+    push(ro);
+    return ro;
+}
+void lazy(int id)
+{
+    if(tr[id].lz)
+    {
+        swap(lc,rc);
+        tr[lc].lz^=1;
+        tr[rc].lz^=1;
+        tr[id].lz=0;
+    }
+}
+
+void xuanzhuan(int x,int k)
+{
+    if(tr[x].fa==-1)return ;
+    int fa=tr[x].fa;
+    int w;
+    lazy(fa);
+    lazy(x);
+    tr[fa].c[!k]=tr[x].c[k];
+    if(tr[x].c[k]!=-1)tr[tr[x].c[k]].fa=fa;
+    tr[x].fa=tr[fa].fa;
+    tr[x].c[k]=fa;
+    if(tr[fa].fa!=-1)
+    {
+        w=tr[tr[fa].fa].c[1]==fa;
+        tr[tr[fa].fa].c[w]=x;
+    }
+    tr[fa].fa=x;
+    push(fa);
+    push(x);
+}
+
+void splay(int x,int goal)
+{
+    if(x==-1)return ;
+    lazy(x);
+    while(tr[x].fa!=goal)
+    {
+        int y=tr[x].fa;
+        lazy(tr[y].fa);
+        lazy(y);
+        lazy(x);
+        bool w=(x==tr[y].c[1]);
+        if(tr[y].fa!=goal&&w==(y==tr[tr[y].fa].c[1]))xuanzhuan(y,!w);
+        xuanzhuan(x,!w);
+    }
+    if(goal==-1)root=x;
+    push(x);
+}
+int next(int id)
+{
+    lazy(id);
+    int p=tr[id].c[1];
+    if(p==-1)return id;
+    lazy(p);
+    while(tr[p].c[0]!=-1)
+    {
+        p=tr[p].c[0];
+        lazy(p);
+    }
+    return p;
+}
+int main()
+{
+    while(scanf("%d",&n),n)
+    {
+        for(int i=1;i<=n;i++)
+        {
+            scanf("%d",&so[i].v);
+            so[i].id=i;
+        }
+        sort(so+1,so+n+1);
+        so[0].id=0;
+        tot=0;
+        int d,l;
+        root=build(0,n+1,-1);
+        for(int i=1;i<=n;i++)
+        {
+            int ro=xia[so[i].id];
+            int ne;
+            splay(ro,-1);
+            d=tr[tr[root].c[0]].sum;
+            l=xia[so[i-1].id];
+            ne=next(ro);
+            splay(l,-1);
+            splay(ne,root);
+            lazy(root);
+            lazy(tr[root].c[1]);
+            tr[key].lz^=1;
+            if(i!=1)printf(" ");
+            printf("%d",d);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+
+### E Looploop 可能过不了
+
+```cpp
+#include <functional>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <algorithm>
+#include <map>
+#include <cmath>
+using namespace std;
+typedef long long ll;
+typedef long  double ld;
+#define key_value ch[ch[root][1]][0]
+const int maxn = 200010;
+ 
+int ch[maxn][2];
+int pre[maxn],siz[maxn],num[maxn];
+int rev[maxn],key[maxn];
+int add[maxn];
+int Min[maxn],a[maxn];
+int tot,tp;
+int root,n;
+void push_up(int r)
+{
+    int lson = ch[r][0],rson = ch[r][1];
+    siz[r] = siz[lson] + siz[rson] + 1;
+    Min[r] = min(key[r],min(Min[lson],Min[rson]));
+}
+ 
+void update_add(int r,int val)
+{
+    if(!r) return;
+    key[r] += val;
+    add[r] += val;
+    Min[r] += val;
+}
+ 
+void inOrder(int r)
+{
+    if(!r)
+        return;
+    inOrder(ch[r][0]);
+    printf("%d ",key[r]);
+    inOrder(ch[r][1]);
+}
+ 
+void debug()
+{
+    inOrder(root);
+    cout <<endl;
+}
+ 
+void update_rev(int r)
+{
+    if(!r)return ;
+    swap(ch[r][0],ch[r][1]);
+    rev[r] ^= 1;
+}
+ 
+void push_down(int r)
+{
+    if(rev[r])
+    {
+        update_rev(ch[r][0]);
+        update_rev(ch[r][1]);
+        rev[r] = 0;
+    }
+    if(add[r])
+    {
+        update_add(ch[r][0],add[r]);
+        update_add(ch[r][1],add[r]);
+        add[r] = 0;
+    }
+}
+ 
+ 
+void NewNode(int &r,int far,int k)
+{
+    r = ++tot;
+    pre[r] = far;
+    ch[r][0] = ch[r][1] = 0;
+    siz[r] = 1;
+    Min[r] = k;
+    key[r] = k;
+    rev[r] = 0;
+    add[r] = 0;
+}
+ 
+ 
+void rotat(int x,int kind)
+{
+    int y = pre[x];
+    push_down(y);
+    push_down(x);
+    ch[y][!kind] = ch[x][kind];
+    pre[ch[x][kind]] = y;
+    if(pre[y])
+        ch[pre[y]][ch[pre[y]][1]==y] = x;
+    pre[x] = pre[y];
+    ch[x][kind] = y;
+    pre[y] = x;
+    push_up(y);
+}
+ 
+void build(int &x,int l,int r,int far)
+{
+    if(l > r) return ;
+    int mid = (l+r) >>1;
+    NewNode(x,far,a[mid]);
+    build(ch[x][0],l,mid-1,x);
+    build(ch[x][1],mid+1,r,x);
+    push_up(x);
+}
+ 
+void splay(int r,int goal)
+{
+    push_down(r);
+    while(pre[r] != goal)
+    {
+        if(pre[pre[r]] == goal)
+        {
+            push_down(pre[r]);
+            push_down(r);
+            rotat(r,ch[pre[r]][0] == r);
+        }
+        else
+        {
+            push_down(pre[pre[r]]);
+            push_down(pre[r]);
+            push_down(r);
+            int y = pre[r];
+            int kind = ch[pre[y]][0] == y;
+            if(ch[y][kind] == r)
+            {
+                rotat(r,!kind);
+                rotat(r,kind);
+            }
+            else
+            {
+                rotat(y,kind);
+                rotat(r,kind);
+            }
+        }
+    }
+    push_up(r);
+    if(goal == 0)
+        root = r;
+}
+ 
+ 
+int get_kth(int r,int k)
+{
+    push_down(r);
+    int t = siz[ch[r][0]] + 1;
+    if(k == t)return r;
+    if(t > k) return get_kth(ch[r][0],k);
+    else return get_kth(ch[r][1],k-t);
+}
+ 
+int get_next(int r)
+{
+    push_down(r);
+    if(ch[r][1] == 0)return -1;
+    r = ch[r][1];
+    while(ch[r][0])
+    {
+        r = ch[r][0];
+        push_down(r);
+    }
+    return r;
+}
+ 
+void Reverse(int l,int r)
+{
+    splay(get_kth(root,l),0);
+    splay(get_kth(root,r+2),root);
+    update_rev(key_value);
+    push_up(ch[root][1]);
+    push_up(root);
+}
+ 
+void Add(int l,int r,int val)
+{
+    splay(get_kth(root,l),0);
+    splay(get_kth(root,r+2),root);
+    update_add(key_value,val);
+    push_up(ch[root][1]);
+    push_up(root);
+}
+ 
+void ini(int n)
+{
+    tot = root = 0;
+    ch[root][0] = ch[root][1] = pre[root] = siz[root] = num[root] = 0;
+    Min[root] = 0x3f3f3f3f;
+    rev[root] = add[root] = 0;
+    NewNode(root,0,-1);
+    NewNode(ch[root][1],root,-1);
+    for(int i=1; i <= n; i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    build(key_value,1,n,ch[root][1]);
+ 
+    push_up(ch[root][1]);
+    push_up(root);
+}
+ 
+int get_min(int r)
+{
+    push_down(r);
+    while(ch[r][0])
+    {
+        r = ch[r][0];
+        push_down(r);
+    }
+    return r;
+}
+ 
+int Delete(int r)
+{
+    int t = get_kth(root,r+1);
+    splay(t,0);
+    if(ch[root][0] == 0 || ch[root][1] == 0)
+    {
+        root = ch[root][0] + ch[root][1];
+        pre[root] = 0;
+        return key[t];
+    }
+    int k = get_min(ch[root][1]);
+    splay(k,root);
+    ch[ch[root][1]][0] = ch[root][0];
+    root = ch[root][1];
+    pre[ch[root][0]] = root;
+    pre[root] = 0;
+    push_up(root);
+    n--;
+    return key[t];
+}
+ 
+void Insert(int x,int y)
+{
+    splay(get_kth(root,x),0);
+    splay(get_kth(root,x+1),root);
+    NewNode(key_value,ch[root][1],y);
+    push_up(ch[root][1]);
+    push_up(root);
+    n++;
+}
+ 
+void Move(int x)
+{
+   if(x == 1)
+   {
+       int t = Delete(n);
+       Insert(1,t);
+//       debug();
+   }
+   else
+   {
+       int t = Delete(1);
+       Insert(n+1,t);
+   }
+}
+ 
+ 
+int main()
+{
+    int p,k1,k2;
+    int cas = 1;
+    while(scanf("%d%d%d%d",&n,&p,&k1,&k2) != EOF)
+    {
+        if(!n && !p && !k1 && !k2)
+            break;
+        printf("Case #%d:\n",cas++);
+        ini(n);
+        char opr[10];
+        int x;
+        for(int i =1; i <= p; i++)
+        {
+            scanf("%s",opr);
+            if(opr[0] == 'a')
+            {
+                scanf("%d",&x);
+                Add(1,k2,x);
+            }
+            else if(opr[0] == 'm')
+            {
+                scanf("%d",&x);
+                Move(x);
+            }
+            else if(opr[0] == 'r')
+            {
+                Reverse(1,k1);
+            }
+            else if(opr[0] == 'q')
+            {
+                printf("%d\n",key[get_kth(root,2)]);
+            }
+            else if(opr[0] == 'i')
+            {
+                scanf("%d",&x);
+                Insert(2,x);
+            }
+            else if(opr[0] == 'd')
+            {
+                Delete(1);
+            }
+        }
+    }
+    return 0;
+}
+```
+
+---
+
+## [Week 10 课下](https://voj.mobi/contest/374/)
+
+### A Trees on the level
+
+```cpp
+#include<iostream>
+#include<cstring>
+#include<queue>
+#include<stdio.h>
+#include<string>
+using namespace std;
+#define maxn 300
+
+struct node {
+    int val;
+    bool haveVal;
+    int l,r;
+} tree[300];
+int root,len;
+bool ok;
+
+bool read_input() {
+    string s;
+    ok = true;
+    root = 0,len=1,tree[0].l=-1,tree[0].r=-1,tree[0].haveVal=false;
+    for (;;) {
+        if (!(cin>>s))return false;
+        if (s=="()")return true;
+        int v,now=root;
+        sscanf(&s[1], "%d", &v);
+        int i=s.find(',')+1;
+        while (s[i] != ')') {
+            if (s[i] == 'L') {
+                if (tree[now].l == -1) {
+                    tree[now].l = len++;
+                    tree[tree[now].l].l=-1,tree[tree[now].l].r=-1,tree[tree[now].l].haveVal=false;
+                }
+                now = tree[now].l;
+            }
+            else{
+                if (tree[now].r == -1){
+                    tree[now].r = len++;
+                    tree[tree[now].r].l=-1,tree[tree[now].r].r=-1,tree[tree[now].r].haveVal=false;
+                }
+                now = tree[now].r;
+            }
+            i++;
+        }
+        if (tree[now].haveVal) {
+            ok = false;
+        }
+        tree[now].val = v;
+        tree[now].haveVal = true;
+    }
+}
+
+int main() {
+    while (read_input()) {
+        if (!ok) {
+            cout << "not complete" << endl;
+            continue;
+        }
+        string s="";
+        queue<int> q;
+        q.push(root);
+        int now;
+        while (q.size()) {
+            now = q.front(); q.pop();
+            if (!tree[now].haveVal) {
+                s= "not complete";
+                break;
+            }
+            else {
+                if (s == "")
+                    s += to_string(tree[now].val);
+                else
+                    s += " "+to_string(tree[now].val);
+            }
+            if(tree[now].l!=-1)q.push(tree[now].l);
+            if(tree[now].r!=-1)q.push(tree[now].r);
+        }
+        cout << s << endl;
+    }
+    return 0;
+}
+```
+
+### B 普通平衡树
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N = 1e5 + 10, INF = 1e8;
+struct Node {
+    int son[2];
+    int key, val;
+    int cnt, size;
+} tr[N];
+int n, root, idx;
+
+int get_node(int key) {
+    tr[++idx].key = key;
+    tr[idx].val = rand();
+    tr[idx].cnt = tr[idx].size = 1;
+    return idx;
+}
+
+void pushup(int p) {
+    tr[p].size = tr[tr[p].son[0]].size + tr[tr[p].son[1]].size + tr[p].cnt;
+}
+
+void rotate(int& p, int d) {
+    int q = tr[p].son[d ^ 1];
+    tr[p].son[d ^ 1] = tr[q].son[d], tr[q].son[d] = p, p = q;
+    pushup(tr[p].son[d]);
+}
+
+void insert(int& p, int key) {
+    if (!p) p = get_node(key);
+    else if (key < tr[p].key) {
+        insert(tr[p].son[0], key);
+        if (tr[tr[p].son[0]].val > tr[p].val) rotate(p, 1);
+    } else if (key > tr[p].key) {
+        insert(tr[p].son[1], key);
+        if (tr[tr[p].son[1]].val > tr[p].val) rotate(p, 0);
+    } else tr[p].cnt++;
+
+    pushup(p);
+}
+
+void remove(int& p, int key) {
+    if (!p) return;
+    if (key < tr[p].key) remove(tr[p].son[0], key);
+    else if (key > tr[p].key) remove(tr[p].son[1], key);
+    else if (tr[p].cnt > 1) tr[p].cnt--;
+    else if (!tr[p].son[0] && !tr[p].son[1]) p = 0;
+    else if (!tr[p].son[1] || (tr[p].son[0] && tr[tr[p].son[0]].val > tr[tr[p].son[1]].val)) {
+        rotate(p, 1);
+        remove(tr[p].son[1], key);
+    } else {
+        rotate(p, 0);
+        remove(tr[p].son[0], key);
+    }
+
+    pushup(p);
+}
+
+int get_rank_by_key(int p, int key) {
+    if (!p) return 0;
+    if (key < tr[p].key) return get_rank_by_key(tr[p].son[0], key);
+    else if (key > tr[p].key) return tr[tr[p].son[0]].size + tr[p].cnt + get_rank_by_key(tr[p].son[1], key);
+    else return tr[tr[p].son[0]].size + 1;
+}
+
+int get_key_by_rank(int p, int rank) {
+    if (!p) return INF;
+    else if (rank <= tr[tr[p].son[0]].size) return get_key_by_rank(tr[p].son[0], rank);
+    else if (rank > tr[tr[p].son[0]].size + tr[p].cnt) return get_key_by_rank(tr[p].son[1], rank - tr[tr[p].son[0]].size - tr[p].cnt);
+    else return tr[p].key;
+}
+
+int get_prev(int p, int key) {
+    if (!p) return -INF;
+    if (key <= tr[p].key) return get_prev(tr[p].son[0], key);
+    else return max(tr[p].key, get_prev(tr[p].son[1], key));
+}
+
+int get_next(int p, int key) {
+    if (!p) return INF;
+    if (key >= tr[p].key) return get_next(tr[p].son[1], key);
+    else return min(tr[p].key, get_next(tr[p].son[0], key));
+}
+
+int main() {
+    scanf("%d", &n);
+    while (n--) {
+        int op, x;
+        scanf("%d%d", &op, &x);
+        if (op == 1) insert(root, x);
+        else if (op == 2) remove(root, x);
+        else if (op == 3) printf("%d\n", get_rank_by_key(root, x));
+        else if (op == 4) printf("%d\n", get_key_by_rank(root, x));
+        else if (op == 5) printf("%d\n", get_prev(root, x));
+        else if (op == 6) printf("%d\n", get_next(root, x));
+    }
+
+    return 0;
+}
+```
+
+### C Shaolin
+
+```cpp
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <cmath>
+#include <map>
+using namespace std;
+
+#define MAX_N 100006
+int n;
+map<int, int> distanceMap;
+map<int, int>::iterator lowerIt, prevIt;
+
+int main() {
+    while (scanf("%d", &n) == 1 && n) {
+        distanceMap.clear();
+        distanceMap[1000000000] = 1;
+        
+        for (int i = 0; i < n; i++) {
+            int x, y;
+            scanf("%d %d", &x, &y);
+            
+            lowerIt = distanceMap.lower_bound(y);
+            
+            if (lowerIt == distanceMap.begin()) {
+                printf("%d %d\n", x, lowerIt->second);
+            } else {
+                prevIt = lowerIt;
+                prevIt--;
+                
+                if (abs(y - prevIt->first) <= abs(y - lowerIt->first)) {
+                    printf("%d %d\n", x, prevIt->second);
+                } else {
+                    printf("%d %d\n", x, lowerIt->second);
+                }
+            }
+            
+            distanceMap[y] = x;
+        }
+    }
+    return 0;
+}
+```
+
+### D 对称二叉树
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+const int N=1000010;
+long long a[N],l[N],r[N],n,ans=0;
+inline bool dfs(long long l2,long long r2){
+    if(l2==-1&&r2==-1)
+        return true;
+    if(l2==-1||r2==-1||a[l2]!=a[r2])
+        return false;
+    return dfs(l[l2],r[r2])&&dfs(l[r2],r[l2]);
+}
+inline long long get(long long x){
+    if(x==-1)
+        return 0;
+    else
+        return get(l[x])+get(r[x])+1;
+}
+int main(){
+    cin>>n;
+    for(long long i=1;i<=n;i++)
+        cin>>a[i];
+    for(long long i=1;i<=n;i++)
+        cin>>l[i]>>r[i];
+    for(long long i=1;i<=n;i++)
+        if(dfs(i,i))
+            ans=max(ans,get(i));
+    cout<<ans;
+    return 0;
+}
+```
+
+### E 完全二叉树的权值
+
+```cpp
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+
+using namespace std;
+
+typedef long long LL;
+
+const int N = 1e5 + 5;
+
+LL tr[N];
+LL cnt[50];
+
+int main()
+{
+    int n, k = 1;scanf("%d", &n);
+    for(int i = 1; i <= n; ++ i) scanf("%lld", &tr[i]);
+
+    for(int i = 1, j = 1; i <= n; ++ i)
+    {
+        cnt[k] += tr[i];
+
+        if(i - j >= (1 << (k - 1)) - 1)
+        {
+            j = i + 1;
+            k ++;
+        }
+    }
+
+    int ans = 0, maxx = 1-1e6;
+    for(int i = 1; i <= k ; ++ i)
+        if(cnt[i] > maxx)
+        {
+            maxx = cnt[i];
+            ans = i;
+        }
+    cout << ans <<endl;
+    return 0;
+
 }
 ```
 
