@@ -966,7 +966,7 @@ int example(int a, int b)
    int r1 = fun(a, 0);
    int r2 = fun(b, 1);
    int r = r1 - r2;
-   return r<<2;
+   return r << 2;
 }
 ```
 
