@@ -19,6 +19,8 @@ KMP实际上是优化过的滑动窗口，只不过优化得有点太巧妙了�
 
 理解了写代码就好，不要背模板。
 
+`next[j] = i + 1`，长度是下标加1，不是`next[j] = next[j - 1] + 1`！！！
+
 ```cpp
 class Solution {
 public:
