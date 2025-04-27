@@ -15,6 +15,8 @@ categories:
 
 重载的操作必须是公开的；元素、底层容器、比较函数被定义在优先队列中；输出要倒序。
 
+取出头部元素竟然用的是`que.top()`。
+
 ```cpp
 class Solution {
 public:
