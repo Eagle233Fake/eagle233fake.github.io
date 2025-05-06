@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns#" class="mdui-theme-auto" data-theme="auto">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="Eagle233">
+  <meta name="generator" content="Hexo 7.3.0">
+    <meta name="description" content="csim.c实验思想：采用封装的思想，提高函数的复用性，有助于理解总体代码。 前置函数：定义在cachelab.h： &#x2F;*   * printSummary - This function provides a standard way for your cache  * simulator * to display its final hit and miss statistics  *&#x2F;  v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[CSAPP] Lab4 - Cache Lab Report">
+<meta property="og:url" content="https://blog.eagle233.top/2025/05/06/CSAPP/CSAPP-Lab4-Cache-Lab-Report/index.html">
+<meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="csim.c实验思想：采用封装的思想，提高函数的复用性，有助于理解总体代码。 前置函数：定义在cachelab.h： &#x2F;*   * printSummary - This function provides a standard way for your cache  * simulator * to display its final hit and miss statistics  *&#x2F;  v">
+<meta property="og:locale">
+<meta property="og:image" content="https://s2.loli.net/2025/05/06/Yx1SKaBADcPtQEH.png">
+<meta property="article:published_time" content="2025-05-06T13:02:38.000Z">
+<meta property="article:modified_time" content="2025-05-06T13:05:22.984Z">
+<meta property="article:author" content="Eagle233">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2025/05/06/Yx1SKaBADcPtQEH.png">
+      <link rel="icon" href="">
+      <title>
+        
+          [CSAPP] Lab4 - Cache Lab Report - Eagle233-Blog
+              
+      </title>
+      
+<link rel="stylesheet" href="/css/site.css">
+
+      
+<link rel="stylesheet" href="/css/mdui_2.0.3/mdui.css">
+
+      <style>
+        /*禁用mdui对code的样式，因为它干扰了prism.js*/
+        .mdui-prose pre code {
+          background-color: transparent;
+          padding: 0px 0px;
+        }
+      </style>
+      
+<script src="/css/mdui_2.0.3/mdui.global.js"></script>
+
+      
+<script src="/fancybox/fancybox.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/fancybox/fancybox.css">
+
+      
+<script src="/carousel/carousel.umd.js"></script>
+
+      
+<link rel="stylesheet" href="/carousel/carousel.css">
+
+      
+<link rel="stylesheet" href="/css/prism.css">
+
+          
+<link rel="stylesheet" href="/css/katex.min.css">
+
+            
+<link rel="stylesheet" href="/css/font-material-icon-filled/MaterialIconFilled.css">
+
+              <!-- Filled -->
+              <script>window.$=mdui.$</script>
+</head>
+
+  <body class="line-numbers">
+    <mdui-layout>
+      <mdui-top-app-bar>
+        <mdui-button-icon icon="menu" id="menu-btn">
+        </mdui-button-icon>
+        <mdui-top-app-bar-title>
+          Eagle233-Blog
+        </mdui-top-app-bar-title>
+        <div style="flex-grow: 1"></div>
+        <mdui-button-icon icon="search" id="search-dlg-btn"></mdui-button-icon>
+          
+      </mdui-top-app-bar>
+      <mdui-navigation-drawer close-on-overlay-click close-on-esc id="drawer">
+    <mdui-list>
+        
+            
+            <mdui-list-item rounded icon="home"
+                href="/"
+                
+                
+                rel="next">
+                Home
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="folder"
+                href="/categories"
+                
+                
+                rel="next">
+                Categories
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="bookmark"
+                href="/tags"
+                
+                
+                rel="next">
+                Tags
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="archive"
+                href="/archives"
+                
+                
+                rel="next">
+                Archives
+            </mdui-list-item>
+            
+            
+            
+            <mdui-list-item rounded icon="info"
+                href="/about"
+                
+                
+                rel="next">
+                About
+            </mdui-list-item>
+            
+            
+    </mdui-list>
+</mdui-navigation-drawer>
+        <mdui-layout-main style="min-height: 800px;" id="main">
+          <div style="padding-left: 16px;padding-right: 16px;" id="content">
+            <mdui-card variant="filled" style="padding: 16px;width: 100%;">
+  <div class="mdui-prose post" id="post-all">
+    <h1 style="margin-bottom: 8px;">
+      [CSAPP] Lab4 - Cache Lab Report
+    </h1>
+    <span class="post-date">
+      <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+      2025-05-06 21:02:38 &nbsp; <mdui-icon name="update"
+          style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+        2025-05-06 21:05:22
+    </span>
+    <br>
+    <span>
+        Categories
+          
+            <!-- <mdui-chip href="/categories/CSAPP/" variant="filter" style="vertical-align: middle;">
+                          CSAPP
+                      </mdui-chip> -->
+            <a href="/categories/CSAPP/">
+              CSAPP
+            </a>
+            
+              <br>
+      </span>
+      
+        
+          Tags
+            
+                
+                  <!-- photos gallery -->
+                  
+                      <!-- content -->
+                      <h2 id="csim-c"><a href="#csim-c" class="headerlink" title="csim.c"></a><code>csim.c</code></h2><p><strong>实验思想</strong>：采用封装的思想，提高函数的复用性，有助于理解总体代码。</p>
+<p><strong>前置函数</strong>：定义在<code>cachelab.h</code>：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* 
+ * printSummary - This function provides a standard way for your cache
+ * simulator * to display its final hit and miss statistics
+ */</span> 
+<span class="token keyword">void</span> <span class="token function">printSummary</span><span class="token punctuation">(</span><span class="token keyword">int</span> hits<span class="token punctuation">,</span>  <span class="token comment">/* number of  hits */</span>
+                  <span class="token keyword">int</span> misses<span class="token punctuation">,</span> <span class="token comment">/* number of misses */</span>
+                  <span class="token keyword">int</span> evictions<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* number of evictions */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先我们先构思出建立一个缓存需要哪些部分。这包括：</p>
+<ul>
+<li>缓存的基本数据结构</li>
+<li>从命令行获得缓存<code>s</code> <code>E</code> <code>b</code>和读写的<code>t</code>信息</li>
+<li>初始化缓存</li>
+<li>获取文件读写信息</li>
+<li>访问缓存</li>
+<li>增加<code>LRU</code>次数</li>
+<li>释放Cache</li>
+</ul>
+<p>于是我们先搭建总体框架。其中函数的返回值和参数暂时不完善，我们之后按需求修改。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"cachelab.h"</span></span>
+
+<span class="token class-name">uint64_t</span> hits <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token class-name">uint64_t</span> misses <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token class-name">uint64_t</span> evictions <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span> 
+    <span class="token keyword">int</span> valid<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> tag<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> lru<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Line<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Line <span class="token operator">*</span>lines<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Set<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Set <span class="token operator">*</span>sets<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> s<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> E<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Cache<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">getCommandInfo</span><span class="token punctuation">(</span><span class="token class-name">uint64_t</span> s<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> E<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+Cache <span class="token function">initCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">accessCache</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> address<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">updateLRU</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">getFileInfo</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>tracefile<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">freeCache</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token function">printSummary</span><span class="token punctuation">(</span>hits<span class="token punctuation">,</span> misses<span class="token punctuation">,</span> evictions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来我们逐个分析。</p>
+<h3 id="getCommandInfo"><a href="#getCommandInfo" class="headerlink" title="getCommandInfo"></a><code>getCommandInfo</code></h3><p>这个函数的目的是为了读取命令行输入的指令，获得缓存<code>s</code> <code>E</code> <code>b</code>和读写的<code>t</code>信息。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Usage: ./csim-ref <span class="token punctuation">[</span>-hv<span class="token punctuation">]</span> <span class="token parameter variable">-s</span> <span class="token operator">&lt;</span>s<span class="token operator">></span> <span class="token parameter variable">-E</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token parameter variable">-b</span> <span class="token operator">&lt;</span>b<span class="token operator">></span> <span class="token parameter variable">-t</span> <span class="token operator">&lt;</span>tracefile<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们可以使用<code>getopt</code>。这个头文件一般只在Linux下使用。<code>getopt.h</code>必须要包括，否则会报错，原因未知。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;getopt.h></span></span>
+<span class="token keyword">int</span> <span class="token function">getopt</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span> <span class="token keyword">const</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>optstring<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>特殊变量</strong>：</p>
+<ul>
+<li><code>optarg</code>：当前选项的参数值（如 -b value 中的 value）</li>
+<li><code>optind</code>：下一个要处理的 argv 索引</li>
+<li><code>opterr</code>：设为 0 可禁止错误信息输出</li>
+</ul>
+<p><code>optstring</code>规则：</p>
+<ul>
+<li>字符：表示允许的选项（如 “ab:c”）<ul>
+<li>‘a’：无参数</li>
+<li>‘b:’：需要参数</li>
+<li>‘c’：无参数</li>
+</ul>
+</li>
+</ul>
+<p>这个函数很明显比较适合使用在<code>main</code>函数中，所以我们把<code>getCommandInfo</code>的功能放在<code>main</code>函数中。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint64_t</span> s<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> E<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> tracefile<span class="token punctuation">[</span>fileNameLength<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">char</span> opt<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>opt <span class="token operator">=</span> <span class="token function">getopt</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">,</span> <span class="token string">"s:E:b:t:"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>opt<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">case</span> <span class="token char">'s'</span><span class="token operator">:</span>
+                s <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'E'</span><span class="token operator">:</span>
+                E <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'b'</span><span class="token operator">:</span>
+                b <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'t'</span><span class="token operator">:</span>
+                <span class="token function">strcpy</span><span class="token punctuation">(</span>tracefile<span class="token punctuation">,</span> optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">printSummary</span><span class="token punctuation">(</span>hits<span class="token punctuation">,</span> misses<span class="token punctuation">,</span> evictions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样我们就完成了获取命令行指令的函数。</p>
+<h3 id="initCache"><a href="#initCache" class="headerlink" title="initCache"></a><code>initCache</code></h3><p>我们已经获得了<code>s</code> <code>E</code> <code>b</code>信息，我们可以开始初始化缓存了。我们需要给cache的<code>s</code> <code>E</code> <code>b</code>赋值，并且开辟内存空间，而且需要使每一路的<code>valid</code> <code>tag</code> <code>lru</code>都设置为0。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">Cache <span class="token function">initCache</span><span class="token punctuation">(</span><span class="token class-name">uint64_t</span> s<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> E<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> S <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> s<span class="token punctuation">;</span>
+
+    Cache cache<span class="token punctuation">;</span>
+    cache<span class="token punctuation">.</span>s <span class="token operator">=</span> s<span class="token punctuation">;</span>
+    cache<span class="token punctuation">.</span>E <span class="token operator">=</span> E<span class="token punctuation">;</span>
+    cache<span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
+
+    cache<span class="token punctuation">.</span>sets <span class="token operator">=</span> <span class="token punctuation">(</span>Set <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>S <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>Set<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> S<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines <span class="token operator">=</span> <span class="token punctuation">(</span>Line <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>E <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>Line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> E<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> cache<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在<code>main</code>函数中新增：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">Cache cache<span class="token punctuation">;</span>
+cache <span class="token operator">=</span> <span class="token function">initCache</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> E<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="getFileInfo"><a href="#getFileInfo" class="headerlink" title="getFileInfo"></a><code>getFileInfo</code></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>操作类型<span class="token operator">></span> <span class="token operator">&lt;</span>地址<span class="token operator">></span>,<span class="token operator">&lt;</span>大小<span class="token operator">></span>
+L <span class="token number">10,4</span> 
+S <span class="token number">18,4</span>
+L <span class="token number">20,4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们只需要处理<code>L</code>(load) <code>S</code>(store) <code>M</code>(modify load&#x2F;store)，不需要理会<code>L</code>。其中<code>M</code>进行了两次的内存访问。</p>
+<p>为了安全地从文件中读取<code>uint64_t</code>，可以如下操作：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;inttypes.h></span></span>
+<span class="token function">fscanf</span><span class="token punctuation">(</span>fp<span class="token punctuation">,</span> <span class="token string">" %c %"</span> SCNx64 <span class="token string">",&amp;d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>opt<span class="token punctuation">,</span> <span class="token operator">&amp;</span>address<span class="token punctuation">,</span> <span class="token operator">%</span>size<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>完整的函数如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">getFileInfo</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>tracefile<span class="token punctuation">,</span> Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    FILE <span class="token operator">*</span>fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span>tracefile<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fp <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">char</span> opt<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> address<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> size<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">fscanf</span><span class="token punctuation">(</span>fp<span class="token punctuation">,</span> <span class="token string">" %c %"</span> SCNx64 <span class="token string">",%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>opt<span class="token punctuation">,</span> <span class="token operator">&amp;</span>address<span class="token punctuation">,</span> <span class="token operator">&amp;</span>size<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>opt<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">case</span> <span class="token char">'L'</span><span class="token operator">:</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'S'</span><span class="token operator">:</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'M'</span><span class="token operator">:</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">updateLRU</span><span class="token punctuation">(</span>cache<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在<code>main</code>函数加上：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">getFileInfo</span><span class="token punctuation">(</span>tracefile<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cache<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来我们需要完成<code>accessCache</code>和<code>updateLRU</code>，后者较为简单，我们从易到难。</p>
+<h3 id="updateLRU"><a href="#updateLRU" class="headerlink" title="updateLRU"></a><code>updateLRU</code></h3><p>实现很简单，每次进行了一次操作都需要更新<code>valid</code>位置不为0的<code>LRU</code>，以便于我们找到使用最不频繁的路进行替换。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">updateLRU</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> S <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> cache<span class="token operator">-></span>s<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> E <span class="token operator">=</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> S<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> E<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>valid<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>lru<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="accessCache"><a href="#accessCache" class="headerlink" title="accessCache"></a><code>accessCache</code></h3><p>这个函数比较复杂。首先我们需要处理传入的地址，区分出<code>tag</code> <code>index</code> <code>block_offset</code>，只不过对于这个实验<code>block_offset</code>可以不考虑。之后访问相对应的缓存路，分为三类情况：</p>
+<ul>
+<li><strong>命中了</strong>：比对<code>tag</code>并且确认<code>valid</code>不为0。再把缓存的<code>lru</code>设置为0，表示其刚刚被访问了，<code>hits++</code>。</li>
+<li><strong>未命中且有空的路</strong>：加载到空的路中，<code>tag</code>更新，<code>valid = 1</code>，<code>misses++</code>。</li>
+<li><strong>未命中且没有空的路</strong>：加载到<code>lru</code>最大的路中，<code>tag</code>更新，<code>valid = 1</code>，<code>lru = 0</code>，<code>evictions++</code>，<code>misses++</code>。</li>
+</ul>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">accessCache</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> address<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint64_t</span> s <span class="token operator">=</span> cache<span class="token operator">-></span>s<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> b <span class="token operator">=</span> cache<span class="token operator">-></span>b<span class="token punctuation">;</span>
+
+    <span class="token class-name">uint64_t</span> tag <span class="token operator">=</span> address <span class="token operator">>></span> <span class="token punctuation">(</span>s <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">uint64_t</span> mask <span class="token operator">=</span> UINT64_MAX<span class="token punctuation">;</span>
+    mask <span class="token operator">>>=</span> <span class="token number">64</span> <span class="token operator">-</span> <span class="token punctuation">(</span>s <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> temp <span class="token operator">=</span> address <span class="token operator">&amp;</span> mask<span class="token punctuation">;</span>
+
+    <span class="token class-name">uint64_t</span> index <span class="token operator">=</span> temp <span class="token operator">>></span> b<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> isEmpty <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">&amp;&amp;</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">==</span> tag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            hits<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            isEmpty <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isEmpty<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> tag<span class="token punctuation">;</span>
+                misses<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">uint64_t</span> MaxLRU <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            MaxLRU <span class="token operator">=</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">></span> MaxLRU <span class="token operator">?</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">:</span> MaxLRU<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>MaxLRU <span class="token operator">==</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> tag<span class="token punctuation">;</span>
+                misses<span class="token operator">++</span><span class="token punctuation">;</span>
+                evictions<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="freeCache"><a href="#freeCache" class="headerlink" title="freeCache"></a><code>freeCache</code></h3><p>释放内存即可，逐层释放。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">freeCache</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> S <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> cache<span class="token operator">-></span>s<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> S<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在<code>main</code>函数加上：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">freeCache</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>cache<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a><strong>完整代码</strong></h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"cachelab.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;inttypes.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;getopt.h></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">fileNameLength</span> <span class="token expression"><span class="token number">1000</span></span></span>
+
+<span class="token class-name">uint64_t</span> hits <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token class-name">uint64_t</span> misses <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token class-name">uint64_t</span> evictions <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span> 
+    <span class="token keyword">int</span> valid<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> tag<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> lru<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Line<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Line <span class="token operator">*</span>lines<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Set<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span>
+    Set <span class="token operator">*</span>sets<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> s<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> E<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> Cache<span class="token punctuation">;</span>
+
+Cache <span class="token function">initCache</span><span class="token punctuation">(</span><span class="token class-name">uint64_t</span> s<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> E<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> b<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> S <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> s<span class="token punctuation">;</span>
+
+    Cache cache<span class="token punctuation">;</span>
+    cache<span class="token punctuation">.</span>s <span class="token operator">=</span> s<span class="token punctuation">;</span>
+    cache<span class="token punctuation">.</span>E <span class="token operator">=</span> E<span class="token punctuation">;</span>
+    cache<span class="token punctuation">.</span>b <span class="token operator">=</span> b<span class="token punctuation">;</span>
+
+    cache<span class="token punctuation">.</span>sets <span class="token operator">=</span> <span class="token punctuation">(</span>Set <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>S <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>Set<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> S<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines <span class="token operator">=</span> <span class="token punctuation">(</span>Line <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span>E <span class="token operator">*</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>Line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> E<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            cache<span class="token punctuation">.</span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">return</span> cache<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">accessCache</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">,</span> <span class="token class-name">uint64_t</span> address<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint64_t</span> s <span class="token operator">=</span> cache<span class="token operator">-></span>s<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> b <span class="token operator">=</span> cache<span class="token operator">-></span>b<span class="token punctuation">;</span>
+
+    <span class="token class-name">uint64_t</span> tag <span class="token operator">=</span> address <span class="token operator">>></span> <span class="token punctuation">(</span>s <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">uint64_t</span> mask <span class="token operator">=</span> UINT64_MAX<span class="token punctuation">;</span>
+    mask <span class="token operator">>>=</span> <span class="token number">64</span> <span class="token operator">-</span> <span class="token punctuation">(</span>s <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> temp <span class="token operator">=</span> address <span class="token operator">&amp;</span> mask<span class="token punctuation">;</span>
+
+    <span class="token class-name">uint64_t</span> index <span class="token operator">=</span> temp <span class="token operator">>></span> b<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> isEmpty <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">&amp;&amp;</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">==</span> tag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            hits<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            isEmpty <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isEmpty<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>valid <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> tag<span class="token punctuation">;</span>
+                misses<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">uint64_t</span> MaxLRU <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            MaxLRU <span class="token operator">=</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">></span> MaxLRU <span class="token operator">?</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">:</span> MaxLRU<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>MaxLRU <span class="token operator">==</span> cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lru <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>tag <span class="token operator">=</span> tag<span class="token punctuation">;</span>
+                misses<span class="token operator">++</span><span class="token punctuation">;</span>
+                evictions<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">updateLRU</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> S <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> cache<span class="token operator">-></span>s<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> E <span class="token operator">=</span> cache<span class="token operator">-></span>E<span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> S<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> E<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>valid<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>lru<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">getFileInfo</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>tracefile<span class="token punctuation">,</span> Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    FILE <span class="token operator">*</span>fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span>tracefile<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fp <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">char</span> opt<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> address<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> size<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">fscanf</span><span class="token punctuation">(</span>fp<span class="token punctuation">,</span> <span class="token string">" %c %"</span> SCNx64 <span class="token string">",%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>opt<span class="token punctuation">,</span> <span class="token operator">&amp;</span>address<span class="token punctuation">,</span> <span class="token operator">&amp;</span>size<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>opt<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">case</span> <span class="token char">'L'</span><span class="token operator">:</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'S'</span><span class="token operator">:</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'M'</span><span class="token operator">:</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">accessCache</span><span class="token punctuation">(</span>cache<span class="token punctuation">,</span> address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">updateLRU</span><span class="token punctuation">(</span>cache<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">freeCache</span><span class="token punctuation">(</span>Cache <span class="token operator">*</span>cache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> S <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> cache<span class="token operator">-></span>s<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> S<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lines<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>cache<span class="token operator">-></span>sets<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">uint64_t</span> s<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> E<span class="token punctuation">;</span>
+    <span class="token class-name">uint64_t</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> tracefile<span class="token punctuation">[</span>fileNameLength<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">char</span> opt<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>opt <span class="token operator">=</span> <span class="token function">getopt</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">,</span> <span class="token string">"s:E:b:t:"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>opt<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">case</span> <span class="token char">'s'</span><span class="token operator">:</span>
+                s <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'E'</span><span class="token operator">:</span>
+                E <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'b'</span><span class="token operator">:</span>
+                b <span class="token operator">=</span> <span class="token function">atoi</span><span class="token punctuation">(</span>optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token char">'t'</span><span class="token operator">:</span>
+                <span class="token function">strcpy</span><span class="token punctuation">(</span>tracefile<span class="token punctuation">,</span> optarg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    Cache cache<span class="token punctuation">;</span>
+    cache <span class="token operator">=</span> <span class="token function">initCache</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> E<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">getFileInfo</span><span class="token punctuation">(</span>tracefile<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cache<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">freeCache</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>cache<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printSummary</span><span class="token punctuation">(</span>hits<span class="token punctuation">,</span> misses<span class="token punctuation">,</span> evictions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="跑分截图"><a href="#跑分截图" class="headerlink" title="跑分截图"></a><strong>跑分截图</strong></h3><p><img src="https://s2.loli.net/2025/05/06/Yx1SKaBADcPtQEH.png" alt="csim.c.png"></p>
+<hr>
+<h2 id="trans-c"><a href="#trans-c" class="headerlink" title="trans.c"></a><code>trans.c</code></h2><p>&#x2F;&#x2F; TODO</p>
+<hr>
+
+  </div>
+</mdui-card>
+<script>
+  const $ = mdui.$;
+  $("#post-all").find("img").each((index, ele) => {
+    $(ele).replaceWith(`<a data-src="${$(ele).prop("src")}" class="fancybox-enabled" data-fancybox="picture" data-caption="${$(ele).prop("alt")}">${ele.outerHTML}</a>`)
+  });
+  Fancybox.bind(".fancybox-enabled", {
+    on: {
+      ready: () => {
+        $("mdui-top-app-bar").addClass("invisible")
+      }, close: () => {
+        $("mdui-top-app-bar").removeClass("invisible")
+      }
+    }
+  });
+  
+</script>
+
+    
+                    
+              <br>
+              <span>© 2025 Eagle233 <br>Powered By Hexo & Theme mdsuper</span>
+          </div>
+        </mdui-layout-main>
+    </mdui-layout>
+    <script>const searchxml_url = "/search.xml";</script>
+
+<script src="/js/mdsuper-search.js"></script>
+
+    <mdui-dialog close-on-overlay-click close-on-esc fullscreen id="search-dlg">
+        <mdui-top-app-bar slot="header" style="padding: 32px;">
+            <mdui-top-app-bar-title>
+                Search
+            </mdui-top-app-bar-title>
+            <mdui-button-icon icon="close" id="search-dlg-close"></mdui-button-icon>
+        </mdui-top-app-bar>
+        <mdui-text-field icon="search" label='Search' id="search-input"></mdui-text-field>
+        <mdui-list id="search-res-list">
+        </mdui-list>
+    </mdui-dialog>
+    <script>
+        $("#search-dlg-close").on("click", function () {
+            $("#search-dlg").get(0).open = false;
+        });
+        $("#search-input").get(0).addEventListener('input', function () {
+            let val = $(this).val().toLowerCase();
+            $("#search-res-list").html("");
+            if (!val) return;
+            let keywords = val.split(" ").filter((x)=>x.length>=2);
+            let searchRes = search(keywords);
+            searchRes.forEach((dat) => {
+                $("#search-res-list").append(`<mdui-list-item href="${dat.url}" rounded headline-line="1" description-line="3">
+          ${highlightSearch(dat.title, keywords)}
+          <span slot="description">${highlightSearch(dat.content, keywords)}</span>
+        </mdui-list-item>`);
+            })
+        })
+    </script>
+        
+          <script>
+            mdui.setColorScheme('#3f51b5');
+            const navigationDrawer = document.querySelector("#drawer");
+            const mainlayout = document.querySelector("#main");
+            const breakpointCondition = mdui.breakpoint();
+            if (breakpointCondition.up('sm')) {
+              if (localStorage.getItem('navigationDrawer') == null) {
+                if("true"=="true")localStorage.setItem('navigationDrawer', "true");
+              }
+              if("true"=="true")navigationDrawer.setAttribute("open", (localStorage.getItem('navigationDrawer') == "true" ? true : false))
+            }
+            const menuBtn = document.querySelector("#menu-btn");
+            menuBtn.addEventListener("click", () => {
+              navigationDrawer.open = !navigationDrawer.open;
+              if("true"=="true")localStorage.setItem('navigationDrawer', navigationDrawer.open.toString());
+            });
+            const searchBtn = document.querySelector("#search-dlg-btn");
+            searchBtn.addEventListener("click", () => {
+              document.querySelector("#search-dlg").open = true;
+            });
+          </script>
+          
+<script src="/js/prism.js"></script>
+
+  </body>
+
+</html>
