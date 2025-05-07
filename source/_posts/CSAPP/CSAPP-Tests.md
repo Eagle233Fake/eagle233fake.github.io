@@ -982,8 +982,6 @@ D C D B D B
 
 ---
 
-好的，这是按照您要求的 Markdown 格式整理后的周 12 问题，代码、汇编和 bash 命令使用了格式块，变量名用反引号括起来，答案统一放在了最后。
-
 ## Week 12
 
 ### 问题 1
@@ -1166,8 +1164,6 @@ linux> gcc -shared –fpic -o libgraph.so node_model.c edge_model.c
 - B. 能够访问程序的可重定位目标文件
 - C. 能够访问程序的可执行目标文件
 - D. 能够访问程序的汇编代码
-
----
 
 **答案：**
 A D C D B D B B D A B B C B C B
