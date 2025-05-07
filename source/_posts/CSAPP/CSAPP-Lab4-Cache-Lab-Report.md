@@ -545,6 +545,262 @@ int main(int argc, char *argv[]) {
 
 ## `trans.c`
 
+**实验思路**：先分块后优化
+
+根据实验指导书，我们知道：`s = 5, E = 1, b = 5`，我们重点观察`b = 5`，因为这意味着我们的缓存一个组（全相联）最多可以缓存`32bits == 4bytes`，刚好是8个`int`。
+
+我们在`tracegen.c`中发现：
+
+```c
+/* Markers used to bound trace regions of interest */
+volatile char MARKER_START, MARKER_END;
+
+static int A[256][256];
+static int B[256][256];
+static int M;
+static int N;
+```
+
+矩阵定义的大小是`256*256 == 65536`个`int`，刚好是缓存大小的整数倍。这意味着我们原始的转置函数：
+
+```c
+/* 
+ * trans - A simple baseline transpose function, not optimized for the cache.
+ */
+char trans_desc[] = "Simple row-wise scan transpose";
+void trans(int M, int N, int A[N][M], int B[M][N])
+{
+    int i, j, tmp;
+
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < M; j++) {
+            tmp = A[i][j];
+            B[j][i] = tmp;
+        }
+    }    
+
+}
+```
+
+会使得矩阵`A` `B`重复使用同一块缓存的同一块区域，造成抖动极大。我们要尽可能减少冲突不命中和容量不命中，冷不命中是无法避免的。
+
+我们的缓存共有32组，每组可以缓存8个整型，接下来分别分析题目要求的三种情况。
+
+### **32 × 32**
+
+这个矩阵的每一行都需要4组(32/8)缓存，缓存一共可以容纳8行。我们可以使用**8 × 8**分块的方式来转置。原因如下：
+
+- **空间局部性好**：每次访问都刚好读取八个元素进入缓存。
+
+- **避免冲突未命中**：由于每个分块距离都较远，不容易发生冲突未命中。
+
+可以写出如下的代码：
+
+```c
+char transpose_submit_desc[] = "Transpose submission";
+void transpose_submit(int M, int N, int A[N][M], int B[M][N]) {
+    if (M == 32) {
+        for (int k = 0; k < M; k += 8) {
+            for (int l = 0; l < M; l += 8) {
+                for (int i = k; i < k + 8; i++) {
+                    for (int j = l; j < l + 8; j++) {
+                        B[j][i] = A[i][j];
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+得到如下结果：
+
+```bash
+./test-trans -M 32 -N 32
+
+Function 0 (2 total)
+Step 1: Validating and generating memory traces
+Step 2: Evaluating performance (s=5, E=1, b=5)
+func 0 (Transpose submission): hits:1709, misses:344, evictions:312
+
+Function 1 (2 total)
+Step 1: Validating and generating memory traces
+Step 2: Evaluating performance (s=5, E=1, b=5)
+func 1 (Simple row-wise scan transpose): hits:869, misses:1184, evictions:1152
+
+Summary for official submission (func 0): correctness=1 misses=344
+
+TEST_TRANS_RESULTS=1:344
+```
+
+离答案要求的300并不遥远。我们想到实验允许我们使用12个局部变量，因此可以进行优化。我们注意到，当我们的分块矩阵在对角线上的时候，时常会发生**冲突不命中**。我们可以用局部变量保存冲突的元素，保证对角线上的分块矩阵不容易冲突。由于我们在循环之中已经用了4个变量，因此我们还能使用8个变量进行优化。
+
+这样处理之后，由于我们预先访问了分块矩阵一行的元素，这里只会开销一个miss。之后每一行访问矩阵`B`，各自出现8次misses，这样就会有`(1 + 8) * 8 = 72`次misses，相比于之前的一定是大幅减小，因为之前的方法要交替访问`A` `B`，misses的次数要多得多。
+
+```c
+char transpose_submit_desc[] = "Transpose submission";
+void transpose_submit(int M, int N, int A[N][M], int B[M][N]) {
+    int i, j;
+    if (M == 32) {
+        for (int k = 0; k < M; k += 8) {
+            for (int l = 0; l < M; l += 8) {
+                if (k == l) {
+                    for (i = k; i < k + 8; i++) {
+                        int temp1 = A[i][l];
+                        int temp2 = A[i][l + 1];
+                        int temp3 = A[i][l + 2];
+                        int temp4 = A[i][l + 3];
+                        int temp5 = A[i][l + 4];
+                        int temp6 = A[i][l + 5];
+                        int temp7 = A[i][l + 6];
+                        int temp8 = A[i][l + 7];
+
+                        B[l][i] = temp1;
+                        B[l + 1][i] = temp2;
+                        B[l + 2][i] = temp3;
+                        B[l + 3][i] = temp4;
+                        B[l + 4][i] = temp5;
+                        B[l + 5][i] = temp6;
+                        B[l + 6][i] = temp7;
+                        B[l + 7][i] = temp8;
+                    }
+                } else {
+                    for (i = k; i < k + 8; i++) {
+                        for (j = l; j < l + 8; j++) {
+                            B[j][i] = A[i][j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+```bash
+./test-trans -M 32 -N 32
+
+Function 0 (2 total)
+Step 1: Validating and generating memory traces
+Step 2: Evaluating performance (s=5, E=1, b=5)
+func 0 (Transpose submission): hits:1765, misses:288, evictions:256
+
+Function 1 (2 total)
+Step 1: Validating and generating memory traces
+Step 2: Evaluating performance (s=5, E=1, b=5)
+func 1 (Simple row-wise scan transpose): hits:869, misses:1184, evictions:1152
+
+Summary for official submission (func 0): correctness=1 misses=288
+
+TEST_TRANS_RESULTS=1:288
+```
+
+### **64 × 64**
+
+// TODO
+
+### **61 × 67**
+
+这一题对miss的要求很低，因此我们可以大胆分一个比较大的块。经过测试，选取 **16 × 16**。
+
+要注意矩阵`A`是N行M列，不要搞混行列。
+
+```c
+if (M == 61) {
+    for (int i = 0; i < M; i += 16) {
+        for (int j = 0; j < N; j += 16) {
+            for (int k = i; k < i + 16 && k < M; k++) {
+                for (int l = j; l < j + 16 && l < N; l++) {
+                    B[l][k] = A[k][l];
+                }
+            }
+        }
+    }
+}
+```
+
+```bash
+eagle233@Eagle233-X16:~/cachelab-handout$ ./test-trans -M 61 -N 67
+
+Function 0 (2 total)
+Step 1: Validating and generating memory traces
+Step 2: Evaluating performance (s=5, E=1, b=5)
+func 0 (Transpose submission): hits:6186, misses:1993, evictions:1961
+
+Function 1 (2 total)
+Step 1: Validating and generating memory traces
+Step 2: Evaluating performance (s=5, E=1, b=5)
+func 1 (Simple row-wise scan transpose): hits:3755, misses:4424, evictions:4392
+
+Summary for official submission (func 0): correctness=1 misses=1993
+
+TEST_TRANS_RESULTS=1:1993
+```
+
+虽然有点含糊，但是通过要求还是很简单的。
+
+### **完整代码**
+
+```c
+void transpose_submit(int M, int N, int A[N][M], int B[M][N]) {
+    if (M == 32) {
+        int i, j, k, l;
+        int temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8;
+        for (k = 0; k < M; k += 8) {
+            for (l = 0; l < M; l += 8) {
+                if (k == l) {
+                    for (i = k; i < k + 8; i++) {
+                        temp1 = A[i][l];
+                        temp2 = A[i][l + 1];
+                        temp3 = A[i][l + 2];
+                        temp4 = A[i][l + 3];
+                        temp5 = A[i][l + 4];
+                        temp6 = A[i][l + 5];
+                        temp7 = A[i][l + 6];
+                        temp8 = A[i][l + 7];
+
+                        B[l][i] = temp1;
+                        B[l + 1][i] = temp2;
+                        B[l + 2][i] = temp3;
+                        B[l + 3][i] = temp4;
+                        B[l + 4][i] = temp5;
+                        B[l + 5][i] = temp6;
+                        B[l + 6][i] = temp7;
+                        B[l + 7][i] = temp8;
+                    }
+                } else {
+                    for (i = k; i < k + 8; i++) {
+                        for (j = l; j < l + 8; j++) {
+                            B[j][i] = A[i][j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (M == 64) {
+        // TODO
+    }    
+
+    if (M == 61) {
+        for (int i = 0; i < N; i += 16) {
+            for (int j = 0; j < M; j += 16) {
+                for (int k = i; k < i + 16 && k < N; k++) {
+                    for (int l = j; l < j + 16 && l < M; l++) {
+                        B[l][k] = A[k][l];
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+## **两个文件的跑分截图**
+
 // TODO
 
 ---
