@@ -6,8 +6,6 @@ categories:
 - In Class Practices
 ---
 
-# 
-
 ## Weel 1
 
 ### A Problem A+B (Big Integer)

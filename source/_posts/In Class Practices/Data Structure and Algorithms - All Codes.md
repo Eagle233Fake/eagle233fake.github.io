@@ -4223,3 +4223,455 @@ int main()
 ```
 
 ---
+
+## [Week 11 课上](https://voj.mobi/contest/377/)
+
+### A Root of AVL Tree
+
+```cpp
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int key;
+    Node *left, *right;
+    int height;
+    Node(int k) : key(k), left(nullptr), right(nullptr), height(1) {}
+};
+
+int height(Node* n) {
+    return n ? n->height : 0;
+}
+
+void updateHeight(Node* n) {
+    n->height = max(height(n->left), height(n->right)) + 1;
+}
+
+int balanceFactor(Node* n) {
+    return height(n->left) - height(n->right);
+}
+
+Node* rightRotate(Node* y) {
+    Node* x = y->left;
+    Node* T2 = x->right;
+    x->right = y;
+    y->left = T2;
+    updateHeight(y);
+    updateHeight(x);
+    return x;
+}
+
+Node* leftRotate(Node* x) {
+    Node* y = x->right;
+    Node* T2 = y->left;
+    y->left = x;
+    x->right = T2;
+    updateHeight(x);
+    updateHeight(y);
+    return y;
+}
+
+Node* insert(Node* node, int key) {
+    if (!node)
+        return new Node(key);
+    if (key < node->key)
+        node->left = insert(node->left, key);
+    else 
+        node->right = insert(node->right, key);
+
+    updateHeight(node);
+
+    int bf = balanceFactor(node);
+
+    if (bf > 1 && key < node->left->key)
+        return rightRotate(node);
+    if (bf < -1 && key > node->right->key)
+        return leftRotate(node);
+    if (bf > 1 && key > node->left->key) {
+        node->left = leftRotate(node->left);
+        return rightRotate(node);
+    }
+    if (bf < -1 && key < node->right->key) {
+        node->right = rightRotate(node->right);
+        return leftRotate(node);
+    }
+
+    return node;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int N;
+    cin >> N;
+    Node* root = nullptr;
+    for (int i = 0; i < N; i++) {
+        int x;
+        cin >> x;
+        root = insert(root, x);
+    }
+    if (root)
+        cout << root->key << "\n";
+    return 0;
+}
+```
+
+### B B树的插入遍历和查找
+
+```cpp
+#include<iostream>
+#include<vector>
+using namespace std;
+
+struct BTreeNode
+{
+    int *keys; // 元素数组
+    int t; // 最小度t
+    BTreeNode **C; // 子节点数组
+    int n;      // 当前节点元素个数
+    bool leaf; // 是否是叶子节点
+
+    BTreeNode(int _t, bool _leaf); // 构造函数
+    void insertNonFull(int k); // 当前节点未满，插入
+    void splitChild(int i, BTreeNode *y); // 分裂节点
+    void traverse(); // 遍历
+    BTreeNode *search(int k); // 查找
+};
+
+class BTree
+{
+    BTreeNode *root; // B树根节点
+    int t; // 最小度t
+public:
+    BTree(int _t)
+    {  root = NULL;  t = _t; }
+
+    void traverse()
+    {  if (root != NULL) root->traverse(); }
+
+    BTreeNode* search(int k)
+    {  return (root == NULL)? NULL : root->search(k); }
+
+    void insert(int k);
+};
+
+BTreeNode::BTreeNode(int t1, bool leaf1)
+{
+    t = t1;
+    leaf = leaf1;
+
+    keys = new int[2*t-1];
+    C = new BTreeNode *[2*t];
+
+    n = 0;
+}
+
+void BTreeNode::traverse()
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        if (leaf == false)
+            C[i]->traverse();
+        cout << keys[i] << endl;
+    }
+    if (leaf == false)
+        C[i]->traverse();
+}
+
+BTreeNode *BTreeNode::search(int k)
+{
+    int i = 0;
+    while (i < n && k > keys[i])
+        i++;
+    if (i < n && keys[i] == k)
+        return this;
+    if (leaf)
+        return NULL;
+    return C[i]->search(k);
+}
+
+void BTree::insert(int k)
+{
+    if (root == NULL)
+    {
+        root = new BTreeNode(t, true);
+        root->keys[0] = k;
+        root->n = 1;
+    }
+    else
+    {
+        if (root->n == 2*t-1)
+        {
+            BTreeNode *s = new BTreeNode(t, false);
+            s->C[0] = root;
+            s->splitChild(0, root);
+            int i = 0;
+            if (s->keys[0] < k)
+                i++;
+            s->C[i]->insertNonFull(k);
+            root = s;
+        }
+        else
+            root->insertNonFull(k);
+    }
+}
+
+void BTreeNode::insertNonFull(int k)
+{
+    int i = n-1;
+
+    if (leaf == true)
+    {
+        while (i >= 0 && keys[i] > k)
+        {
+            keys[i+1] = keys[i];
+            i--;
+        }
+
+        keys[i+1] = k;
+        n = n+1;
+    }
+    else
+    {
+        while (i >= 0 && keys[i] > k)
+            i--;
+
+        if (C[i+1]->n == 2*t-1)
+        {
+            splitChild(i+1, C[i+1]);
+
+            if (keys[i+1] < k)
+                i++;
+        }
+        C[i+1]->insertNonFull(k);
+    }
+}
+
+void BTreeNode::splitChild(int i, BTreeNode *y)
+{
+    BTreeNode *z = new BTreeNode(y->t, y->leaf);
+    z->n = t - 1;
+
+    for (int j = 0; j < t-1; j++)
+        z->keys[j] = y->keys[j+t];
+
+    if (y->leaf == false)
+    {
+        for (int j = 0; j < t; j++)
+            z->C[j] = y->C[j+t];
+    }
+
+    y->n = t - 1;
+    for (int j = n; j >= i+1; j--)
+        C[j+1] = C[j];
+
+    C[i+1] = z;
+
+    for (int j = n-1; j >= i; j--)
+        keys[j+1] = keys[j];
+
+    keys[i] = y->keys[t-1];
+
+    n = n + 1;
+}
+
+int main()
+{
+    int t, n, m;
+    cin>>t>>n>>m;
+    BTree tree(t);
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin>>a[i];
+        tree.insert(a[i]);
+    }
+
+    tree.traverse();
+
+    for (int i = 0; i < m; i++)
+    {
+        int q;
+        cin>>q;
+        BTreeNode *res = tree.search(q);
+        if (res)
+        {
+            for (int j = 0; j < res->n; j++)
+            {
+                cout << res->keys[j];
+                if (j < res->n - 1) cout << ' ';
+            }
+            cout << endl;
+        }
+    }
+    return 0;
+}
+```
+
+### C 邻接矩阵的使用
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, m;
+    cin >> n >> m;
+    
+    vector<vector<int>> adj_matrix(n, vector<int>(n, 0));
+    
+    for (int k = 0; k < m; ++k) {
+        int type, u, v;
+        cin >> type >> u >> v;
+        if (type == 0) {
+            adj_matrix[u][v] = 1;
+        } else { 
+            adj_matrix[u][v] = 1;
+            adj_matrix[v][u] = 1;
+        }
+    }
+    
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout << adj_matrix[i][j] << (j == n - 1 ? "" : " ");
+        }
+        cout << "\n";
+    }
+    
+    return 0;
+}
+```
+
+### D 邻接表的使用
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MAXN = 100 + 5;
+vector<int> G[MAXN];
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;
+    cin >> n >> m;
+    int a, x, y;
+    for (int i = 0; i < m; i++) {
+        cin >> a >> x >> y;
+        if (a == 0) {
+            G[x].push_back(y);
+        } else {
+            G[x].push_back(y);
+            G[y].push_back(x);
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << i << ":";
+        for (int j = (int)G[i].size() - 1; j >= 0; j--) {
+            cout << " " << G[i][j];
+        }
+        cout << "\n";
+    }
+
+    return 0;
+}
+```
+
+### E 画图游戏
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+    vector<int> deg(n);
+    long long sum = 0;
+    for (int i = 0; i < n; i++) {
+        cin >> deg[i];
+        sum += deg[i];
+    }
+    if (sum % 2) {
+        cout << "None\n";
+        return 0;
+    }
+    vector<vector<int>> adj(n, vector<int>(n, 0));
+    vector<pair<int,int>> v(n);
+    for (int i = 0; i < n; i++) {
+        v[i] = {deg[i], i};
+    }
+    for (int round = 0; round < n; round++) {
+        sort(v.begin() + round, v.end(), [&](auto &a, auto &b) {
+            return a.first > b.first;
+        });
+        int d = v[round].first;
+        int u = v[round].second;
+        if (d < 0 || d > n - 1 - round) {
+            cout << "None\n";
+            return 0;
+        }
+        for (int k = 1; k <= d; k++) {
+            int vi = v[round + k].second;
+            if (v[round + k].first <= 0) {
+                cout << "None\n";
+                return 0;
+            }
+            adj[u][vi] = adj[vi][u] = 1;
+            v[round + k].first--;
+        }
+        v[round].first = 0;
+    }
+    for (int i = 0; i < n; i++) {
+        if (v[i].first != 0) {
+            cout << "None\n";
+            return 0;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << adj[i][j] << (j + 1 < n ? ' ' : '\n');
+        }
+    }
+    return 0;
+}
+```
+
+---
+
+## Week 11 课下
+
+也就多了一题
+
+### A AVL Tree
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int a[46], n;
+
+int main() {
+    a[0] = 1;
+    a[1] = 2;
+    for (int i = 2; i <= 45; i++)
+        a[i] = a[i - 1] + a[i - 2] + 1;
+    while (~scanf("%d", &n), n) {
+        int ans = 0;
+        while (a[ans] <= n) ans++;
+        printf("%d\n", --ans);
+    }
+    return 0;
+}
+```
+
+---
