@@ -4224,7 +4224,7 @@ int main()
 
 ---
 
-## [Week 11 课上](https://voj.mobi/contest/377/)
+## [Week 12 课上](https://voj.mobi/contest/377/)
 
 ### A Root of AVL Tree
 
@@ -4648,7 +4648,7 @@ int main() {
 
 ---
 
-## Week 11 课下
+## [Week 12 课下](https://voj.mobi/contest/378/)
 
 也就多了一题
 
@@ -4673,5 +4673,384 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## [Week 13 课上](https://voj.mobi/contest/381/)
+
+### A 找出星型图的中心节点
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(void) {
+    int n, m;
+    int count[100055] = {0};
+    cin >> n >> m;
+
+    for (int i = 0; i < m; i++) {
+        int a, b;
+        cin >> a >> b;
+        count[a]++;
+        count[b]++;
+        if (count[a] == m) {
+            cout << a;
+            return 0;
+        }
+        if (count[b] == m) {
+            cout << b;
+            return 0;
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        if (count[i] == n - 1) {
+            cout << i;
+            return 0;
+        }
+    }
+}
+```
+
+### B 修建大桥
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> graph[1000];
+bool vst[1000];
+
+void dfs(int node) {
+    vst[node] = true;
+
+    for (int i = 0; i < graph[node].size(); i++) {
+        int nextNode = graph[node][i];
+
+        if (!vst[nextNode]) {
+            dfs(nextNode);
+        }
+    }
+}
+
+int main() {
+    int n, m;
+    memset(vst, false, sizeof(vst));
+    cin >> n >> m;
+
+    for (int i = 0; i < m; i++) {
+        int a, b;
+        cin >> a >> b;
+        graph[a].push_back(b);
+        graph[b].push_back(a);
+    }
+
+    int components = 0;
+    for (int i = 1; i <= n; i++) {
+        if (!vst[i]) {
+            components++;
+            dfs(i);
+        }
+    }
+    cout << components - 1;
+
+    return 0;
+}
+```
+
+### C 闯关游戏
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    int ki;
+    vector<int> adj;
+};
+
+int main() {
+    int n;
+    cin >> n;
+    vector<Node> nodes(n);
+    for (int i = 0; i < n; ++i) {
+        int ki, m;
+        cin >> ki >> m;
+        vector<int> adj(m);
+        for (int j = 0; j < m; ++j) {
+            cin >> adj[j];
+        }
+        nodes[i] = {ki, adj};
+    }
+
+    if (n == 1) {
+        cout << "Yes" << endl;
+        return 0;
+    }
+
+    vector<vector<int>> adj_forward(n + 1);
+    for (int u = 1; u <= n; ++u) {
+        for (int v : nodes[u - 1].adj) {
+            adj_forward[u].push_back(v);
+        }
+    }
+
+    vector<vector<int>> adj_backward(n + 1);
+    for (int u = 1; u <= n; ++u) {
+        for (int v : adj_forward[u]) {
+            adj_backward[v].push_back(u);
+        }
+    }
+
+    bool in_reachable_from_start[101] = {false};
+    queue<int> q;
+    q.push(1);
+    in_reachable_from_start[1] = true;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v : adj_forward[u]) {
+            if (!in_reachable_from_start[v]) {
+                in_reachable_from_start[v] = true;
+                q.push(v);
+            }
+        }
+    }
+
+    bool in_can_reach_end[101] = {false};
+    queue<int> q2;
+    q2.push(n);
+    in_can_reach_end[n] = true;
+    while (!q2.empty()) {
+        int v = q2.front();
+        q2.pop();
+        for (int u : adj_backward[v]) {
+            if (!in_can_reach_end[u]) {
+                in_can_reach_end[u] = true;
+                q2.push(u);
+            }
+        }
+    }
+
+    vector<pair<int, int>> edges;
+    for (int u = 1; u <= n; ++u) {
+        if (in_reachable_from_start[u] && in_can_reach_end[u]) {
+            for (int v : nodes[u - 1].adj) {
+                if (in_can_reach_end[v]) {
+                    edges.emplace_back(u, v);
+                }
+            }
+        }
+    }
+
+    int initial = 100 + nodes[0].ki;
+    if (initial <= 0) {
+        cout << "No" << endl;
+        return 0;
+    }
+
+    vector<int> max_energy(n + 1, INT_MIN);
+    max_energy[1] = initial;
+
+    for (int i = 0; i < n; ++i) {
+        bool updated = false;
+        for (auto& e : edges) {
+            int u = e.first, v = e.second;
+            if (max_energy[u] > 0) {
+                int new_energy = max_energy[u] + nodes[v - 1].ki;
+                if (new_energy > max_energy[v] && new_energy > 0) {
+                    max_energy[v] = new_energy;
+                    updated = true;
+                }
+            }
+        }
+        if (!updated) break;
+    }
+
+    bool has_positive_cycle = false;
+    for (auto& e : edges) {
+        int u = e.first, v = e.second;
+        if (max_energy[u] > 0) {
+            int new_energy = max_energy[u] + nodes[v - 1].ki;
+            if (new_energy > max_energy[v] && new_energy > 0) {
+                has_positive_cycle = true;
+                break;
+            }
+        }
+    }
+
+    if (has_positive_cycle) {
+        cout << "Yes" << endl;
+        return 0;
+    }
+
+    if (max_energy[n] > 0) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
+
+    return 0;
+}
+```
+
+### D 圣诞树
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using i64 = long long;
+typedef long long ll;
+
+const int maxn = 5e4 + 6;
+const int maxm = 5e4 + 6;
+
+struct edge {
+    int to, len; 
+};
+
+vector<edge> e[maxn]; 
+
+struct node {
+    i64 dis;
+    int num;
+    bool operator>(const node &a) const {
+        return dis > a.dis;
+    }
+};
+
+i64 minDis[maxn];
+bool vis[maxn];
+priority_queue<node, vector<node>, greater<node>> pq;
+
+void dijkstra(int n, int s) {
+    for (int i = 1; i <= n; i++) {
+        minDis[i] = 1e10;
+    }
+    minDis[s] = 0;
+    pq.push({0, s});
+    while (!pq.empty()) {
+        int u = pq.top().num;
+        pq.pop();
+        if (vis[u]) continue;
+        vis[u] = 1;
+        for (edge eg : e[u]) {
+            int v = eg.to;
+            int w = eg.len;
+            if (minDis[v] > minDis[u] + w) {
+                minDis[v] = minDis[u] + w;
+                pq.push({minDis[v], v});
+            }
+        }
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m, s;
+    cin >> n >> m;
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++) {
+        cin >> a[i];
+    }
+    s = 1;
+    int u, v, w;
+    while (m--) {
+        cin >> u >> v >> w;
+        e[u].push_back({v, w});
+        e[v].push_back({u, w});
+    }
+    dijkstra(n, s);
+    i64 ans = 0;
+    bool ok = 1;
+    for (int i = 1; i <= n; i++) {
+        if (minDis[i] == 1e10) {
+            ok = 0;
+            break;
+        }
+        ans += a[i] * minDis[i];
+    }
+    if (ok)
+        cout << ans << '\n';
+    else
+        cout << "No Answer\n";
+
+    return 0;
+}
+```
+
+### E 网络延时
+
+```cpp
+#include<bits/stdc++.h>
+
+using namespace std;
+
+vector<int> graph[1000];
+int dist[1000];
+
+void shortestPath(int start) {
+    memset(dist, -1, sizeof(dist));
+    queue<int> nodes;
+    nodes.push(start);
+    dist[start] = 0;
+
+    while (!nodes.empty()) {
+        int cur = nodes.front();
+        nodes.pop();
+
+        for (int i = 0; i < graph[cur].size(); i++) {
+            int next = graph[cur][i];
+
+            if (dist[next] == -1) {
+                nodes.push(next);
+                dist[next] = dist[cur] + 1;
+            }
+        }
+    }
+}
+
+int main() {
+    int N;
+    int maxNode;
+    int maxPath = 0;
+    cin >> N;
+
+    for (int i = 0; i < N - 1; i++) {
+        int a, b;
+        cin >> a >> b;
+        graph[a].push_back(b);
+        graph[b].push_back(a);
+    }
+
+    shortestPath(1);
+    for (int i = 1; i <= N; i++) {
+        if (dist[i] > maxPath) {
+            maxPath = dist[i];
+            maxNode = i;
+        }
+    }
+    shortestPath(maxNode);
+    for (int i = 1; i <= N; i++) {
+        if (dist[i] > maxPath) {
+            maxPath = dist[i];
+        }
+    }
+
+    cout << maxPath << endl;
+
+    return 0;
+}
+```
+
+---
+
+## [Week 13 课下](https://voj.mobi/contest/382/)
 
 ---
