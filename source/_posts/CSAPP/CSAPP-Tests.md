@@ -1169,3 +1169,141 @@ linux> gcc -shared –fpic -o libgraph.so node_model.c edge_model.c
 A D C D B D B B D A B B C B C B
 
 ---
+
+## Week 13
+
+### 问题 1
+
+在能够改变程序控制流的各种机制中，不包含以下哪一项
+
+- A. 函数调用
+- B. 强制类型转换
+- C. 进程上下文切换
+- D. 中断
+
+### 问题 2
+
+以下有关各类异常的正确描述是：
+
+- A. 中断是同步的
+- B. 陷阱异常即 `syscall` 意味着发生了某些致命错误
+- C. 当故障处理完成并且恢复后，返回到下一条指令
+- D. 如果一个应用程序发生了终止异常，终止处理程序从来不将控制返回给该应用程序
+
+### 问题 3
+
+四个进程的运行时间段为：A( 1 -- 4 ), B( 3 -- 6 ), C( 5 -- 9 ), D( 7 -- 11 )
+在两两组合的所有进程对中，有多少对是并发运行的？
+
+- A. 2
+- B. 3
+- C. 4
+- D. 5
+
+### 问题 4
+
+对于进程表述错误的是：
+
+- A. 进程提供的抽象之一是：在时间上提供了一个独立的逻辑控制流
+- B. 普通用户程序的进程，运行初始时是在用户模式中
+- C. 当异常发生时，控制从应用程序转到异常处理程序，处理器将模式从用户模式变为内核模式
+- D. 在进行两个进程的上下文切换时，一般是处于用户模式
+
+### 问题 5
+
+以下程序会输出多少行“2”？
+
+```c
+int main()
+{
+   fork();
+   if (fork() == 0) {
+      fork();
+      printf("2\n");
+      exit(0);
+   }
+   printf("2\n");
+   exit(0);
+}
+```
+
+- A. 3
+- B. 4
+- C. 6
+- D. 7
+
+### 问题 6
+
+```c
+int main()
+{
+   int status;
+   int k = 1;
+
+   if (fork() == 0) {
+      printf("a"); fflush(stdout);
+      k++;
+   } else {
+      printf("b"); fflush(stdout);
+      if (waitpid(-1, &status, 0) > 0) {
+         if (WIFEXITED(status) != 0) {
+           printf("%d", WEXITSTATUS(status) * 2);
+           fflush(stdout);
+         }
+      }
+   }
+   printf("c"); fflush(stdout);
+   exit(k);
+}
+```
+
+以上程序的一种可能的输出是什么？
+
+- A. abc2c
+- B. acb2c
+- C. bca4c
+- D. bac4c
+
+### 问题 7
+
+如果进程 A 和子进程 A1、 进程 B 和子进程 B1、 进程 C 和子进程 C1 都被挂起，它们后续被调度的先后次序是
+
+- A. 不能确定，与调度器实现有关
+- B. A 先于 A1， B 先于 B1， C 先于 C1
+- C. A1 先于 A， B1 先于 B， C1 先于 C
+- D. 先 A、B、C，再 A1、B1、C1
+
+### 问题 8
+
+在程序中调用 `wait(status)`，以下错误的是
+
+- A. 它相当于 `waitpid(-1, status, 0)`
+- B. 调用进程继续运行，并等待着子进程终止的消息通知
+- C. 当有一个子进程终止后， `wait(status)` 返回
+- D. 通过 `wait(status)` ，父进程得以回收已终止的子进程
+
+### 问题 9
+
+```c
+void fork9() {
+  if (fork() == 0) {
+ printf("Running Child, PID = %d\n", getpid());
+ while (1); /* Infinite loop */
+   } else {
+ printf("Running Parent, PID = %d\n", getpid());
+ while (1); /* Infinite loop */
+   }
+}
+```
+
+如果 父进程号为 6639，子进程号为 6640，以下正确的陈述是
+
+- A. 此程序在命令行中运行时，先输出 6639，再输出 6640
+- B. 在命令行中运行此程序，执行 `kill 6640` 后，子进程终止并被回收
+- C. 在命令行中 运行此程序， 执行 `kill 6640` 后，子进程成为孤儿进程
+- D. 在命令行中运行此程序，执行 `kill 6639`、 `kill 6640` 后，由 `init` 进程回收子进程 6640
+
+**答案：**
+B D B D C D A B D
+
+---
