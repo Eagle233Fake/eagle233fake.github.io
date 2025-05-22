@@ -15,7 +15,7 @@
 <meta property="og:description" content="Week 1问题 1在 C 语言编译过程中，汇编程序是由哪个工具产生？    A. 预处理器   B. 编译器   C. 汇编器   D. 链接器  问题 2在 C 程序的编译过程中，以下哪一个工具的输出是二进制文件？    A. 预处理器   B. 编译器   C. 链接器   D. 编辑器  问题 3高速缓存位于以下哪个部件之内？    A. 寄存器   B. 主存储器   C. CPU">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-03-12T15:56:23.000Z">
-<meta property="article:modified_time" content="2025-05-16T10:16:24.240Z">
+<meta property="article:modified_time" content="2025-05-22T14:58:13.431Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2025-03-12 23:56:23 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-05-16 18:16:24
+        2025-05-22 22:58:13
     </span>
     <br>
     <span>
@@ -1128,6 +1128,160 @@ XXXXXX: 5d  - - - - - pop %rbp<span aria-hidden="true" class="line-numbers-rows"
 <li>B. 在命令行中运行此程序，执行 <code>kill 6640</code> 后，子进程终止并被回收</li>
 <li>C. 在命令行中 运行此程序， 执行 <code>kill 6640</code> 后，子进程成为孤儿进程</li>
 <li>D. 在命令行中运行此程序，执行 <code>kill 6639</code>、 <code>kill 6640</code> 后，由 <code>init</code> 进程回收子进程 6640</li>
+</ul>
+<p><strong>答案：</strong><br>B D B D C D A B D</p>
+<hr>
+<h2 id="Week-14"><a href="#Week-14" class="headerlink" title="Week 14"></a>Week 14</h2><h3 id="问题-1-12"><a href="#问题-1-12" class="headerlink" title="问题 1"></a>问题 1</h3><p>已知：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">linux<span class="token operator">></span> ./myexample
+Child1: <span class="token assign-left variable">pid</span><span class="token operator">=</span><span class="token number">3196</span> <span class="token assign-left variable">pgrp</span><span class="token operator">=</span><span class="token number">3195</span>
+Child2: <span class="token assign-left variable">pid</span><span class="token operator">=</span><span class="token number">3197</span> <span class="token assign-left variable">pgrp</span><span class="token operator">=</span><span class="token number">3195</span>
+
+linux<span class="token operator">></span> <span class="token function">ps</span>
+ PID TTY          TIME CMD
+<span class="token number">3175</span> pts/2    00:00:00 tcsh
+<span class="token number">3196</span> pts/2    00:00:02 myexample
+<span class="token number">3197</span> pts/2    00:00:02 myexample
+<span class="token number">3201</span> pts/2    00:00:00 <span class="token function">ps</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>请问执行什么命令，然后可以产生以下效果？</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">linux<span class="token operator">></span> <span class="token function">ps</span>
+ PID TTY          TIME CMD
+<span class="token number">3175</span> pts/2    00:00:00 tcsh
+<span class="token number">3201</span> pts/2    00:00:00 <span class="token function">ps</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. <code>/bin/kill 3195</code></li>
+<li>B. <code>/bin/kill -9 3195</code></li>
+<li>C. <code>/bin/kill -9 -3195</code></li>
+<li>D. <code>/bin/kill 3196 3197</code></li>
+</ul>
+<h3 id="问题-2-12"><a href="#问题-2-12" class="headerlink" title="问题 2"></a>问题 2</h3><p>在 shell 窗口中，用户输入了一个可执行文件名并运行它。此时 shell 程序中的主要处理流程是：</p>
+<ul>
+<li>A. <code>execve()</code>，然后调用 <code>fork()</code></li>
+<li>B. <code>fork()</code>，然后调用 <code>execve()</code></li>
+<li>C. <code>fork()</code>，然后在子进程中调用 <code>execve()</code></li>
+<li>D. <code>execve()</code>，然后调用 <code>fork()</code>，然后在父进程中调用 <code>execve()</code></li>
+</ul>
+<h3 id="问题-3-12"><a href="#问题-3-12" class="headerlink" title="问题 3"></a>问题 3</h3><p>在 Linux shell 中运行一个程序时，按 <code>Ctrl-Z</code> 可以将它停止，此处内核发送的信号是：</p>
+<ul>
+<li>A. <code>SIGINT</code></li>
+<li>B. <code>SIGQUIT</code></li>
+<li>C. <code>SIGALRM</code></li>
+<li>D. <code>SIGTSTP</code></li>
+</ul>
+<h3 id="问题-4-12"><a href="#问题-4-12" class="headerlink" title="问题 4"></a>问题 4</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">sig_handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Caught\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> sig_handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Wait\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"End\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 shell 中运行以上程序，然后按 <code>Ctrl-C</code>，请问输出是什么？</p>
+<ul>
+<li>A. Wait</li>
+<li>B. Caught</li>
+<li>C. Wait<br>   Caught<br>   End</li>
+<li>D. Wait<br>   Caught</li>
+</ul>
+<h3 id="问题-5-12"><a href="#问题-5-12" class="headerlink" title="问题 5"></a>问题 5</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> beeps <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>sig <span class="token operator">==</span> SIGALRM<span class="token punctuation">)</span>
+    <span class="token function">safe_printf</span><span class="token punctuation">(</span><span class="token string">"BEEP\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">++</span>beeps <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token function">alarm</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">safe_printf</span><span class="token punctuation">(</span><span class="token string">"BOOM!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">signal</span><span class="token punctuation">(</span>SIGALRM<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">alarm</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行以上程序，在 2.5 秒时按 <code>Ctrl-C</code>，当程序运行结束的全部输出是什么？</p>
+<ul>
+<li>A. BEEP<br>   BEEP</li>
+<li>B. BEEP<br>   BEEP<br>   BOOM!</li>
+<li>C. BEEP<br>   BEEP<br>   BEEP<br>   BEEP<br>   BOOM!</li>
+<li>D. BEEP<br>   BEEP<br>   BEEP<br>   BEEP<br>   BEEP<br>   BOOM!</li>
+</ul>
+<h3 id="问题-6-12"><a href="#问题-6-12" class="headerlink" title="问题 6"></a>问题 6</h3><p>已知 <code>SIGUSR1</code> 是用户定义的信号，默认行为是终止进程。</p>
+<p>以下这个程序的所有输出的 <code>counter</code> 值之和是多少？</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token class-name">pid_t</span> pid<span class="token punctuation">;</span>
+<span class="token keyword">int</span> counter <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">handler1</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   counter <span class="token operator">=</span> counter <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"counter = %d\n"</span><span class="token punctuation">,</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Flushes the printed string to stdout */</span>
+   <span class="token function">kill</span><span class="token punctuation">(</span>pid<span class="token punctuation">,</span> SIGUSR1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">handler2</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   counter <span class="token operator">++</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"counter = %d\n"</span><span class="token punctuation">,</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token function">signal</span><span class="token punctuation">(</span>SIGUSR1<span class="token punctuation">,</span> handler1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pid <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">signal</span><span class="token punctuation">(</span>SIGUSR1<span class="token punctuation">,</span> handler2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">kill</span><span class="token punctuation">(</span><span class="token function">getppid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SIGUSR1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      <span class="token class-name">pid_t</span> p<span class="token punctuation">;</span> <span class="token keyword">int</span> status<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>p <span class="token operator">=</span> <span class="token function">wait</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>status<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+         counter <span class="token operator">+=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"counter = %d\n"</span><span class="token punctuation">,</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. 101</li>
+<li>B. 406</li>
+<li>C. 606</li>
+<li>D. 706</li>
+</ul>
+<h3 id="问题-7-9"><a href="#问题-7-9" class="headerlink" title="问题 7"></a>问题 7</h3><p><code>setjmp</code> 函数的特点是：</p>
+<ul>
+<li>A. 调用一次，从不返回</li>
+<li>B. 调用一次，返回一次</li>
+<li>C. 调用一次，返回两次</li>
+<li>D. 调用一次，返回一次或者多次</li>
+</ul>
+<h3 id="问题-8-7"><a href="#问题-8-7" class="headerlink" title="问题 8"></a>问题 8</h3><p>在程序正常运行时，以下哪些函数的行为是 “调用一次，从不返回”？ （多选）</p>
+<ul>
+<li>A. <code>execve</code></li>
+<li>B. <code>fork</code></li>
+<li>C. <code>longjmp</code></li>
+<li>D. <code>setjmp</code></li>
+</ul>
+<h3 id="问题-9-7"><a href="#问题-9-7" class="headerlink" title="问题 9"></a>问题 9</h3><p>虚拟内存的位置通常在哪里</p>
+<ul>
+<li>A. 高速缓存</li>
+<li>B. 物理内存</li>
+<li>C. 硬盘</li>
+<li>D. 服务器</li>
+</ul>
+<h3 id="问题-10-5"><a href="#问题-10-5" class="headerlink" title="问题 10"></a>问题 10</h3><p>CPU &#x2F; 进程如果对内存中的数据进行读写操作，使用的地址是：</p>
+<ul>
+<li>A. 物理地址</li>
+<li>B. 虚拟地址</li>
+<li>C. 高速缓存地址</li>
+<li>D. 磁盘逻辑块地址</li>
 </ul>
 <p><strong>答案：</strong><br>B D B D C D A B D</p>
 <hr>
