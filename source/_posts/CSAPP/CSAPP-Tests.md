@@ -1307,3 +1307,209 @@ void fork9() {
 B D B D C D A B D
 
 ---
+
+## Week 14
+
+### 问题 1
+
+已知：
+
+```bash
+linux> ./myexample
+Child1: pid=3196 pgrp=3195
+Child2: pid=3197 pgrp=3195
+
+linux> ps
+ PID TTY          TIME CMD
+3175 pts/2    00:00:00 tcsh
+3196 pts/2    00:00:02 myexample
+3197 pts/2    00:00:02 myexample
+3201 pts/2    00:00:00 ps
+```
+
+请问执行什么命令，然后可以产生以下效果？
+
+```bash
+linux> ps
+ PID TTY          TIME CMD
+3175 pts/2    00:00:00 tcsh
+3201 pts/2    00:00:00 ps
+```
+
+- A. `/bin/kill 3195`
+- B. `/bin/kill -9 3195`
+- C. `/bin/kill -9 -3195`
+- D. `/bin/kill 3196 3197`
+
+### 问题 2
+
+在 shell 窗口中，用户输入了一个可执行文件名并运行它。此时 shell 程序中的主要处理流程是：
+
+- A. `execve()`，然后调用 `fork()`
+- B. `fork()`，然后调用 `execve()`
+- C. `fork()`，然后在子进程中调用 `execve()`
+- D. `execve()`，然后调用 `fork()`，然后在父进程中调用 `execve()`
+
+### 问题 3
+
+在 Linux shell 中运行一个程序时，按 `Ctrl-Z` 可以将它停止，此处内核发送的信号是：
+
+- A. `SIGINT`
+- B. `SIGQUIT`
+- C. `SIGALRM`
+- D. `SIGTSTP`
+
+### 问题 4
+
+```c
+void sig_handler(int sig) {
+   printf("Caught\n");
+   exit(0);
+}
+
+int main() {
+   signal(SIGINT, sig_handler);
+   printf("Wait\n");
+   pause();
+   printf("End\n");
+   return 0;
+}
+```
+
+在 shell 中运行以上程序，然后按 `Ctrl-C`，请问输出是什么？
+
+- A. Wait
+- B. Caught
+- C. Wait
+     Caught
+     End
+- D. Wait
+     Caught
+
+### 问题 5
+
+```c
+int beeps = 0;
+void handler(int sig) {
+  if (sig == SIGALRM)
+    safe_printf("BEEP\n");
+  if (++beeps < 5)
+    alarm(1);
+  else {
+    safe_printf("BOOM!\n");
+    exit(0);
+  }
+}
+
+main() {
+  signal(SIGALRM, handler); 
+  signal(SIGINT, handler);
+  alarm(1);
+  while (1) {
+  }
+}
+```
+
+执行以上程序，在 2.5 秒时按 `Ctrl-C`，当程序运行结束的全部输出是什么？
+
+- A. BEEP
+     BEEP
+- B. BEEP
+     BEEP
+     BOOM!
+- C. BEEP
+     BEEP
+     BEEP
+     BEEP
+     BOOM!
+- D. BEEP
+     BEEP
+     BEEP
+     BEEP
+     BEEP
+     BOOM!
+
+### 问题 6
+
+已知 `SIGUSR1` 是用户定义的信号，默认行为是终止进程。
+
+以下这个程序的所有输出的 `counter` 值之和是多少？
+
+```c
+pid_t pid;
+int counter = 101;
+
+void handler1(int sig) {
+   counter = counter * 2;
+   printf("counter = %d\n", counter);
+   fflush(stdout); /* Flushes the printed string to stdout */
+   kill(pid, SIGUSR1);
+}
+
+void handler2(int sig) {
+   counter ++;
+   printf("counter = %d\n", counter);
+   exit(0);
+}
+
+main() {
+   signal(SIGUSR1, handler1);
+   if ((pid = fork()) == 0) {
+      signal(SIGUSR1, handler2);
+      kill(getppid(), SIGUSR1);
+      while(1) {};
+   } else {
+      pid_t p; int status;
+      if ((p = wait(&status)) > 0) {
+         counter += 100;
+         printf("counter = %d\n", counter);
+      }
+   }
+}
+```
+
+- A. 101
+- B. 406
+- C. 606
+- D. 706
+
+### 问题 7
+
+`setjmp` 函数的特点是：
+
+- A. 调用一次，从不返回
+- B. 调用一次，返回一次
+- C. 调用一次，返回两次
+- D. 调用一次，返回一次或者多次
+
+### 问题 8
+
+在程序正常运行时，以下哪些函数的行为是 "调用一次，从不返回"？ （多选）
+
+- A. `execve`
+- B. `fork`
+- C. `longjmp`
+- D. `setjmp`
+
+### 问题 9
+
+虚拟内存的位置通常在哪里
+
+- A. 高速缓存
+- B. 物理内存
+- C. 硬盘
+- D. 服务器
+
+### 问题 10
+
+CPU / 进程如果对内存中的数据进行读写操作，使用的地址是：
+
+- A. 物理地址
+- B. 虚拟地址
+- C. 高速缓存地址
+- D. 磁盘逻辑块地址
+
+**答案：**
+B D B D C D A B D
+
+---
