@@ -5054,3 +5054,553 @@ int main() {
 ## [Week 13 课下](https://voj.mobi/contest/382/)
 
 ---
+
+## [Week 14 课上](https://voj.mobi/contest/385/)
+
+### A 小明的训练室
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+using namespace std;
+
+const int INF = numeric_limits<int>::max();
+
+struct Edge {
+    int to;
+    int h;
+};
+
+void dijkstra(int s, int v, const vector<vector<Edge>>& g, vector<int>& mh) {
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, s});
+    mh[s] = 0;
+    
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        int curr_h = pq.top().first;
+        pq.pop();
+        
+        if (curr_h > mh[u]) continue;
+        
+        for (const auto& e : g[u]) {
+            int next_v = e.to;
+            int next_h = e.h;
+            
+            if (mh[next_v] > max(mh[u], next_h)) {
+                mh[next_v] = max(mh[u], next_h);
+                pq.push({mh[next_v], next_v});
+            }
+        }
+    }
+}
+
+int main() {
+    int n, m, t;
+    cin >> n >> m >> t;
+    
+    vector<vector<Edge>> g(n + 1);
+    
+    for (int i = 0; i < m; ++i) {
+        int s, e, h;
+        cin >> s >> e >> h;
+        g[s].push_back({e, h});
+    }
+    
+    while (t--) {
+        int a, b;
+        cin >> a >> b;
+        
+        vector<int> mh(n + 1, INF);
+        
+        dijkstra(a, n, g, mh);
+        
+        int res = mh[b];
+        if (res == INF) cout << "-1" << endl;
+        else cout << res << endl;
+    }
+    
+    return 0;
+}
+```
+
+### B 节点的最近公共祖先
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+const int MAXN = 10001;
+const int MAXLOG = 15;
+
+vector<int> adj[MAXN];
+int parent[MAXN];
+int depth[MAXN];
+int ancestor[MAXN][MAXLOG];
+
+void dfs(int node, int par, int dep) {
+    parent[node] = par;
+    depth[node] = dep;
+    for (int i = 0; i < adj[node].size(); ++i) {
+        int child = adj[node][i];
+        if (child != par) {
+            dfs(child, node, dep + 1);
+        }
+    }
+}
+
+void binaryLift(int N) {
+    for (int i = 1; i <= N; ++i) {
+        ancestor[i][0] = parent[i];
+    }
+    
+    for (int j = 1; (1 << j) <= N; ++j) {
+        for (int i = 1; i <= N; ++i) {
+            if (ancestor[i][j - 1] != -1) {
+                ancestor[i][j] = ancestor[ancestor[i][j - 1]][j - 1];
+            }
+        }
+    }
+}
+
+int findLCA(int u, int v) {
+    if (depth[u] < depth[v]) swap(u, v);
+    
+    int log;
+    for (log = 1; (1 << log) <= depth[u]; ++log);
+    log--;
+    
+    for (int i = log; i >= 0; --i) {
+        if (depth[u] - (1 << i) >= depth[v]) {
+            u = ancestor[u][i];
+        }
+    }
+    
+    if (u == v) return u;
+    
+    for (int i = log; i >= 0; --i) {
+        if (ancestor[u][i] != -1 && ancestor[u][i] != ancestor[v][i]) {
+            u = ancestor[u][i];
+            v = ancestor[v][i];
+        }
+    }
+    
+    return parent[u];
+}
+
+int main() {
+    int N, M, S;
+    cin >> N >> M >> S;
+    
+    for (int i = 1; i <= N; ++i) {
+        adj[i].clear();
+        parent[i] = -1;
+        depth[i] = 0;
+        for (int j = 0; j < MAXLOG; ++j) {
+            ancestor[i][j] = -1;
+        }
+    }
+    
+    for (int i = 1; i < N; ++i) {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    
+    dfs(S, -1, 0);
+    binaryLift(N);
+    
+    for (int i = 0; i < M; ++i) {
+        int a, b;
+        cin >> a >> b;
+        int lca = findLCA(a, b);
+        cout << lca << endl;
+    }
+    
+    return 0;
+}
+```
+
+### C 布设光纤
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<vector<int>> adj(n, vector<int>(n));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> adj[i][j];
+        }
+    }
+
+    vector<int> lowcost(n);
+    vector<bool> visited(n, false);
+    for (int i = 0; i < n; ++i) {
+        lowcost[i] = adj[0][i];
+    }
+    visited[0] = true;
+    int sum = 0;
+
+    for (int cnt = 1; cnt < n; ++cnt) {
+        int min_val = INT_MAX;
+        int min_idx = -1;
+        for (int j = 0; j < n; ++j) {
+            if (!visited[j] && lowcost[j] < min_val) {
+                min_val = lowcost[j];
+                min_idx = j;
+            }
+        }
+        if (min_idx == -1) {
+            break;
+        }
+        sum += min_val;
+        visited[min_idx] = true;
+        for (int j = 0; j < n; ++j) {
+            if (!visited[j] && adj[min_idx][j] < lowcost[j]) {
+                lowcost[j] = adj[min_idx][j];
+            }
+        }
+    }
+
+    cout << sum << endl;
+
+    return 0;
+}
+```
+
+### D 丁香之路
+
+```cpp
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+const int MAXN = 2505;
+struct Edge { int u, v, w; };
+vector<Edge> G;
+int f[MAXN], degree[MAXN], n, m, s, u, v, sum;
+int ff[MAXN];
+
+void init(int n) {
+    for (int i = 1; i <= n; ++i) f[i] = i;
+}
+
+int findf(int i) {
+    return f[i] == i ? f[i] : f[i] = findf(f[i]);
+}
+
+void merge(int i, int j) {
+    f[findf(i)] = findf(j);
+}
+
+bool cmp(const Edge &a, const Edge &b) {
+    return a.w < b.w;
+}
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0), cout.tie(0);
+    cin >> n >> m >> s;
+    init(n);
+    for (int i = 1; i <= m; ++i) {
+        cin >> u >> v;
+        degree[u]++, degree[v]++;
+        sum += abs(u - v);
+        merge(u, v);
+    }
+    degree[s]++;
+    for (int i = 1; i <= n; ++i) ff[i] = f[i];
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= n; ++j) f[j] = ff[j];
+        degree[i]++;
+        int ans = sum, pre = 0;
+        vector<int> V;
+        for (int j = 1; j <= n; ++j) {
+            if (degree[j]) V.push_back(j);
+        }
+        for (int j = 1; j <= n; ++j) {
+            if (degree[j] & 1) {
+                if (!pre) pre = j;
+                else {
+                    ans += (j - pre);
+                    for (int k = pre + 1; k <= j; ++k) merge(k, k - 1);
+                    pre = 0;
+                }
+            }
+        }
+        G.clear();
+        for (int j = 0; j + 1 < V.size(); ++j) {
+            if (findf(V[j]) != findf(V[j + 1])) {
+                G.push_back({V[j], V[j + 1], V[j + 1] - V[j]});
+            }
+        }
+        sort(G.begin(), G.end(), cmp);
+        for (const auto &e : G) {
+            if (findf(e.u) != findf(e.v)) {
+                merge(e.u, e.v); ans += 2 * e.w;
+            }
+        }
+        degree[i]--;
+        cout << ans << " ";
+    }
+    return 0;
+}
+```
+
+### E 威虎山上的分配
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+const int MAXN = 10001;
+const int MAXM = 20001;
+
+int cnt, money[MAXN];
+bool vis[MAXN];
+struct Edge {
+    int v, next;
+    int len;
+} E[MAXM];
+
+int p[MAXN], eid = 1;
+
+void insert(int u, int v) {
+    E[eid].v = v;
+    E[eid].next = p[u];
+    p[u] = eid++;
+}
+
+int n, m;
+int indegree[MAXN];
+
+void topo() {
+    queue<int> q;
+    for (int i = 1; i <= n; i++) {
+        if (indegree[i] == 0) {
+            q.push(i);
+            vis[i] = true;
+        }
+    }
+    while (!q.empty()) {
+        int now = q.front();
+        q.pop();
+        cnt++;
+        for (int i = p[now]; i; i = E[i].next) {
+            int v = E[i].v;
+            if (--indegree[v] == 0) {
+                q.push(v);
+                vis[v] = true;
+                money[v] = money[now] + 1;
+            }
+        }
+    }
+}
+
+int main() {
+    memset(indegree, 0, sizeof(indegree));
+    memset(money, 0, sizeof(money));
+    cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int u, v;
+        cin >> u >> v;
+        insert(v, u);
+        indegree[u]++;
+    }
+
+    topo();
+    int ans = 0;
+    for (int i = 1; i <= n; i++) {
+        if (!vis[i]) {
+            cout << "Unhappy!" << endl;
+            return 0;
+        }
+        ans += money[i];
+    }
+
+    cout << ans + n * 100 << endl;
+    return 0;
+}
+```
+
+### F 判定欧拉回路
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MAXN = 1001;
+
+vector<int> adj[MAXN];
+int degree[MAXN];     
+bool visited[MAXN];   
+
+void dfs(int v) {
+    visited[v] = true;
+    for (int u : adj[v]) {
+        if (!visited[u]) {
+            dfs(u);
+        }
+    }
+}
+
+bool isConnected(int N) {
+    memset(visited, false, sizeof(visited));
+    int start = -1;
+    for (int i = 1; i <= N; ++i) {
+        if (degree[i] > 0) {
+            start = i;
+            break;
+        }
+    }
+    if (start == -1) return true; 
+    dfs(start);
+    
+    for (int i = 1; i <= N; ++i) {
+        if (degree[i] > 0 && !visited[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    
+    for (int i = 0; i < M; ++i) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        degree[u]++;
+        degree[v]++;
+    }
+    
+    if (!isConnected(N)) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    for (int i = 1; i <= N; ++i) {
+        if (degree[i] % 2 != 0) {
+            cout << 0 << endl;
+            return 0;
+        }
+    }
+
+    cout << 1 << endl;
+    
+    return 0;
+}
+```
+
+### G 商业信息共享
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<vector<int>> adj(n), adj_t(n);
+    for (int i = 0; i < n; ++i) {
+        int j;
+        while (cin >> j && j != 0) {
+            j--; // 转换为0-based索引
+            adj[i].push_back(j);
+            adj_t[j].push_back(i);
+        }
+    }
+
+    vector<bool> visited(n, false);
+    vector<int> order;
+    function<void(int)> dfs1 = [&](int u) {
+        visited[u] = true;
+        for (int v : adj[u]) {
+            if (!visited[v]) {
+                dfs1(v);
+            }
+        }
+        order.push_back(u);
+    };
+
+    for (int i = 0; i < n; ++i) {
+        if (!visited[i]) {
+            dfs1(i);
+        }
+    }
+
+    reverse(order.begin(), order.end());
+
+    vector<int> component(n, -1);
+    int current_component = 0;
+    visited.assign(n, false);
+    function<void(int)> dfs2 = [&](int u) {
+        visited[u] = true;
+        component[u] = current_component;
+        for (int v : adj_t[u]) {
+            if (!visited[v]) {
+                dfs2(v);
+            }
+        }
+    };
+
+    for (int u : order) {
+        if (!visited[u]) {
+            dfs2(u);
+            current_component++;
+        }
+    }
+
+    int k = current_component;
+    vector<int> indegree(k, 0), outdegree(k, 0);
+    vector<vector<bool>> added(k, vector<bool>(k, false));
+
+    for (int u = 0; u < n; ++u) {
+        for (int v : adj[u]) {
+            if (component[u] != component[v]) {
+                int cu = component[u];
+                int cv = component[v];
+                if (!added[cu][cv]) {
+                    added[cu][cv] = true;
+                    outdegree[cu]++;
+                    indegree[cv]++;
+                }
+            }
+        }
+    }
+
+    int c1 = 0, c2 = 0;
+    for (int i = 0; i < k; ++i) {
+        if (indegree[i] == 0) c1++;
+        if (outdegree[i] == 0) c2++;
+    }
+
+    int ans1 = c1;
+    int ans2 = (k == 1) ? 0 : max(c1, c2);
+
+    cout << ans1 << endl;
+    cout << ans2 << endl;
+
+    return 0;
+}
+```
+
+---
+
+## [Week 14 课下](https://voj.mobi/contest/386/)
+
+---
