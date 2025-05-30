@@ -3903,91 +3903,6 @@ int main()
 
 ## [Week 10 课下](https://voj.mobi/contest/374/)
 
-### A Trees on the level
-
-```cpp
-#include<iostream>
-#include<cstring>
-#include<queue>
-#include<stdio.h>
-#include<string>
-using namespace std;
-#define maxn 300
-
-struct node {
-    int val;
-    bool haveVal;
-    int l,r;
-} tree[300];
-int root,len;
-bool ok;
-
-bool read_input() {
-    string s;
-    ok = true;
-    root = 0,len=1,tree[0].l=-1,tree[0].r=-1,tree[0].haveVal=false;
-    for (;;) {
-        if (!(cin>>s))return false;
-        if (s=="()")return true;
-        int v,now=root;
-        sscanf(&s[1], "%d", &v);
-        int i=s.find(',')+1;
-        while (s[i] != ')') {
-            if (s[i] == 'L') {
-                if (tree[now].l == -1) {
-                    tree[now].l = len++;
-                    tree[tree[now].l].l=-1,tree[tree[now].l].r=-1,tree[tree[now].l].haveVal=false;
-                }
-                now = tree[now].l;
-            }
-            else{
-                if (tree[now].r == -1){
-                    tree[now].r = len++;
-                    tree[tree[now].r].l=-1,tree[tree[now].r].r=-1,tree[tree[now].r].haveVal=false;
-                }
-                now = tree[now].r;
-            }
-            i++;
-        }
-        if (tree[now].haveVal) {
-            ok = false;
-        }
-        tree[now].val = v;
-        tree[now].haveVal = true;
-    }
-}
-
-int main() {
-    while (read_input()) {
-        if (!ok) {
-            cout << "not complete" << endl;
-            continue;
-        }
-        string s="";
-        queue<int> q;
-        q.push(root);
-        int now;
-        while (q.size()) {
-            now = q.front(); q.pop();
-            if (!tree[now].haveVal) {
-                s= "not complete";
-                break;
-            }
-            else {
-                if (s == "")
-                    s += to_string(tree[now].val);
-                else
-                    s += " "+to_string(tree[now].val);
-            }
-            if(tree[now].l!=-1)q.push(tree[now].l);
-            if(tree[now].r!=-1)q.push(tree[now].r);
-        }
-        cout << s << endl;
-    }
-    return 0;
-}
-```
-
 ### B 普通平衡树
 
 ```cpp
@@ -4089,55 +4004,6 @@ int main() {
         else if (op == 6) printf("%d\n", get_next(root, x));
     }
 
-    return 0;
-}
-```
-
-### C Shaolin
-
-```cpp
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <vector>
-#include <set>
-#include <algorithm>
-#include <cmath>
-#include <map>
-using namespace std;
-
-#define MAX_N 100006
-int n;
-map<int, int> distanceMap;
-map<int, int>::iterator lowerIt, prevIt;
-
-int main() {
-    while (scanf("%d", &n) == 1 && n) {
-        distanceMap.clear();
-        distanceMap[1000000000] = 1;
-        
-        for (int i = 0; i < n; i++) {
-            int x, y;
-            scanf("%d %d", &x, &y);
-            
-            lowerIt = distanceMap.lower_bound(y);
-            
-            if (lowerIt == distanceMap.begin()) {
-                printf("%d %d\n", x, lowerIt->second);
-            } else {
-                prevIt = lowerIt;
-                prevIt--;
-                
-                if (abs(y - prevIt->first) <= abs(y - lowerIt->first)) {
-                    printf("%d %d\n", x, prevIt->second);
-                } else {
-                    printf("%d %d\n", x, lowerIt->second);
-                }
-            }
-            
-            distanceMap[y] = x;
-        }
-    }
     return 0;
 }
 ```
@@ -5602,5 +5468,323 @@ int main() {
 ---
 
 ## [Week 14 课下](https://voj.mobi/contest/386/)
+
+---
+
+## [Week 15 课上](https://voj.mobi/contest/390/)
+
+### A 阿里天池的新任务
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int MAXN = 1000005;
+int w[MAXN], nextArr[MAXN];
+char s[MAXN], pattern[MAXN];
+int total = 0;
+
+void computeLPS(const char *pat, int m, int *lps) {
+    int len = 0;
+    lps[0] = 0;
+    int i = 1;
+    while (i < m) {
+        if (pat[i] == pat[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        } else {
+            if (len != 0) {
+                len = lps[len - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
+
+void kmpSearch(const char *text, const char *pat) {
+    int n = strlen(text);
+    int m = strlen(pat);
+    computeLPS(pat, m, nextArr);
+    int i = 0, j = 0;
+    while (i < n) {
+        if (pat[j] == text[i]) {
+            i++;
+            j++;
+        }
+        if (j == m) {
+            total++;
+            j = nextArr[j - 1];
+        } else if (i < n && pat[j] != text[i]) {
+            if (j != 0) {
+                j = nextArr[j - 1];
+            } else {
+                i++;
+            }
+        }
+    }
+}
+
+int main() {
+    int n, a, b, l, r;
+    cin >> n >> a >> b >> l >> r;
+    cin >> pattern;
+    for (int i = 0; i < n; ++i) {
+        if (i == 0) {
+            w[i] = b;
+        } else {
+            w[i] = (w[i - 1] + a) % n;
+        }
+        if (w[i] >= l && w[i] <= r) {
+            s[i] = (w[i] % 2 == 0) ? 'A' : 'T';
+        } else {
+            s[i] = (w[i] % 2 == 0) ? 'G' : 'C';
+        }
+    }
+    kmpSearch(s, pattern);
+    cout << total;
+    return 0;
+}
+```
+
+### B 猴子打字
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int ALPHABET_SIZE = 26;
+
+struct Node {
+    Node *children[ALPHABET_SIZE];
+    Node *fail;
+    int cnt;
+    Node() {
+        for (int i = 0; i < ALPHABET_SIZE; i++) {
+            children[i] = nullptr;
+        }
+        fail = nullptr;
+        cnt = 0;
+    }
+};
+
+Node *root;
+
+void insert(string word) {
+    Node *p = root;
+    for (char c : word) {
+        int idx = c - 'a';
+        if (p->children[idx] == nullptr) {
+            p->children[idx] = new Node();
+        }
+        p = p->children[idx];
+    }
+    p->cnt++;
+}
+
+void build() {
+    queue<Node*> q;
+    root->fail = root;
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        if (root->children[i] != nullptr) {
+            root->children[i]->fail = root;
+            q.push(root->children[i]);
+        } else {
+            root->children[i] = root;
+        }
+    }
+
+    while (!q.empty()) {
+        Node *u = q.front(); 
+        q.pop();
+        for (int i = 0; i < ALPHABET_SIZE; i++) {
+            if (u->children[i] != nullptr) {
+                Node *v = u->children[i];
+                v->fail = u->fail->children[i];
+                q.push(v);
+            } else {
+                u->children[i] = u->fail->children[i];
+            }
+        }
+    }
+}
+
+long long query(string article) {
+    long long ans = 0;
+    Node *p = root;
+    for (char c : article) {
+        int idx = c - 'a';
+        p = p->children[idx];
+        Node *temp = p;
+        while (temp != root) {
+            ans += temp->cnt;
+            temp = temp->fail;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    root = new Node();
+    string word;
+    for (int i = 0; i < n; i++) {
+        cin >> word;
+        insert(word);
+    }
+    build();
+    string article;
+    cin >> article;
+    cout << query(article) << endl;
+    return 0;
+}
+```
+
+### C 糟糕的 Bug
+
+```cpp
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+
+using namespace std;
+
+#define MAX_N 2333430
+#define MAX_C 26
+
+struct Trie {
+    int *ch[MAX_N];
+    int tot;
+    int cnt[MAX_N];
+
+    Trie() {
+        tot = 0;
+        memset(ch, 0, sizeof(ch));
+        memset(cnt, 0, sizeof(cnt));
+    }
+
+    void insert(const char *str) {
+        int p = 0;
+        for (int i = 0; str[i]; ++i) {
+            if (ch[p] == NULL) {
+                ch[p] = new int[MAX_C];
+                memset(ch[p], -1, sizeof(int) * MAX_C);
+            }
+            if (ch[p][str[i] - 'a'] == -1) {
+                ch[p][str[i] - 'a'] = ++tot;
+            }
+            p = ch[p][str[i] - 'a'];
+        }
+        cnt[p]++;
+    }
+
+    bool find(const char *str) {
+        int p = 0;
+        for (int i = 0; str[i]; ++i) {
+            if (cnt[p] != 0) return true;
+            if (ch[p] == NULL) return false;
+            if (ch[p][str[i] - 'a'] == -1) return false;
+            p = ch[p][str[i] - 'a'];
+        }
+        return false;
+    }
+};
+
+char s[MAX_N][15];
+Trie trie;
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    getchar();
+    bool ans = false;
+    for (int i = 0; i < n; ++i) {
+        scanf("%s", s[i]);
+        getchar();
+        trie.insert(s[i]);
+    }
+    for (int i = 0; i < n; ++i) {
+        if (trie.find(s[i])) {
+            ans = true;
+            break;
+        }
+    }
+    if (ans) {
+        puts("Bug!");
+    } else {
+        puts("Good Luck!");
+    }
+    return 0;
+}
+```
+
+### D 首尾相接
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> getNext(const string& p) {
+    int m = p.size();
+    vector<int> next(m + 1, -1);
+    int i = 0, j = -1;
+    while (i < m) {
+        if (j == -1 || p[i] == p[j]) {
+            i++;
+            j++;
+            next[i] = j;
+        } else {
+            j = next[j];
+        }
+    }
+    return next;
+}
+
+int main() {
+    string s1, s2;
+    getline(cin, s1);
+    getline(cin, s2);
+
+    int n = s2.size();
+    int m = s1.size();
+    if (m == 0 || n == 0) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    vector<int> next = getNext(s1);
+    int j = 0, i = 0;
+    int overlap = 0;
+
+    while (i < n) {
+        if (j == m) {
+            j = next[j];
+        }
+        if (j == -1 || s2[i] == s1[j]) {
+            j++;
+            i++;
+            if (i == n) {
+                overlap = j;
+            }
+        } else {
+            j = next[j];
+        }
+    }
+
+    if (overlap > 0) {
+        cout << s1.substr(0, overlap) << " " << overlap << endl;
+    } else {
+        cout << 0 << endl;
+    }
+
+    return 0;
+}
+```
+
+---
+
+## [Week 15 课下](https://voj.mobi/contest/386/)
 
 ---
