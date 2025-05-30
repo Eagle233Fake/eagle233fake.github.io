@@ -5785,6 +5785,78 @@ int main() {
 
 ---
 
-## [Week 15 课下](https://voj.mobi/contest/386/)
+## [Week 15 课下](https://voj.mobi/contest/391/)
+
+### E 旋转数字
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    int n = s.size();
+
+    vector<int> next(n, 0);
+    for (int i = 1; i < n; i++) {
+        int j = next[i-1];
+        while (j > 0 && s[i] != s[j]) {
+            j = next[j-1];
+        }
+        if (s[i] == s[j]) {
+            j++;
+        }
+        next[i] = j;
+    }
+
+    int T = n;
+    if (next[n-1] != 0 && n % (n - next[n-1]) == 0) {
+        T = n - next[n-1];
+    }
+
+    string ss = s + s;
+    int n2 = 2 * n;
+    vector<int> Z(n2, 0);
+    if (n2 > 0) {
+        Z[0] = n2;
+        int l = 0, r = 0;
+        for (int i = 1; i < n2; i++) {
+            if (i <= r) {
+                Z[i] = min(r - i + 1, Z[i - l]);
+            }
+            while (i + Z[i] < n2 && ss[Z[i]] == ss[i + Z[i]]) {
+                Z[i]++;
+            }
+            if (i + Z[i] - 1 > r) {
+                l = i;
+                r = i + Z[i] - 1;
+            }
+        }
+    }
+
+    int cnt_less = 0, cnt_equal = 0, cnt_greater = 0;
+    for (int k = 0; k < T; k++) {
+        int start = (n - k) % n;
+        if (start == 0) {
+            cnt_equal++;
+        } else {
+            if (Z[start] >= n) {
+                cnt_equal++;
+            } else {
+                if (ss[start + Z[start]] < ss[Z[start]]) {
+                    cnt_less++;
+                } else {
+                    cnt_greater++;
+                }
+            }
+        }
+    }
+
+    cout << cnt_less << " " << cnt_equal << " " << cnt_greater << endl;
+    return 0;
+}
+```
 
 ---
