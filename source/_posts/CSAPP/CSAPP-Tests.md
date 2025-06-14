@@ -311,7 +311,7 @@ C B B D C B A A C B C
 - D. -8  
 
 **答案：**  
-A C B A B D A C B C D  
+A C B A B D A C B B C D  
 
 ---
 
