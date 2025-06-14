@@ -15,7 +15,7 @@
 <meta property="og:description" content="Week 1问题 1在 C 语言编译过程中，汇编程序是由哪个工具产生？    A. 预处理器   B. 编译器   C. 汇编器   D. 链接器  问题 2在 C 程序的编译过程中，以下哪一个工具的输出是二进制文件？    A. 预处理器   B. 编译器   C. 链接器   D. 编辑器  问题 3高速缓存位于以下哪个部件之内？    A. 寄存器   B. 主存储器   C. CPU">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-03-12T15:56:23.000Z">
-<meta property="article:modified_time" content="2025-05-10T12:20:42.550Z">
+<meta property="article:modified_time" content="2025-06-14T08:44:00.951Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
@@ -143,7 +143,7 @@
       <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
       2025-03-12 23:56:23 &nbsp; <mdui-icon name="update"
           style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-        2025-05-10 20:20:42
+        2025-06-14 16:44:00
     </span>
     <br>
     <span>
@@ -229,7 +229,7 @@
 <li>C. 0x2EC2  </li>
 <li>D. 0x2DC3</li>
 </ul>
-<p><strong>答案：</strong><br>B C C A D A C B D  </p>
+<p><strong>答案：</strong><br>B C C A D C C B D  </p>
 <hr>
 <h2 id="Week-2"><a href="#Week-2" class="headerlink" title="Week 2"></a>Week 2</h2><h3 id="问题-1-1"><a href="#问题-1-1" class="headerlink" title="问题 1"></a>问题 1</h3><p>在 64 位机器中，类型 <code>int **</code> 所占的字节数为：  </p>
 <ul>
@@ -1022,6 +1022,407 @@ XXXXXX: 5d  - - - - - pop %rbp<span aria-hidden="true" class="line-numbers-rows"
 <li>D. 能够访问程序的汇编代码</li>
 </ul>
 <p><strong>答案：</strong><br>A D C D B D B B D A B B C B C B</p>
+<hr>
+<h2 id="Week-13"><a href="#Week-13" class="headerlink" title="Week 13"></a>Week 13</h2><h3 id="问题-1-11"><a href="#问题-1-11" class="headerlink" title="问题 1"></a>问题 1</h3><p>在能够改变程序控制流的各种机制中，不包含以下哪一项</p>
+<ul>
+<li>A. 函数调用</li>
+<li>B. 强制类型转换</li>
+<li>C. 进程上下文切换</li>
+<li>D. 中断</li>
+</ul>
+<h3 id="问题-2-11"><a href="#问题-2-11" class="headerlink" title="问题 2"></a>问题 2</h3><p>以下有关各类异常的正确描述是：</p>
+<ul>
+<li>A. 中断是同步的</li>
+<li>B. 陷阱异常即 <code>syscall</code> 意味着发生了某些致命错误</li>
+<li>C. 当故障处理完成并且恢复后，返回到下一条指令</li>
+<li>D. 如果一个应用程序发生了终止异常，终止处理程序从来不将控制返回给该应用程序</li>
+</ul>
+<h3 id="问题-3-11"><a href="#问题-3-11" class="headerlink" title="问题 3"></a>问题 3</h3><p>四个进程的运行时间段为：A( 1 – 4 ), B( 3 – 6 ), C( 5 – 9 ), D( 7 – 11 )<br>在两两组合的所有进程对中，有多少对是并发运行的？</p>
+<ul>
+<li>A. 2</li>
+<li>B. 3</li>
+<li>C. 4</li>
+<li>D. 5</li>
+</ul>
+<h3 id="问题-4-11"><a href="#问题-4-11" class="headerlink" title="问题 4"></a>问题 4</h3><p>对于进程表述错误的是：</p>
+<ul>
+<li>A. 进程提供的抽象之一是：在时间上提供了一个独立的逻辑控制流</li>
+<li>B. 普通用户程序的进程，运行初始时是在用户模式中</li>
+<li>C. 当异常发生时，控制从应用程序转到异常处理程序，处理器将模式从用户模式变为内核模式</li>
+<li>D. 在进行两个进程的上下文切换时，一般是处于用户模式</li>
+</ul>
+<h3 id="问题-5-11"><a href="#问题-5-11" class="headerlink" title="问题 5"></a>问题 5</h3><p>以下程序会输出多少行“2”？</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"2\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"2\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. 3</li>
+<li>B. 4</li>
+<li>C. 6</li>
+<li>D. 7</li>
+</ul>
+<h3 id="问题-6-11"><a href="#问题-6-11" class="headerlink" title="问题 6"></a>问题 6</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token keyword">int</span> status<span class="token punctuation">;</span>
+   <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      k<span class="token operator">++</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">waitpid</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>status<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">WIFEXITED</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+           <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token function">WEXITSTATUS</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">exit</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以上程序的一种可能的输出是什么？</p>
+<ul>
+<li>A. abc2c</li>
+<li>B. acb2c</li>
+<li>C. bca4c</li>
+<li>D. bac4c</li>
+</ul>
+<h3 id="问题-7-8"><a href="#问题-7-8" class="headerlink" title="问题 7"></a>问题 7</h3><p>如果进程 A 和子进程 A1、 进程 B 和子进程 B1、 进程 C 和子进程 C1 都被挂起，它们后续被调度的先后次序是</p>
+<ul>
+<li>A. 不能确定，与调度器实现有关</li>
+<li>B. A 先于 A1， B 先于 B1， C 先于 C1</li>
+<li>C. A1 先于 A， B1 先于 B， C1 先于 C</li>
+<li>D. 先 A、B、C，再 A1、B1、C1</li>
+</ul>
+<h3 id="问题-8-6"><a href="#问题-8-6" class="headerlink" title="问题 8"></a>问题 8</h3><p>在程序中调用 <code>wait(status)</code>，以下错误的是</p>
+<ul>
+<li>A. 它相当于 <code>waitpid(-1, status, 0)</code></li>
+<li>B. 调用进程继续运行，并等待着子进程终止的消息通知</li>
+<li>C. 当有一个子进程终止后， <code>wait(status)</code> 返回</li>
+<li>D. 通过 <code>wait(status)</code> ，父进程得以回收已终止的子进程</li>
+</ul>
+<h3 id="问题-9-6"><a href="#问题-9-6" class="headerlink" title="问题 9"></a>问题 9</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">fork9</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+ <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Running Child, PID = %d\n"</span><span class="token punctuation">,</span> <span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Infinite loop */</span>
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+ <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Running Parent, PID = %d\n"</span><span class="token punctuation">,</span> <span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Infinite loop */</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果 父进程号为 6639，子进程号为 6640，以下正确的陈述是</p>
+<ul>
+<li>A. 此程序在命令行中运行时，先输出 6639，再输出 6640</li>
+<li>B. 在命令行中运行此程序，执行 <code>kill 6640</code> 后，子进程终止并被回收</li>
+<li>C. 在命令行中 运行此程序， 执行 <code>kill 6640</code> 后，子进程成为孤儿进程</li>
+<li>D. 在命令行中运行此程序，执行 <code>kill 6639</code>、 <code>kill 6640</code> 后，由 <code>init</code> 进程回收子进程 6640</li>
+</ul>
+<p><strong>答案：</strong><br>B D B D C D A B D</p>
+<hr>
+<h2 id="Week-14"><a href="#Week-14" class="headerlink" title="Week 14"></a>Week 14</h2><h3 id="问题-1-12"><a href="#问题-1-12" class="headerlink" title="问题 1"></a>问题 1</h3><p>已知：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">linux<span class="token operator">></span> ./myexample
+Child1: <span class="token assign-left variable">pid</span><span class="token operator">=</span><span class="token number">3196</span> <span class="token assign-left variable">pgrp</span><span class="token operator">=</span><span class="token number">3195</span>
+Child2: <span class="token assign-left variable">pid</span><span class="token operator">=</span><span class="token number">3197</span> <span class="token assign-left variable">pgrp</span><span class="token operator">=</span><span class="token number">3195</span>
+
+linux<span class="token operator">></span> <span class="token function">ps</span>
+ PID TTY          TIME CMD
+<span class="token number">3175</span> pts/2    00:00:00 tcsh
+<span class="token number">3196</span> pts/2    00:00:02 myexample
+<span class="token number">3197</span> pts/2    00:00:02 myexample
+<span class="token number">3201</span> pts/2    00:00:00 <span class="token function">ps</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>请问执行什么命令，然后可以产生以下效果？</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">linux<span class="token operator">></span> <span class="token function">ps</span>
+ PID TTY          TIME CMD
+<span class="token number">3175</span> pts/2    00:00:00 tcsh
+<span class="token number">3201</span> pts/2    00:00:00 <span class="token function">ps</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. <code>/bin/kill 3195</code></li>
+<li>B. <code>/bin/kill -9 3195</code></li>
+<li>C. <code>/bin/kill -9 -3195</code></li>
+<li>D. <code>/bin/kill 3196 3197</code></li>
+</ul>
+<h3 id="问题-2-12"><a href="#问题-2-12" class="headerlink" title="问题 2"></a>问题 2</h3><p>在 shell 窗口中，用户输入了一个可执行文件名并运行它。此时 shell 程序中的主要处理流程是：</p>
+<ul>
+<li>A. <code>execve()</code>，然后调用 <code>fork()</code></li>
+<li>B. <code>fork()</code>，然后调用 <code>execve()</code></li>
+<li>C. <code>fork()</code>，然后在子进程中调用 <code>execve()</code></li>
+<li>D. <code>execve()</code>，然后调用 <code>fork()</code>，然后在父进程中调用 <code>execve()</code></li>
+</ul>
+<h3 id="问题-3-12"><a href="#问题-3-12" class="headerlink" title="问题 3"></a>问题 3</h3><p>在 Linux shell 中运行一个程序时，按 <code>Ctrl-Z</code> 可以将它停止，此处内核发送的信号是：</p>
+<ul>
+<li>A. <code>SIGINT</code></li>
+<li>B. <code>SIGQUIT</code></li>
+<li>C. <code>SIGALRM</code></li>
+<li>D. <code>SIGTSTP</code></li>
+</ul>
+<h3 id="问题-4-12"><a href="#问题-4-12" class="headerlink" title="问题 4"></a>问题 4</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">sig_handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Caught\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> sig_handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Wait\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"End\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 shell 中运行以上程序，然后按 <code>Ctrl-C</code>，请问输出是什么？</p>
+<ul>
+<li>A. Wait</li>
+<li>B. Caught</li>
+<li>C. Wait<br>   Caught<br>   End</li>
+<li>D. Wait<br>   Caught</li>
+</ul>
+<h3 id="问题-5-12"><a href="#问题-5-12" class="headerlink" title="问题 5"></a>问题 5</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> beeps <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>sig <span class="token operator">==</span> SIGALRM<span class="token punctuation">)</span>
+    <span class="token function">safe_printf</span><span class="token punctuation">(</span><span class="token string">"BEEP\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">++</span>beeps <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span>
+    <span class="token function">alarm</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">safe_printf</span><span class="token punctuation">(</span><span class="token string">"BOOM!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">signal</span><span class="token punctuation">(</span>SIGALRM<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">alarm</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行以上程序，在 2.5 秒时按 <code>Ctrl-C</code>，当程序运行结束的全部输出是什么？</p>
+<ul>
+<li>A. BEEP<br>   BEEP</li>
+<li>B. BEEP<br>   BEEP<br>   BOOM!</li>
+<li>C. BEEP<br>   BEEP<br>   BEEP<br>   BEEP<br>   BOOM!</li>
+<li>D. BEEP<br>   BEEP<br>   BEEP<br>   BEEP<br>   BEEP<br>   BOOM!</li>
+</ul>
+<h3 id="问题-6-12"><a href="#问题-6-12" class="headerlink" title="问题 6"></a>问题 6</h3><p>已知 <code>SIGUSR1</code> 是用户定义的信号，默认行为是终止进程。</p>
+<p>以下这个程序的所有输出的 <code>counter</code> 值之和是多少？</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token class-name">pid_t</span> pid<span class="token punctuation">;</span>
+<span class="token keyword">int</span> counter <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">handler1</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   counter <span class="token operator">=</span> counter <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"counter = %d\n"</span><span class="token punctuation">,</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">fflush</span><span class="token punctuation">(</span><span class="token constant">stdout</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Flushes the printed string to stdout */</span>
+   <span class="token function">kill</span><span class="token punctuation">(</span>pid<span class="token punctuation">,</span> SIGUSR1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">handler2</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   counter <span class="token operator">++</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"counter = %d\n"</span><span class="token punctuation">,</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token function">signal</span><span class="token punctuation">(</span>SIGUSR1<span class="token punctuation">,</span> handler1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pid <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">signal</span><span class="token punctuation">(</span>SIGUSR1<span class="token punctuation">,</span> handler2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">kill</span><span class="token punctuation">(</span><span class="token function">getppid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SIGUSR1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      <span class="token class-name">pid_t</span> p<span class="token punctuation">;</span> <span class="token keyword">int</span> status<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>p <span class="token operator">=</span> <span class="token function">wait</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>status<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+         counter <span class="token operator">+=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"counter = %d\n"</span><span class="token punctuation">,</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. 101</li>
+<li>B. 406</li>
+<li>C. 606</li>
+<li>D. 706</li>
+</ul>
+<h3 id="问题-7-9"><a href="#问题-7-9" class="headerlink" title="问题 7"></a>问题 7</h3><p><code>setjmp</code> 函数的特点是：</p>
+<ul>
+<li>A. 调用一次，从不返回</li>
+<li>B. 调用一次，返回一次</li>
+<li>C. 调用一次，返回两次</li>
+<li>D. 调用一次，返回一次或者多次</li>
+</ul>
+<h3 id="问题-8-7"><a href="#问题-8-7" class="headerlink" title="问题 8"></a>问题 8</h3><p>在程序正常运行时，以下哪些函数的行为是 “调用一次，从不返回”？ （多选）</p>
+<ul>
+<li>A. <code>execve</code></li>
+<li>B. <code>fork</code></li>
+<li>C. <code>longjmp</code></li>
+<li>D. <code>setjmp</code></li>
+</ul>
+<h3 id="问题-9-7"><a href="#问题-9-7" class="headerlink" title="问题 9"></a>问题 9</h3><p>虚拟内存的位置通常在哪里</p>
+<ul>
+<li>A. 高速缓存</li>
+<li>B. 物理内存</li>
+<li>C. 硬盘</li>
+<li>D. 服务器</li>
+</ul>
+<h3 id="问题-10-5"><a href="#问题-10-5" class="headerlink" title="问题 10"></a>问题 10</h3><p>CPU &#x2F; 进程如果对内存中的数据进行读写操作，使用的地址是：</p>
+<ul>
+<li>A. 物理地址</li>
+<li>B. 虚拟地址</li>
+<li>C. 高速缓存地址</li>
+<li>D. 磁盘逻辑块地址</li>
+</ul>
+<p><strong>答案：</strong><br>B D B D C D A B D</p>
+<hr>
+<h2 id="Week-15"><a href="#Week-15" class="headerlink" title="Week 15"></a>Week 15</h2><h3 id="问题-1-13"><a href="#问题-1-13" class="headerlink" title="问题 1"></a>问题 1</h3><p>在地址翻译时，使用 TLB 的直接好处是</p>
+<ul>
+<li>A. 节省页表的存储空间  </li>
+<li>B. 节省数据页的存储空间  </li>
+<li>C. 节省页表的查找时间  </li>
+<li>D. 节省数据页的查找时间</li>
+</ul>
+<h3 id="问题-2-13"><a href="#问题-2-13" class="headerlink" title="问题 2"></a>问题 2</h3><p>对于一个地址翻译的案例，我们假设：</p>
+<ol>
+<li>内存是按字节寻址的。  </li>
+<li>页面大小是 32 字节。  </li>
+<li>虚拟地址的长度是 12 位。  </li>
+<li>物理地址的长度是 10 位。  </li>
+<li>TLB 是二路组相联的，一共有 16 个条目。</li>
+</ol>
+<p>已知虚拟地址 <code>0x3D2</code>。求 PPO  </p>
+<ul>
+<li>A. <code>0x12</code>  </li>
+<li>B. <code>0x1E</code>  </li>
+<li>C. <code>0x02</code>  </li>
+<li>D. <code>0x3D</code></li>
+</ul>
+<h3 id="问题-3-13"><a href="#问题-3-13" class="headerlink" title="问题 3"></a>问题 3</h3><p>如上，已知虚拟地址 <code>0x3D2</code>。试求 TLBT  </p>
+<ul>
+<li>A. <code>0x01</code>  </li>
+<li>B. <code>0x03</code>  </li>
+<li>C. <code>0x06</code>  </li>
+<li>D. <code>0x07</code></li>
+</ul>
+<h3 id="问题-4-13"><a href="#问题-4-13" class="headerlink" title="问题 4"></a>问题 4</h3><p>在一个 k 级页表体系中，虚拟地址中的 VPN 被分隔成 <code>VPN 1</code>、<code>VPN 2</code>、… <code>VPN k</code>。其中，<code>VPN i</code>（1 &lt;&#x3D; i &lt;&#x3D; k-1）的用途是：  </p>
+<ul>
+<li>A. 用于查找页内的一个数据块  </li>
+<li>B. 用于查找页的物理地址 PPN  </li>
+<li>C. 用于查找第 i 级页表中的一个 PTE 条目  </li>
+<li>D. 用于查找第 i 级页表的基址</li>
+</ul>
+<h3 id="问题-5-13"><a href="#问题-5-13" class="headerlink" title="问题 5"></a>问题 5</h3><p>以下关于页表的描述中，错误的是：  </p>
+<ul>
+<li>A. 利用页表，可实现虚实地址变换。  </li>
+<li>B. 页表由页表条目（页表项）组成，页表项反映了对应虚页的存储状态。  </li>
+<li>C. 页表的大小由实页数及每个页表条目所需字节数决定。  </li>
+<li>D. 在多级页表中，第一级页表是常驻主存。</li>
+</ul>
+<h3 id="问题-6-13"><a href="#问题-6-13" class="headerlink" title="问题 6"></a>问题 6</h3><p>一个程序的主体代码如下：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> fd<span class="token punctuation">;</span>
+<span class="token keyword">char</span> <span class="token operator">*</span>mmaped<span class="token punctuation">;</span>
+
+fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"hello.txt"</span><span class="token punctuation">,</span> O_RDWR<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+mmaped <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">mmap</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> PROT_READ <span class="token operator">|</span> PROT_WRITE<span class="token punctuation">,</span> MAP_SHARED<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+<span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+mmaped<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'e'</span><span class="token punctuation">;</span>
+<span class="token function">munmap</span><span class="token punctuation">(</span>mmaped<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>hello.txt</code> 原来内容为 <code>&quot;Hello, world!&quot;</code>，运行以上程序之后，现在内容为：  </p>
+<ul>
+<li>A. <code>Hello, world!</code>  </li>
+<li>B. <code>Helle, world!</code>  </li>
+<li>C. <code>Helloe, world!</code>  </li>
+<li>D. <code>Helloe world!</code></li>
+</ul>
+<h3 id="问题-7-10"><a href="#问题-7-10" class="headerlink" title="问题 7"></a>问题 7</h3><p>以下哪一项体现了动态内存隐式分配器的特点：  </p>
+<ul>
+<li>A. Java语言中的 <code>new</code>  </li>
+<li>B. C语言中的 <code>free</code>  </li>
+<li>C. Python语言中的垃圾收集  </li>
+<li>D. C++语言中的多重继承</li>
+</ul>
+<h3 id="问题-8-8"><a href="#问题-8-8" class="headerlink" title="问题 8"></a>问题 8</h3><p>动态内存分配器的两个性能指标，即吞吐率和内存利用率之间的关系是  </p>
+<ul>
+<li>A. 内存和磁盘的关系  </li>
+<li>B. 时间和空间的关系  </li>
+<li>C. 网络和本地的关系  </li>
+<li>D. 全局和局部的关系</li>
+</ul>
+<h3 id="问题-9-8"><a href="#问题-9-8" class="headerlink" title="问题 9"></a>问题 9</h3><p>在隐式空闲链表（implicit list）中，块与块之间的链接主要是依靠什么来完成  </p>
+<ul>
+<li>A. 块的长度信息  </li>
+<li>B. 块的分配&#x2F;空闲标记  </li>
+<li>C. 块的单向链表指针  </li>
+<li>D. 块的双向链表指针</li>
+</ul>
+<h3 id="问题-10-6"><a href="#问题-10-6" class="headerlink" title="问题 10"></a>问题 10</h3><p>在采用隐式空闲链表的动态存储分配过程中，搜索一个空闲块进行存储分配的放置策略不包括  </p>
+<ul>
+<li>A. Mark and Sweep  </li>
+<li>B. 首次适配法  </li>
+<li>C. next fit  </li>
+<li>D. 最佳适配法</li>
+</ul>
+<h3 id="问题-11-4"><a href="#问题-11-4" class="headerlink" title="问题 11"></a>问题 11</h3><p>在隐式空闲链表中，增加脚部作为边界标记的主要原因是  </p>
+<ul>
+<li>A. 便于知道邻居块的对齐情况  </li>
+<li>B. 便于增加碎片的大小  </li>
+<li>C. 便于一个已被释放的块和前一个空闲块合并  </li>
+<li>D. 便于一个已被释放的块和后一个空闲块合并</li>
+</ul>
+<h3 id="问题-12-3"><a href="#问题-12-3" class="headerlink" title="问题 12"></a>问题 12</h3><p>假设一个显式空闲链表，每个空闲块中有四字节的 <code>pred</code> 和 <code>succ</code> 指针，头部和脚部都存放在四字节的字中，不允许有效载荷的大小为零。对齐要求为双字对齐。符合要求的最小块大小是  </p>
+<ul>
+<li>A. 16 字节  </li>
+<li>B. 20 字节  </li>
+<li>C. 24 字节  </li>
+<li>D. 32 字节</li>
+</ul>
+<h3 id="问题-13-2"><a href="#问题-13-2" class="headerlink" title="问题 13"></a>问题 13</h3><p>在实际应用中，<code>malloc</code> 动态内存管理包通常采用的分配器方案是  </p>
+<ul>
+<li>A. 隐式空闲列表  </li>
+<li>B. 显式空闲列表  </li>
+<li>C. 简单分离存储的空闲链表  </li>
+<li>D. 分离适配的空闲链表</li>
+</ul>
+<h3 id="问题-14-2"><a href="#问题-14-2" class="headerlink" title="问题 14"></a>问题 14</h3><p>为了支持采用隐式空闲链表的动态存储器分配，使用教材图 9-39 所示的内存块布局。请在以下程序的空白处选择合适语句：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* given a pointer p to an allocated block, i.e., p is a pointer returned by some previous malloc()/realloc() call; returns the pointer to the header of the block */</span>
+<span class="token keyword">void</span> <span class="token operator">*</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> p<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">void</span> <span class="token operator">*</span>ptr<span class="token punctuation">;</span>
+    _____________<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ptr<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. <code>ptr = p - 1</code>  </li>
+<li>B. <code>ptr = (void *)((int *)p - 1)</code>  </li>
+<li>C. <code>ptr = (void *)((int *)p - 4)</code>  </li>
+<li>D. 以上都不对</li>
+</ul>
+<h3 id="问题-15-2"><a href="#问题-15-2" class="headerlink" title="问题 15"></a>问题 15</h3><p>为了支持采用隐式空闲链表的动态存储器分配，使用教材图 9-39 所示的内存块布局。请在以下程序的空白处选择合适语句：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* given a pointer to a valid block header or footer, returns the usage of the current block, 1 for allocated, 0 for free */</span>
+<span class="token keyword">int</span> <span class="token function">allocated</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>hp<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> result<span class="token punctuation">;</span>
+    ____________<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>A. <code>result = (*(int *)hp) &amp; 1</code>  </li>
+<li>B. <code>result = (*(int *)hp) &amp; 0</code>  </li>
+<li>C. <code>result = (*(int *)hp) | 1</code>  </li>
+<li>D. 以上都不对</li>
+</ul>
+<p><strong>答案：</strong><br>C A B C C D C B A A C C D B A</p>
 <hr>
 
   </div>
