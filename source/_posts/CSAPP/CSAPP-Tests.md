@@ -456,7 +456,7 @@ A C B A B D A C B B C D
 - D. 都不是  
 
 **答案：**  
-D D D B A C A D A C A B C A B  
+D D D B C A D A B C C B A A B
 
 ---
 
