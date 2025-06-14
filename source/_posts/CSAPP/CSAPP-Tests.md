@@ -90,7 +90,7 @@ categories:
 - D. 0x2DC3  
 
 **答案：**  
-B C C A D A C B D  
+B C C A D C C B D  
 
 ---
 
