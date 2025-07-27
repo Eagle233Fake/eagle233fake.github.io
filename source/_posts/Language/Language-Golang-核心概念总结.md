@@ -1,5 +1,5 @@
 ---
-title: [Programming Language] Golang 核心概念总结
+title: '[Language] Golang 核心概念总结'
 date: 2025-07-28 03:43:34
 tags:
 categories: 
