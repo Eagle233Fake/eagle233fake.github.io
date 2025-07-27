@@ -14,7 +14,7 @@ categories:
  2. **命名返回值**
     Go语言的命名返回值允许在函数声明中指定返回变量名，这些变量在函数体内可直接赋值，并在使用裸返回（`return`）时自动返回其当前值，从而简化代码，但需注意避免降低可读性。
 
-    ```go
+    ```golang
     package main
     
     import "fmt"
@@ -36,7 +36,7 @@ categories:
 
     * **函数声明**
 
-      ```go
+      ```golang
       func add(x, y int) int {
           return x + y
       }
@@ -46,7 +46,7 @@ categories:
 
     * **变量声明**
 
-      ```go
+      ```golang
       var age int = 30
       ```
 
@@ -60,7 +60,7 @@ categories:
 
     * `%#v`：打印值的Go语言语法表示。
 
-    ```go
+    ```golang
     // 假设你有一个 Product 结构体实例p:
     // type Product struct { ID int; Name string; Price float64 }
     // p := Product{ID:101, Name: "Go T-shirt", Price:25.99}
@@ -78,7 +78,7 @@ categories:
  6. **类型转换**
     表达式 `T(v)` 将值 `v` 转换为类型 `T`。Go在不同类型的项之间赋值时需要显式转换。
 
-    ```go
+    ```golang
     var f float64 = math.Sqrt(float64(x*x + y*y))
     var z uint = uint(f)
     z = f // 错误!!!
@@ -87,14 +87,14 @@ categories:
  7. **常量声明**
     常量的声明与变量类似，只不过使用 `const` 关键字。常量不能用 `:=` 语法声明。
 
-    ```go
+    ```golang
     const World = "世界"
     ```
 
  8. **数值常量**
     数值常量是高精度的值。一个未指定类型的常量由上下文来决定其类型。
 
-    ```go
+    ```golang
     const Pi = 3.14159265358979323846 // 这是一个高精度的无类型浮点常量
     
     var f float32 = Pi // Pi 会被转换为 float32,精度会损失
@@ -116,7 +116,7 @@ categories:
  9. **`for` 循环**
     C语言的 `while` 在Go中叫做 `for`。
 
-    ```go
+    ```golang
     for sum < 1000 {
         sum += sum
     }
@@ -124,7 +124,7 @@ categories:
 
 10. **无限循环**
 
-    ```go
+    ```golang
     for {
         // ...
     }
@@ -133,7 +133,7 @@ categories:
 11. **`if` 语句中的简短语句**
     和 `for` 一样，`if` 语句可以在条件表达式前执行一个简短语句。该语句声明的变量作用域仅在 `if` 之内。在 `if` 的简短语句中声明的变量同样可以在对应的任何 `else` 块中使用。
 
-    ```go
+    ```golang
     func pow(x, n, lim float64) float64 {
         if v := math.Pow(x, n); v < lim {
             return v
@@ -145,7 +145,7 @@ categories:
 12. **`switch` 语句**
     Go的做法相当于这些语言中为每个 `case` 后面自动添加了所需的 `break` 语句。在Go中，除非以 `fallthrough` 语句结束，否则分支会自动终止。Go的另一点重要的不同在于 `switch` 的 `case` 无需为常量，且取值不限于整数。
 
-    ```go
+    ```golang
     switch os := runtime.GOOS; os {
     case "darwin":
         fmt.Println("macOS.")
@@ -164,7 +164,7 @@ categories:
 14. **无条件 `switch`**
     `switch` 语句可以不带条件表达式，等价于 `switch true`。
 
-    ```go
+    ```golang
     func main() {
         t := time.Now()
         switch {
@@ -181,7 +181,7 @@ categories:
 15. **`defer` 语句**
     `defer` 语句会将函数推迟到外层函数返回之后执行。推迟调用的函数其参数会立即求值，但直到外层函数返回前该函数都不会被调用。推迟调用的函数调用会被压入一个栈中。当外层函数返回时，被推迟的调用会按照 FILO（后进先出）的顺序调用。
 
-    ```go
+    ```golang
     package main
     
     import "fmt"
@@ -223,7 +223,7 @@ categories:
 18. **结构体 (struct)**
     一个结构体（`struct`）就是一组字段（`field`）。
 
-    ```go
+    ```golang
     type Vertex struct {
         X int
         Y int
@@ -240,14 +240,14 @@ categories:
 20. **结构体字面量**
     使用 `Name:` 语法可以仅列出部分字段（字段名的顺序无关）。
 
-    ```go
+    ```golang
     v2 := Vertex{X: 1} // Y: 被隐式地赋予零值
     ```
 
 21. **数组**
     类型 `[n]T` 表示一个数组，它拥有 `n` 个类型为 `T` 的值。
 
-    ```go
+    ```golang
     var a [10]int
     primes := [6]int{2, 3, 5, 7, 11, 13} // 声明一个变量 primes 为6个 int
     ```
@@ -255,7 +255,7 @@ categories:
 22. **切片 (Slice)**
     切片是引用类型，它只是描述了底层数组中的一段。
 
-    ```go
+    ```golang
     a[low:high] // 左闭右开
     ```
 
@@ -268,7 +268,7 @@ categories:
 25. **切片默认行为**
     在进行切片时，你可以利用它的默认行为来忽略上下界。切片下界的默认值为0，上界则是该切片的长度。
 
-    ```go
+    ```golang
     var a [10]int
     // 以下切片表达式等价:
     // a[0:10]
@@ -280,7 +280,7 @@ categories:
 26. **切片的长度与容量**
     切片的长度是其当前元素数量，而容量是从切片起点到其底层数组末尾的元素数量。切片 `s` 的长度和容量可通过表达式 `len(s)` 和 `cap(s)` 来获取。
 
-    ```go
+    ```golang
     package main
     
     import "fmt"
@@ -322,13 +322,13 @@ categories:
 28. **`make` 函数创建切片**
     `make` 函数会分配一个元素为零值的数组并返回一个引用了它的切片:
 
-    ```go
+    ```golang
     a := make([]int, 5) // len(a)=5
     ```
 
     要指定它的容量，需向 `make` 传入第三个参数:
 
-    ```go
+    ```golang
     b := make([]int, 0, 5) // len(b)=0, cap(b)=5
     
     b = b[:cap(b)] // len(b)=5, cap(b)=5
@@ -337,7 +337,7 @@ categories:
 
 29. **切片的切片**
 
-    ```go
+    ```golang
     board := [][]string{
         []string{"_", "_", "_"},
         []string{"_", "_", "_"},
@@ -347,7 +347,7 @@ categories:
 
 30. **追加元素**
 
-    ```go
+    ```golang
     func append(s []T, vs ...T) []T
     ```
 
@@ -356,7 +356,7 @@ categories:
 31. **`for...range` 遍历切片**
     当使用 `for` 循环遍历切片时，每次迭代都会返回两个值。第一个值为当前元素的下标，第二个值为该下标所对应元素的一份副本。
 
-    ```go
+    ```golang
     var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
     
     func main() {
@@ -368,21 +368,21 @@ categories:
 
     可以将下标或值赋予 `_` 来忽略它。
 
-    ```go
+    ```golang
     for i, _ := range pow
     for _, value := range pow
     ```
 
     若你只需要索引，忽略第二个变量即可。
 
-    ```go
+    ```golang
     for i := range pow
     ```
 
 32. **映射 (map)**
     `map` 的零值是 `nil`，不能直接使用，必须通过 `make` 函数初始化后才能添加键值对。映射的字面量和结构体类似，只不过必须有键名。若顶层类型只是一个类型名，那么你可以在字面量的元素中省略它。
 
-    ```go
+    ```golang
     type Vertex struct {
         Lat, Long float64
     }
@@ -405,14 +405,14 @@ categories:
 
 33. **删除映射元素**
 
-    ```go
+    ```golang
     delete(m, key)
     ```
 
 34. **检测映射键是否存在**
     通过双赋值检测某个键是否存在:
 
-    ```go
+    ```golang
     elem, ok := m[key]
     ```
 
@@ -421,7 +421,7 @@ categories:
 35. **函数值**
     函数可以作为值传递。
 
-    ```go
+    ```golang
     func compute(fn func(float64, float64) float64) float64 {
         return fn(3, 4)
     }
@@ -445,7 +445,7 @@ categories:
 1. **方法**
     Go没有类。不过你可以为类型定义方法。方法就是一类带特殊的接收者参数的函数。方法接收者在它自己的参数列表内，位于 `func` 关键字和方法名之间。
 
-    ```go
+    ```golang
     type Vertex struct {
         X, Y float64
     }
@@ -466,7 +466,7 @@ categories:
 4. **指针接收者**
     指针接收者的主要用途是允许方法修改其接收者所指向的底层数据，或者为了性能考虑避免大型结构体的复制。
 
-    ```go
+    ```golang
     type Vertex struct {
         X, Y float64
     }
@@ -492,7 +492,7 @@ categories:
 5. **接收者为指针的方法调用**
     接收者为指针的方法被调用时，接收者既能是值又能是指针: Go会将语句 `v.Scale(5)` 解释为 `(&v).Scale(5)`。
 
-    ```go
+    ```golang
     var v Vertex
     v.Scale(5)  // OK
     p := &v
@@ -502,7 +502,7 @@ categories:
 6. **以值为接收者的方法调用**
     以值为接收者的方法被调用时，接收者既能为值又能为指针。
 
-    ```go
+    ```golang
     var v Vertex
     fmt.Println(v.Abs()) // OK
     p := &v
@@ -514,7 +514,7 @@ categories:
 7. **接口**
     接口类型的定义为一组方法签名。接口类型的变量可以持有任何实现了这些方法的值。
 
-    ```go
+    ```golang
     // 定义一个通用接口
     type Abser interface {
         Abs() float64
@@ -550,7 +550,7 @@ categories:
 9. **隐式接口实现**
     类型通过实现一个接口的所有方法来实现该接口。既然无需专门显式声明，也就没有 `implements` 关键字。
 
-    ```go
+    ```golang
     type I interface {
         M()
     }
@@ -573,7 +573,7 @@ categories:
 10. **接口值的内部表示**
     `%T` 会显示接口变量内部“包裹”的具体类型，而不是接口类型本身。因为在内部，接口值可以看做包含值和具体类型的元组: `(value, type)`。
 
-    ```go
+    ```golang
     type F float64
     
     func (f F) M() {
@@ -621,7 +621,7 @@ categories:
 11. **`nil` 具体值的接口**
     即便接口内的具体值为 `nil`，方法仍然会被 `nil` 接收者调用。保存了 `nil` 具体值的接口其自身并不为 `nil`。
 
-    ```go
+    ```golang
     type I interface {
         M()
     }
@@ -670,7 +670,7 @@ categories:
 12. **`nil` 接口值**
     `nil` 接口值既不保存值也不保存具体类型。为 `nil` 接口调用方法会产生运行时错误，因为接口的元组内并未包含能够指明该调用哪个具体方法的类型。
 
-    ```go
+    ```golang
     type I interface {
         M()
     }
@@ -689,7 +689,7 @@ categories:
 13. **空接口**
     指定了零个方法的接口值被称为空接口:
 
-    ```go
+    ```golang
     var i interface{}
     ```
 
@@ -701,7 +701,7 @@ categories:
 15. **类型断言**
     类型断言提供了访问接口值底层具体值的方式。
 
-    ```go
+    ```golang
     t := i.(T)
     ```
 
@@ -710,11 +710,11 @@ categories:
 16. **带 `ok` 的类型断言**
     为了判断一个接口值是否保存了一个特定的类型，类型断言可返回两个值: 其底层值以及一个报告断言是否成功的布尔值。
 
-    ```go
+    ```golang
     t, ok := i.(T)
     ```
 
-    ```go
+    ```golang
     func main() {
         var i interface{} = "hello"
     
@@ -746,7 +746,7 @@ categories:
 18. **类型选择**
     类型选择是一种按顺序从几个类型断言中选择分支的结构。
 
-    ```go
+    ```golang
     switch v := i.(type) {
     case T:
         // v 的类型为 T
@@ -762,7 +762,7 @@ categories:
 19. **`Stringer` 接口**
     `fmt` 包中定义的 `Stringer` 是最普遍的接口之一。
 
-    ```go
+    ```golang
     type Stringer interface {
         String() string
     }
@@ -793,7 +793,7 @@ categories:
 20. **错误 (error)**
     Go 程序使用 `error` 值来表示错误状态。
 
-    ```go
+    ```golang
     type error interface {
         Error() string
     }
@@ -820,7 +820,7 @@ categories:
     }
     ```
 
-    ```go
+    ```golang
     type ErrNegativeSqrt float64
     
     func (e ErrNegativeSqrt) Error() string {
@@ -845,7 +845,7 @@ categories:
 21. **`io.Reader` 接口**
     `io.Reader` 接口有一个 `Read` 方法:
 
-    ```go
+    ```golang
     func (T) Read(b []byte) (n int, err error)
     ```
 
@@ -856,7 +856,7 @@ categories:
 1. **类型参数**
     可以使用类型参数编写 Go 函数来处理多种类型。函数的类型参数出现在函数参数之前的方括号之间。
 
-    ```go
+    ```golang
     func Index[T comparable](s []T, x T) int
     ```
 
@@ -865,7 +865,7 @@ categories:
 2. **泛型单链表实现**
     一个普通的单链表实现 (707.设计链表-力扣 (LeetCode))[https://leetcode.cn/problems/design-linked-list/] ：
 
-    ```go
+    ```golang
     type MyLinkedList struct {
     size int
     dummyHead *Node
@@ -966,7 +966,7 @@ categories:
 
     运用了泛型类型:
 
-    ```go
+    ```golang
     type MyLinkedList[T any] struct {
         size      int
         dummyHead *Node[T]
@@ -1069,13 +1069,13 @@ categories:
 1. **Go程 (goroutine)**
     Go程（`goroutine`）是由Go运行时管理的轻量级线程。
 
-    ```go
+    ```golang
     go f(x, y, z)
     ```
 
     会启动一个新的Go协程并执行 `f(x, y, z)`。`f, x, y` 和 `z` 的求值发生在当前的Go协程中，而 `f` 的执行发生在新的Go协程中。
 
-    ```go
+    ```golang
     func say(s string) {
         for i := 0; i < 5; i++ {
             time.Sleep(100 * time.Millisecond)
