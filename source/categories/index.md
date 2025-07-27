@@ -31,4 +31,4 @@ type: "categories"
   - **[String](/categories/Algorithms/String/)**
   - **[TwoPointers](/categories/Algorithms/TwoPointers/)**
 
-- **[Language](/categories/Language/)**
+- **[Programming Language](/categories/Programming Language/)**
