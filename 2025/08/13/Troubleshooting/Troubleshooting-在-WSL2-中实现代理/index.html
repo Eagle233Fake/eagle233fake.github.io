@@ -7,18 +7,22 @@
   <meta name="description" content="">
   <meta name="author" content="Eagle233">
   <meta name="generator" content="Hexo 7.3.0">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Eagle233-Blog">
-<meta property="og:url" content="https://blog.eagle233.top/archives/2025/08/index.html">
+    <meta name="description" content="网上一大堆花里胡哨的方式，其实只要在 Clash 中打开 TUN模式 就可以了…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Troubleshooting] 在 WSL2 中实现代理">
+<meta property="og:url" content="https://blog.eagle233.top/2025/08/13/Troubleshooting/Troubleshooting-%E5%9C%A8-WSL2-%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86/index.html">
 <meta property="og:site_name" content="Eagle233-Blog">
+<meta property="og:description" content="网上一大堆花里胡哨的方式，其实只要在 Clash 中打开 TUN模式 就可以了…">
 <meta property="og:locale">
+<meta property="article:published_time" content="2025-08-13T13:32:34.000Z">
+<meta property="article:modified_time" content="2025-08-13T13:33:21.955Z">
 <meta property="article:author" content="Eagle233">
 <meta name="twitter:card" content="summary">
       <link rel="icon" href="">
       <title>
         
-                Eagle233-Blog
-                  
+          [Troubleshooting] 在 WSL2 中实现代理 - Eagle233-Blog
+              
       </title>
       
 <link rel="stylesheet" href="/css/site.css">
@@ -109,7 +113,7 @@
             
             <mdui-list-item rounded icon="archive"
                 href="/archives"
-                active
+                
                 
                 rel="next">
                 Archives
@@ -130,76 +134,54 @@
 </mdui-navigation-drawer>
         <mdui-layout-main style="min-height: 800px;" id="main">
           <div style="padding-left: 16px;padding-right: 16px;" id="content">
-            <div class="mdui-prose">
+            <mdui-card variant="filled" style="padding: 16px;width: 100%;">
+  <div class="mdui-prose post" id="post-all">
+    <h1 style="margin-bottom: 8px;">
+      [Troubleshooting] 在 WSL2 中实现代理
+    </h1>
+    <span class="post-date">
+      <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+      2025-08-13 21:32:34 &nbsp; <mdui-icon name="update"
+          style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
+        2025-08-13 21:33:21
+    </span>
+    <br>
+    <span>
+        Categories
+          
+              <br>
+      </span>
+      
+        
+          Tags
+            
+                
+                  <!-- photos gallery -->
+                  
+                      <!-- content -->
+                      <p>网上一大堆花里胡哨的方式，其实只要在 Clash 中打开 <strong>TUN模式</strong> 就可以了…</p>
+
+  </div>
+</mdui-card>
+<script>
+  const $ = mdui.$;
+  $("#post-all").find("img").each((index, ele) => {
+    $(ele).replaceWith(`<a data-src="${$(ele).prop("src")}" class="fancybox-enabled" data-fancybox="picture" data-caption="${$(ele).prop("alt")}">${ele.outerHTML}</a>`)
+  });
+  Fancybox.bind(".fancybox-enabled", {
+    on: {
+      ready: () => {
+        $("mdui-top-app-bar").addClass("invisible")
+      }, close: () => {
+        $("mdui-top-app-bar").removeClass("invisible")
+      }
+    }
+  });
   
-  <h1>Archives</h1>
-  <script>
-    let title = document.getElementsByTagName('title')[0];
-    title.textContent="Archives - Eagle233-Blog"
 </script>
-  
-                    <span>2 posts </span>
-</div>
-<br>
 
-<mdui-card clickable variant="filled" href="/2025/08/13/Troubleshooting/Troubleshooting-%E5%9C%A8-WSL2-%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86/" 
-    style="width:100%;">
     
-    <div class="mdui-prose" style="padding: 16px;">
-        <h1 style="margin-bottom: 8px;">
-            [Troubleshooting] 在 WSL2 中实现代理
-        </h1>
-        <span class="post-date">
-            <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-            2025-08-13 21:32:34 &nbsp; <mdui-icon name="update"
-                    style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-                2025-08-13 21:33:21
-        </span>
-        <br>
-        <span>Categories 
-            </span>
-            
-                <span>| Tags </span>
-                            
-        
-                <p>
                     
-                                网上一大堆花里胡哨的方式，其实只要在 Clash 中打开 TUN模式 就可以了…
-
-                                    
-                </p>
-    </div>
-</mdui-card>
-
-<mdui-card clickable variant="filled" href="/2025/08/13/Troubleshooting/Troubleshooting-%E5%9C%A8%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE-CS50x-%E7%8E%AF%E5%A2%83/" 
-    style="width:100%;">
-    
-    <div class="mdui-prose" style="padding: 16px;">
-        <h1 style="margin-bottom: 8px;">
-            [Troubleshooting] 在本地配置 CS50x 环境
-        </h1>
-        <span class="post-date">
-            <mdui-icon name="date_range" style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-            2025-08-13 20:43:37 &nbsp; <mdui-icon name="update"
-                    style="vertical-align: text-bottom;font-size: 18px;"></mdui-icon>
-                2025-08-13 21:24:04
-        </span>
-        <br>
-        <span>Categories 
-            </span>
-            
-                <span>| Tags </span>
-                            
-        
-                <p>
-                    
-                                CS50x 提供的在线VS Code其实无需配环境即可使用。为了熟悉命令的使用，我选择在本地部署环境。但是，直接在 Windows 下安装submit50 style50 check50等工具会...
-                                    
-                </p>
-    </div>
-</mdui-card>
-
-
               <br>
               <span>© 2025 Eagle233 <br>Powered By Hexo & Theme mdsuper</span>
           </div>
