@@ -32,3 +32,6 @@ type: "categories"
   - **[TwoPointers](/categories/Algorithms/TwoPointers/)**
 
 - **[Language](/categories/Language/)**
+
+- **[Troubleshooting](/categories/Troubleshooting/)**
+
