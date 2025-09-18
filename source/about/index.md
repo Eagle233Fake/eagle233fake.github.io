@@ -9,13 +9,10 @@ date: 2024-11-22 13:55:29
 🏡 **Raised in Fuding, Fujian**  
 🏙️ **Currently living in Shanghai**  
 
-> [*"We think a lot about those black lines, forgetting that it's all still in our hands."*](https://x.com/waitbutwhy/status/1367871165319049221)
-![lines.jpg](https://s2.loli.net/2025/03/31/AwFbxP63DWZH5j8.jpg)
-
 ## **📬 Contact:**  
 
 - 📧 Personal Email: [eagle233real@outlook.com](mailto:eagle233real@outlook.com)  
-- 🎓 School Email: [10245101560@stu.ecnu.edu.cn](mailto:10245101560@stu.ecnu.edu.cn)  
+- 🎓 School Email: [cr@stu.ecnu.edu.cn](mailto:cr@stu.ecnu.edu.cn)  
 - 🐧 QQ: 1518007199  
 - 💬 WeChat: Eagle233Real
 
